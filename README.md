@@ -2,7 +2,7 @@
 
 ## Status
 
-[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/macor003/macor003.github.io/blob/master/LICENSE)]
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/macor003/macor003.github.io/blob/master/LICENSE)
 
 ## About
 
