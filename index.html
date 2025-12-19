@@ -39,13 +39,14 @@
             position: fixed;
             top: 0;
             width: 100%;
-            background: var(--white);
-            box-shadow: var(--shadow);
+            background: transparent;
+            box-shadow: none;
             z-index: 1000;
             transition: var(--transition);
         }
 
         .navbar.scrolled {
+            background: var(--white);
             padding: 0.5rem 0;
             box-shadow: 0 5px 20px rgba(0,0,0,0.1);
         }
@@ -62,11 +63,21 @@
         .logo {
             font-size: 1.5rem;
             font-weight: 700;
-            color: var(--primary-color);
+            color: var(--white);
             text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .navbar.scrolled .logo {
+            color: var(--primary-color);
         }
 
         .logo span {
+            color: var(--white);
+            transition: var(--transition);
+        }
+
+        .navbar.scrolled .logo span {
             background: var(--gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -82,10 +93,14 @@
 
         .nav-menu a {
             text-decoration: none;
-            color: var(--text-dark);
+            color: var(--white);
             font-weight: 500;
             transition: var(--transition);
             position: relative;
+        }
+
+        .navbar.scrolled .nav-menu a {
+            color: var(--text-dark);
         }
 
         .nav-menu a::after {
@@ -104,9 +119,9 @@
         }
 
         .lang-switch {
-            background: var(--gradient);
+            background: rgba(255, 255, 255, 0.2);
             color: var(--white);
-            border: none;
+            border: 2px solid var(--white);
             padding: 0.5rem 1rem;
             border-radius: 25px;
             cursor: pointer;
@@ -115,6 +130,11 @@
             display: flex;
             align-items: center;
             gap: 0.5rem;
+        }
+
+        .navbar.scrolled .lang-switch {
+            background: var(--gradient);
+            border: none;
         }
 
         .lang-switch:hover {
@@ -132,13 +152,16 @@
         .mobile-menu span {
             width: 25px;
             height: 3px;
-            background: var(--primary-color);
+            background: var(--white);
             transition: var(--transition);
+        }
+
+        .navbar.scrolled .mobile-menu span {
+            background: var(--primary-color);
         }
 
         /* Hero Section */
         .hero {
-            margin-top: 70px;
             min-height: 100vh;
             background: linear-gradient(rgba(44, 62, 80, 0.8), rgba(52, 152, 219, 0.8)), url('img/header.jpg');
             background-size: cover;
@@ -151,6 +174,7 @@
             color: var(--white);
             position: relative;
             overflow: hidden;
+            padding-top: 70px;
         }
 
         .hero::before {
@@ -718,6 +742,62 @@
         }
 
         /* Responsive Design */
+
+        /* Medium screens (tablets and small laptops like MacBook Pro 13-14") */
+        @media (max-width: 1440px) {
+            .hero {
+                min-height: auto;
+                padding: 3rem 0;
+            }
+
+            .hero-content {
+                padding: 1.5rem;
+            }
+
+            .hero-image {
+                width: 150px;
+                height: 150px;
+                margin-bottom: 1.5rem;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+                margin-bottom: 0.8rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.2rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .hero .description {
+                font-size: 1rem;
+                margin-bottom: 1.5rem;
+                line-height: 1.6;
+            }
+
+            .btn {
+                padding: 0.8rem 1.5rem;
+                font-size: 0.95rem;
+            }
+        }
+
+        /* Tablets and smaller screens */
+        @media (max-width: 1024px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.1rem;
+            }
+
+            .hero .description {
+                font-size: 0.95rem;
+            }
+        }
+
+        /* Mobile devices */
         @media (max-width: 768px) {
             .nav-menu {
                 position: fixed;
@@ -736,16 +816,39 @@
                 left: 0;
             }
 
+            .nav-menu a {
+                color: var(--text-dark) !important;
+            }
+
             .mobile-menu {
                 display: flex;
             }
 
+            .hero {
+                padding: 2rem 0;
+            }
+
+            .hero-image {
+                width: 120px;
+                height: 120px;
+            }
+
             .hero h1 {
-                font-size: 2rem;
+                font-size: 1.8rem;
             }
 
             .hero .subtitle {
-                font-size: 1.2rem;
+                font-size: 1rem;
+            }
+
+            .hero .description {
+                font-size: 0.9rem;
+                margin-bottom: 1rem;
+            }
+
+            .btn {
+                padding: 0.7rem 1.2rem;
+                font-size: 0.9rem;
             }
 
             .about-content {
