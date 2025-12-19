@@ -1,162 +1,1574 @@
 <!DOCTYPE html>
-<html>
-<title>Mario Ortega</title>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="shortcut icon" href="img/icono.ico" type="image/x-icon">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto'>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<style>
-  html,
-  body,
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    font-family: "Roboto", sans-serif
-  }
-</style>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mario Ortega - Solution Architect</title>
+    <link rel="shortcut icon" href="img/icono.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-<body class="w3-light-grey">
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --text-dark: #2c3e50;
+            --text-light: #7f8c8d;
+            --bg-light: #ecf0f1;
+            --white: #ffffff;
+            --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --shadow: 0 10px 30px rgba(0,0,0,0.1);
+            --transition: all 0.3s ease;
+        }
 
-  <!-- Page Container -->
-  <div class="w3-content w3-margin-top" style="max-width:1400px;">
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
 
-    <!-- The Grid -->
-    <div class="w3-row-padding">
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: var(--white);
+            box-shadow: var(--shadow);
+            z-index: 1000;
+            transition: var(--transition);
+        }
 
-      <!-- Left Column -->
-      <div class="w3-third">
+        .navbar.scrolled {
+            padding: 0.5rem 0;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
 
-        <div class="w3-white w3-text-grey w3-card-4">
-          <div class="w3-display-container">
-            <img src="img/avatar.jpg" style="width:100%" alt="Avatar">
-            <div class="w3-display-bottomleft w3-container w3-text-black">
-              <h2>Mario C. Ortega R.</h2>
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .logo span {
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient);
+            transition: var(--transition);
+        }
+
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+
+        .lang-switch {
+            background: var(--gradient);
+            color: var(--white);
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .lang-switch:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .mobile-menu {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+        }
+
+        .mobile-menu span {
+            width: 25px;
+            height: 3px;
+            background: var(--primary-color);
+            transition: var(--transition);
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 70px;
+            min-height: 100vh;
+            background: linear-gradient(rgba(44, 62, 80, 0.8), rgba(52, 152, 219, 0.8)), url('img/header.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            padding: 2rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 5px solid var(--white);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            margin: 0 auto 2rem;
+            object-fit: cover;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .hero .description {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: var(--transition);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: var(--white);
+            color: var(--primary-color);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--white);
+            border: 2px solid var(--white);
+        }
+
+        .btn-outline:hover {
+            background: var(--white);
+            color: var(--primary-color);
+            transform: translateY(-3px);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 5rem 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--gradient);
+            border-radius: 2px;
+        }
+
+        .section-title p {
+            color: var(--text-light);
+            font-size: 1.1rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-image {
+            text-align: center;
+        }
+
+        .about-image img {
+            width: 100%;
+            max-width: 350px;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .about-image img:hover {
+            transform: scale(1.05);
+        }
+
+        .about-text {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+        }
+
+        .about-text h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .about-text p {
+            color: var(--text-light);
+            margin-bottom: 1rem;
+            text-align: justify;
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.8rem;
+            background: var(--bg-light);
+            border-radius: 8px;
+            transition: var(--transition);
+        }
+
+        .contact-item:hover {
+            background: var(--gradient);
+            color: var(--white);
+            transform: translateX(5px);
+        }
+
+        .contact-item i {
+            font-size: 1.2rem;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-category {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .skill-category:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .skill-category h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .skill-category i {
+            font-size: 1.8rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .skill-item {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 0.6rem 0;
+        }
+
+        .skill-item:hover .skill-check {
+            transform: scale(1.15) rotate(360deg);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .skill-item:hover .skill-name {
+            color: var(--secondary-color);
+        }
+
+        .skill-check {
+            width: 26px;
+            height: 26px;
+            border-radius: 6px;
+            background: rgba(102, 126, 234, 0.1);
+            border: 2px solid #667eea;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            flex-shrink: 0;
+            transition: var(--transition);
+        }
+
+        .skill-check i {
+            color: #667eea;
+            font-weight: 900;
+        }
+
+        .skill-name {
+            font-weight: 500;
+            color: var(--text-dark);
+            transition: var(--transition);
+        }
+
+        /* Experience Section */
+        .experience-bg {
+            background: var(--bg-light);
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background: var(--gradient);
+        }
+
+        .timeline-item {
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .timeline-item:nth-child(odd) {
+            padding-right: calc(50% + 2rem);
+        }
+
+        .timeline-item:nth-child(even) {
+            padding-left: calc(50% + 2rem);
+        }
+
+        .timeline-content {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .timeline-content:hover {
+            transform: scale(1.03);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .timeline-icon {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 50px;
+            background: var(--gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 1.2rem;
+            box-shadow: 0 0 0 4px var(--white);
+        }
+
+        .timeline-item:nth-child(odd) .timeline-icon {
+            top: 20px;
+        }
+
+        .timeline-item:nth-child(even) .timeline-icon {
+            top: 20px;
+        }
+
+        .timeline-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+
+        .timeline-content .company {
+            font-weight: 600;
+            color: var(--secondary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-content .period {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .timeline-content ul {
+            margin-left: 1.5rem;
+            color: var(--text-light);
+        }
+
+        .timeline-content li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Education & Certifications */
+        .education-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .education-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border-left: 5px solid transparent;
+        }
+
+        .education-card:hover {
+            border-left-color: var(--secondary-color);
+            transform: translateX(10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .education-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+
+        .education-card .institution {
+            color: var(--secondary-color);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .education-card .year {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .cert-badge {
+            display: inline-block;
+            background: var(--gradient);
+            color: var(--white);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-top: 0.5rem;
+        }
+
+        /* Contact Section */
+        .contact-bg {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .contact-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .contact-card {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            transition: var(--transition);
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .contact-card i {
+            font-size: 2rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .contact-card a {
+            text-decoration: none;
+            color: var(--text-dark);
+            transition: var(--transition);
+        }
+
+        .contact-card a:hover {
+            color: var(--secondary-color);
+        }
+
+        .social-links {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+        }
+
+        .social-links h3 {
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .social-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--gradient);
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-size: 1.3rem;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .social-icon:hover {
+            transform: translateY(-5px) rotate(360deg);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary-color);
+            color: var(--white);
+            text-align: center;
+            padding: 2rem;
+        }
+
+        footer p {
+            margin-bottom: 0.5rem;
+        }
+
+        footer a {
+            color: var(--white);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        footer a:hover {
+            color: var(--secondary-color);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-menu {
+                position: fixed;
+                left: -100%;
+                top: 70px;
+                flex-direction: column;
+                background: var(--white);
+                width: 100%;
+                text-align: center;
+                transition: 0.3s;
+                box-shadow: var(--shadow);
+                padding: 2rem;
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .mobile-menu {
+                display: flex;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-info {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline::before {
+                left: 30px;
+            }
+
+            .timeline-item:nth-child(odd),
+            .timeline-item:nth-child(even) {
+                padding-left: 4rem;
+                padding-right: 0;
+            }
+
+            .timeline-icon {
+                left: 30px !important;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Scroll to top button */
+        .scroll-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            background: var(--gradient);
+            color: var(--white);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            transition: var(--transition);
+            z-index: 999;
+        }
+
+        .scroll-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        .scroll-top.show {
+            display: flex;
+        }
+
+        /* Download CV button */
+        .download-cv {
+            position: fixed;
+            bottom: 2rem;
+            left: 2rem;
+            background: var(--accent-color);
+            color: var(--white);
+            padding: 1rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: var(--transition);
+            box-shadow: 0 5px 15px rgba(231, 76, 60, 0.3);
+            z-index: 999;
+        }
+
+        .download-cv:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(231, 76, 60, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">Mario<span>Ortega</span></a>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link" data-es="Inicio" data-en="Home">Inicio</a></li>
+                <li><a href="#about" class="nav-link" data-es="Sobre Mí" data-en="About">Sobre Mí</a></li>
+                <li><a href="#skills" class="nav-link" data-es="Habilidades" data-en="Skills">Habilidades</a></li>
+                <li><a href="#experience" class="nav-link" data-es="Experiencia" data-en="Experience">Experiencia</a></li>
+                <li><a href="#education" class="nav-link" data-es="Educación" data-en="Education">Educación</a></li>
+                <li><a href="#contact" class="nav-link" data-es="Contacto" data-en="Contact">Contacto</a></li>
+                <li><button class="lang-switch" onclick="toggleLanguage()">
+                    <i class="fas fa-globe"></i>
+                    <span id="lang-text">EN</span>
+                </button></li>
+            </ul>
+            <div class="mobile-menu" onclick="toggleMobileMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
             </div>
-          </div>
-          <div class="w3-container">
-            <p><i class="fa fa-briefcase fa-fw w3-margin-right w3-large w3-text-teal"></i>Software Engineer</p>
-            <p><i class="fa fa-home fa-fw w3-margin-right w3-large w3-text-teal"></i>Medellín, CO</p>
-            <p><i class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text-teal"></i>mcor63@gmail.com</p>
-            <p><i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text-teal"></i>(+57) 313-5530534</p>
-            <hr>
-
-            <p class="w3-large"><b><i class="fa fa-asterisk fa-fw w3-margin-right w3-text-teal"></i>Skills</b></p>
-            <p>Adobe Photoshop</p>
-            <div class="w3-light-grey w3-round-xlarge w3-small">
-              <div class="w3-container w3-center w3-round-xlarge w3-teal" style="width:90%">90%</div>
-            </div>
-            <p>Photography</p>
-            <div class="w3-light-grey w3-round-xlarge w3-small">
-              <div class="w3-container w3-center w3-round-xlarge w3-teal" style="width:80%">
-                <div class="w3-center w3-text-white">80%</div>
-              </div>
-            </div>
-            <p>Illustrator</p>
-            <div class="w3-light-grey w3-round-xlarge w3-small">
-              <div class="w3-container w3-center w3-round-xlarge w3-teal" style="width:75%">75%</div>
-            </div>
-            <p>Media</p>
-            <div class="w3-light-grey w3-round-xlarge w3-small">
-              <div class="w3-container w3-center w3-round-xlarge w3-teal" style="width:50%">50%</div>
-            </div>
-            <br>
-
-            <p class="w3-large w3-text-theme"><b><i
-                  class="fa fa-globe fa-fw w3-margin-right w3-text-teal"></i>Languages</b></p>
-            <p>English</p>
-            <div class="w3-light-grey w3-round-xlarge">
-              <div class="w3-round-xlarge w3-teal" style="height:24px;width:100%"></div>
-            </div>
-            <p>Spanish</p>
-            <div class="w3-light-grey w3-round-xlarge">
-              <div class="w3-round-xlarge w3-teal" style="height:24px;width:55%"></div>
-            </div>
-            <p>German</p>
-            <div class="w3-light-grey w3-round-xlarge">
-              <div class="w3-round-xlarge w3-teal" style="height:24px;width:25%"></div>
-            </div>
-            <br>
-          </div>
-        </div><br>
-
-        <!-- End Left Column -->
-      </div>
-
-      <!-- Right Column -->
-      <div class="w3-twothird">
-
-        <div class="w3-container w3-card w3-white w3-margin-bottom">
-          <h2 class="w3-text-grey w3-padding-16"><i
-              class="fa fa-suitcase fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>Work Experience</h2>
-          <div class="w3-container">
-            <h5 class="w3-opacity"><b>Front End Developer / w3schools.com</b></h5>
-            <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>Jan 2015 - <span
-                class="w3-tag w3-teal w3-round">Current</span></h6>
-            <p>Lorem ipsum dolor sit amet. Praesentium magnam consectetur vel in deserunt aspernatur est reprehenderit
-              sunt hic. Nulla tempora soluta ea et odio, unde doloremque repellendus iure, iste.</p>
-            <hr>
-          </div>
-          <div class="w3-container">
-            <h5 class="w3-opacity"><b>Web Developer / something.com</b></h5>
-            <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>Mar 2012 - Dec 2014</h6>
-            <p>Consectetur adipisicing elit. Praesentium magnam consectetur vel in deserunt aspernatur est reprehenderit
-              sunt hic. Nulla tempora soluta ea et odio, unde doloremque repellendus iure, iste.</p>
-            <hr>
-          </div>
-          <div class="w3-container">
-            <h5 class="w3-opacity"><b>Graphic Designer / designsomething.com</b></h5>
-            <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>Jun 2010 - Mar 2012</h6>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. </p><br>
-          </div>
         </div>
+    </nav>
 
-        <div class="w3-container w3-card w3-white">
-          <h2 class="w3-text-grey w3-padding-16"><i
-              class="fa fa-certificate fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>Education</h2>
-          <div class="w3-container">
-            <h5 class="w3-opacity"><b>W3Schools.com</b></h5>
-            <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>Forever</h6>
-            <p>Web Development! All I need to know in one place</p>
-            <hr>
-          </div>
-          <div class="w3-container">
-            <h5 class="w3-opacity"><b>London Business School</b></h5>
-            <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>2013 - 2015</h6>
-            <p>Master Degree</p>
-            <hr>
-          </div>
-          <div class="w3-container">
-            <h5 class="w3-opacity"><b>School of Coding</b></h5>
-            <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>2010 - 2013</h6>
-            <p>Bachelor Degree</p><br>
-          </div>
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <img src="img/MarioOrtega.jpg" alt="Mario Ortega" class="hero-image">
+            <h1 data-es="Mario Cesar Ortega Rodriguez" data-en="Mario Cesar Ortega Rodriguez">Mario Cesar Ortega Rodriguez</h1>
+            <p class="subtitle" data-es="Arquitecto de Soluciones" data-en="Solution Architect">Arquitecto de Soluciones</p>
+            <p class="description" data-es="Profesional con más de 10 años de experiencia en desarrollo de software, arquitectura de soluciones y liderazgo técnico. Especializado en transformación digital y modernización de aplicaciones empresariales." data-en="Professional with over 10 years of experience in software development, solution architecture and technical leadership. Specialized in digital transformation and enterprise application modernization.">
+                Profesional con más de 10 años de experiencia en desarrollo de software, arquitectura de soluciones y liderazgo técnico. Especializado en transformación digital y modernización de aplicaciones empresariales.
+            </p>
+            <div class="cta-buttons">
+                <a href="#contact" class="btn btn-primary">
+                    <i class="fas fa-envelope"></i>
+                    <span data-es="Contáctame" data-en="Contact Me">Contáctame</span>
+                </a>
+                <a href="#about" class="btn btn-outline">
+                    <i class="fas fa-user"></i>
+                    <span data-es="Conocer Más" data-en="Learn More">Conocer Más</span>
+                </a>
+            </div>
         </div>
+    </section>
 
-        <!-- End Right Column -->
-      </div>
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <div class="section-title">
+                <h2 data-es="Sobre Mí" data-en="About Me">Sobre Mí</h2>
+                <p data-es="Conoce más sobre mi trayectoria profesional" data-en="Learn more about my professional journey">Conoce más sobre mi trayectoria profesional</p>
+            </div>
+            <div class="about-content">
+                <div class="about-image">
+                    <img src="img/MarioOrtega.jpg" alt="Mario Ortega">
+                </div>
+                <div class="about-text">
+                    <h3 data-es="Arquitecto de Soluciones & Líder Técnico" data-en="Solution Architect & Technical Leader">Arquitecto de Soluciones & Líder Técnico</h3>
+                    <p data-es="Ingeniero de Sistemas con más de una década de experiencia liderando equipos de desarrollo y diseñando arquitecturas de software escalables. Mi pasión es transformar ideas complejas en soluciones tecnológicas robustas y eficientes." data-en="Systems Engineer with over a decade of experience leading development teams and designing scalable software architectures. My passion is transforming complex ideas into robust and efficient technological solutions.">
+                        Ingeniero de Sistemas con más de una década de experiencia liderando equipos de desarrollo y diseñando arquitecturas de software escalables. Mi pasión es transformar ideas complejas en soluciones tecnológicas robustas y eficientes.
+                    </p>
+                    <p data-es="Especializado en arquitecturas cloud, microservicios, DevOps y transformación digital. He liderado exitosamente proyectos de modernización de aplicaciones legacy a arquitecturas modernas basadas en contenedores y orquestación." data-en="Specialized in cloud architectures, microservices, DevOps and digital transformation. I have successfully led legacy application modernization projects to modern container-based and orchestration architectures.">
+                        Especializado en arquitecturas cloud, microservicios, DevOps y transformación digital. He liderado exitosamente proyectos de modernización de aplicaciones legacy a arquitecturas modernas basadas en contenedores y orquestación.
+                    </p>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Medellín, Colombia</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>mcor63@gmail.com</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>+57 313 553 0534</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-briefcase"></i>
+                            <span data-es="10+ años de experiencia" data-en="10+ years of experience">10+ años de experiencia</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-      <!-- End Grid -->
-    </div>
+    <!-- Skills Section -->
+    <section id="skills" class="skills-bg">
+        <div class="container">
+            <div class="section-title">
+                <h2 data-es="Habilidades Técnicas" data-en="Technical Skills">Habilidades Técnicas</h2>
+                <p data-es="Tecnologías y herramientas con las que trabajo" data-en="Technologies and tools I work with">Tecnologías y herramientas con las que trabajo</p>
+            </div>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3><i class="fas fa-code"></i><span data-es="Lenguajes de Programación" data-en="Programming Languages">Lenguajes de Programación</span></h3>
+                    <div class="skill-item">
+                        <div class="skill-check">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <span class="skill-name">Java</span>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-check">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <span class="skill-name">TypeScript / JavaScript</span>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-check">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <span class="skill-name">C#</span>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-check">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <span class="skill-name">Python</span>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-check">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <span class="skill-name">Bash</span>
+                    </div>
+                </div>
 
-    <!-- End Page Container -->
-  </div>
+                <div class="skill-category">
+                    <h3><i class="fas fa-cubes"></i><span data-es="Frameworks & Tecnologías" data-en="Frameworks & Technologies">Frameworks & Tecnologías</span></h3>
+                    <div class="skill-item">
+                        <div class="skill-check">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <span class="skill-name">Spring Framework</span>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-check">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <span class="skill-name">Spring WebFlux</span>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-check">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <span class="skill-name">Spring Boot / MVC</span>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-check">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <span class="skill-name">.NET Core</span>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-check">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <span class="skill-name">ReactJS</span>
+                    </div>
+                </div>
 
-  <footer class="w3-container w3-teal w3-center w3-margin-top">
-    <p>Find me on social media.</p>
-    <i class="fa fa-facebook-official w3-hover-opacity"></i>
-    <i class="fa fa-instagram w3-hover-opacity"></i>
-    <i class="fa fa-snapchat w3-hover-opacity"></i>
-    <i class="fa fa-pinterest-p w3-hover-opacity"></i>
-    <i class="fa fa-twitter w3-hover-opacity"></i>
-    <i class="fa fa-linkedin w3-hover-opacity"></i>
-    <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
-  </footer>
+                <div class="skill-category">
+                    <h3><i class="fas fa-cloud"></i><span data-es="Cloud & DevOps" data-en="Cloud & DevOps">Cloud & DevOps</span></h3>
+                    <div class="skill-item">
+                        <div class="skill-check">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <span class="skill-name">Azure</span>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-check">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <span class="skill-name">AWS</span>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-check">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <span class="skill-name">Google Cloud Platform (GCP)</span>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-check">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <span class="skill-name">Docker</span>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-check">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <span class="skill-name">Kubernetes (AKS)</span>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-check">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <span class="skill-name">Azure DevOps</span>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-check">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <span class="skill-name">CI/CD Pipelines</span>
+                    </div>
+                </div>
 
+                <div class="skill-category">
+                    <h3><i class="fas fa-database"></i><span data-es="Bases de Datos" data-en="Databases">Bases de Datos</span></h3>
+                    <div class="skill-item">
+                        <div class="skill-check">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <span class="skill-name">PostgreSQL</span>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-check">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <span class="skill-name">SQL Server</span>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-check">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <span class="skill-name">MongoDB</span>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-check">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <span class="skill-name">Oracle 11g</span>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-check">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <span class="skill-name">MySQL</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3><i class="fas fa-project-diagram"></i><span data-es="Arquitectura & Mensajería" data-en="Architecture & Messaging">Arquitectura & Mensajería</span></h3>
+                    <div class="skill-item">
+                        <div class="skill-check">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <span class="skill-name">Microservicios</span>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-check">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <span class="skill-name">REST APIs</span>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-check">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <span class="skill-name">RabbitMQ</span>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-check">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <span class="skill-name">Google Pub/Sub</span>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-check">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <span class="skill-name">AWS SQS</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3><i class="fas fa-robot"></i><span data-es="Herramientas IA" data-en="AI Development Tools">Herramientas IA</span></h3>
+                    <div class="skill-item">
+                        <div class="skill-check">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <span class="skill-name">GitHub Copilot</span>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-check">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <span class="skill-name">Claude Code</span>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-check">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <span class="skill-name">v0 Vercel</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="experience-bg">
+        <div class="container">
+            <div class="section-title">
+                <h2 data-es="Experiencia Profesional" data-en="Professional Experience">Experiencia Profesional</h2>
+                <p data-es="Mi trayectoria en el mundo del desarrollo de software" data-en="My journey in the software development world">Mi trayectoria en el mundo del desarrollo de software</p>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-icon">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <h3 data-es="Arquitecto de Soluciones" data-en="Solutions Architect">Arquitecto de Soluciones</h3>
+                        <p class="company">Sofka Technologies S.A.S.</p>
+                        <p class="period">
+                            <i class="fas fa-calendar"></i>
+                            <span data-es="Enero 2022 - Presente" data-en="January 2022 - Present">Enero 2022 - Presente</span>
+                        </p>
+                        <ul data-es="
+                            <li>Liderazgo de iniciativas estratégicas de modernización tecnológica para clientes empresariales</li>
+                            <li>Diseño de arquitecturas basadas en Azure para Femsa México, optimizando procesos de pólizas de seguros</li>
+                            <li>Liderazgo de migración de sistema core de Java 6 a Java 21 con arquitectura de microservicios para L.O. Trading</li>
+                            <li>Integración de herramientas de IA como GitHub Copilot y Claude Code en flujos de desarrollo</li>
+                            <li>Mentoría de múltiples equipos de desarrollo como Account Technical Coach en Ecuador</li>
+                        " data-en="
+                            <li>Led strategic technological modernization initiatives for enterprise clients</li>
+                            <li>Designed Azure-based architectures for Femsa Mexico, optimizing insurance policy processes</li>
+                            <li>Leading core system migration from Java 6 to Java 21 with microservices architecture for L.O. Trading</li>
+                            <li>Integrated AI tools like GitHub Copilot and Claude Code in development workflows</li>
+                            <li>Mentored multiple development teams as Account Technical Coach in Ecuador</li>
+                        ">
+                            <li>Liderazgo de iniciativas estratégicas de modernización tecnológica para clientes empresariales</li>
+                            <li>Diseño de arquitecturas basadas en Azure para Femsa México, optimizando procesos de pólizas de seguros</li>
+                            <li>Liderazgo de migración de sistema core de Java 6 a Java 21 con arquitectura de microservicios para L.O. Trading</li>
+                            <li>Integración de herramientas de IA como GitHub Copilot y Claude Code en flujos de desarrollo</li>
+                            <li>Mentoría de múltiples equipos de desarrollo como Account Technical Coach en Ecuador</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <h3 data-es="Líder Técnico" data-en="Technical Lead">Líder Técnico</h3>
+                        <p class="company">Sofka Technologies S.A.S.</p>
+                        <p class="period">
+                            <i class="fas fa-calendar"></i>
+                            <span data-es="Enero 2021 - Diciembre 2021" data-en="January 2021 - December 2021">Enero 2021 - Diciembre 2021</span>
+                        </p>
+                        <ul data-es="
+                            <li>Dirección de múltiples proyectos de integración para el programa omnicanal de Grupo Éxito</li>
+                            <li>Desarrollo de sistemas de pago, transferencias de dinero e integraciones de apuestas para más de 7,000 terminales POS</li>
+                            <li>Integración exitosa de terminales POS con proveedores nacionales de apuestas (BetPlay, RushBet, WPlay)</li>
+                            <li>Implementación de soluciones de pago móvil con múltiples billeteras (Tuya, TIC Móvil Cafam, Rappi)</li>
+                            <li>Gestión del sistema de consecutivos fiscales controlando más de 600 tiendas</li>
+                        " data-en="
+                            <li>Directed multiple integration projects for Grupo Éxito's omnichannel program</li>
+                            <li>Led development of payment systems, money transfers, and betting integrations for 7,000+ POS terminals</li>
+                            <li>Successfully integrated 7,000+ POS terminals with national betting providers (BetPlay, RushBet, WPlay)</li>
+                            <li>Implemented mobile payment solutions with multiple wallets (Tuya, TIC Móvil Cafam, Rappi)</li>
+                            <li>Managed fiscal consecutive system controlling 600+ stores</li>
+                        ">
+                            <li>Dirección de múltiples proyectos de integración para el programa omnicanal de Grupo Éxito</li>
+                            <li>Desarrollo de sistemas de pago, transferencias de dinero e integraciones de apuestas para más de 7,000 terminales POS</li>
+                            <li>Integración exitosa de terminales POS con proveedores nacionales de apuestas (BetPlay, RushBet, WPlay)</li>
+                            <li>Implementación de soluciones de pago móvil con múltiples billeteras (Tuya, TIC Móvil Cafam, Rappi)</li>
+                            <li>Gestión del sistema de consecutivos fiscales controlando más de 600 tiendas</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <h3 data-es="Consultor de Desarrollo" data-en="Development Consultant">Consultor de Desarrollo</h3>
+                        <p class="company">Sofka Technologies S.A.S.</p>
+                        <p class="period">
+                            <i class="fas fa-calendar"></i>
+                            <span data-es="Julio 2019 - Diciembre 2020" data-en="July 2019 - December 2020">Julio 2019 - Diciembre 2020</span>
+                        </p>
+                        <ul data-es="
+                            <li>Participación en programa SUMATE para transformación omnicanal de Grupo Éxito</li>
+                            <li>Desarrollo de microservicios con Spring WebFlux para ecosistema digital (e-commerce, PIM, OMS)</li>
+                            <li>Construcción de integraciones críticas entre plataformas PIM, OMS y Vtex (exito.com)</li>
+                            <li>Implementación de mensajería con RabbitMQ, GCP Pub/Sub y AWS SQS</li>
+                            <li>Despliegue de soluciones escalables en Azure Kubernetes Services (AKS)</li>
+                        " data-en="
+                            <li>Participated in SUMATE program for Grupo Éxito's omnichannel transformation</li>
+                            <li>Developed microservices with Spring WebFlux for digital ecosystem (e-commerce, PIM, OMS)</li>
+                            <li>Built critical integrations between PIM, OMS, and Vtex (exito.com) platforms</li>
+                            <li>Implemented messaging with RabbitMQ, GCP Pub/Sub, and AWS SQS</li>
+                            <li>Deployed scalable solutions on Azure Kubernetes Services (AKS)</li>
+                        ">
+                            <li>Participación en programa SUMATE para transformación omnicanal de Grupo Éxito</li>
+                            <li>Desarrollo de microservicios con Spring WebFlux para ecosistema digital (e-commerce, PIM, OMS)</li>
+                            <li>Construcción de integraciones críticas entre plataformas PIM, OMS y Vtex (exito.com)</li>
+                            <li>Implementación de mensajería con RabbitMQ, GCP Pub/Sub y AWS SQS</li>
+                            <li>Despliegue de soluciones escalables en Azure Kubernetes Services (AKS)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-icon">
+                        <i class="fas fa-server"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <h3 data-es="Analista de Aplicaciones" data-en="Applications Analyst">Analista de Aplicaciones</h3>
+                        <p class="company">INTELIX SYNERGY, C.A. | Venezuela</p>
+                        <p class="period">
+                            <i class="fas fa-calendar"></i>
+                            <span data-es="Enero 2018 - Junio 2019" data-en="January 2018 - June 2019">Enero 2018 - Junio 2019</span>
+                        </p>
+                        <ul data-es="
+                            <li>Liderazgo técnico en empresa tecnológica del grupo Ferretería EPA</li>
+                            <li>Dirección del Sistema de Punto de Venta y servicios asociados (Spring y RMI)</li>
+                            <li>Migración de infraestructura AS400 a servidores Intel</li>
+                            <li>Implementación de Sistema de Factura Electrónica en Guatemala</li>
+                            <li>Apertura técnica de nueva tienda EPA Guatemala (Tienda 4)</li>
+                        " data-en="
+                            <li>Technical leadership in technology company within Ferretería EPA group</li>
+                            <li>Led Point of Sale System and all associated services (Spring and RMI)</li>
+                            <li>Infrastructure migration from AS400 to Intel servers</li>
+                            <li>Implemented Electronic Invoice System in Guatemala</li>
+                            <li>Technical implementation for new EPA Guatemala store opening (Store 4)</li>
+                        ">
+                            <li>Liderazgo técnico en empresa tecnológica del grupo Ferretería EPA</li>
+                            <li>Dirección del Sistema de Punto de Venta y servicios asociados (Spring y RMI)</li>
+                            <li>Migración de infraestructura AS400 a servidores Intel</li>
+                            <li>Implementación de Sistema de Factura Electrónica en Guatemala</li>
+                            <li>Apertura técnica de nueva tienda EPA Guatemala (Tienda 4)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-icon">
+                        <i class="fas fa-code-branch"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <h3 data-es="Analista Programador" data-en="Programmer Analyst">Analista Programador</h3>
+                        <p class="company">Ferretería EPA C.A. | Venezuela</p>
+                        <p class="period">
+                            <i class="fas fa-calendar"></i>
+                            <span data-es="Febrero 2016 - Diciembre 2017" data-en="February 2016 - December 2017">Febrero 2016 - Diciembre 2017</span>
+                        </p>
+                        <ul data-es="
+                            <li>Desarrollo de módulos críticos del sistema POS con manejo multi-threaded</li>
+                            <li>Modernización de servicios legacy RMI a Spring REST para operaciones en Guatemala</li>
+                            <li>Optimización del Servicio de Devoluciones con historial completo y reglas de negocio</li>
+                            <li>Mantenimiento de tecnología de Cola de Servicios (ventas devueltas, pendientes, cotizaciones)</li>
+                            <li>Desarrollo de nuevos requerimientos para implementación de Punto de Venta en El Salvador</li>
+                        " data-en="
+                            <li>Developed critical POS system modules with multi-threaded service queue handling</li>
+                            <li>Led technical modernization from legacy RMI services to Spring REST for Guatemala operations</li>
+                            <li>Optimized Returns Service with complete history tracking and business rules</li>
+                            <li>Maintained Services Queue technology (sales returns, pending sales, quotations)</li>
+                            <li>Developed new requirements for Point of Sale implementation in El Salvador</li>
+                        ">
+                            <li>Desarrollo de módulos críticos del sistema POS con manejo multi-threaded</li>
+                            <li>Modernización de servicios legacy RMI a Spring REST para operaciones en Guatemala</li>
+                            <li>Optimización del Servicio de Devoluciones con historial completo y reglas de negocio</li>
+                            <li>Mantenimiento de tecnología de Cola de Servicios (ventas devueltas, pendientes, cotizaciones)</li>
+                            <li>Desarrollo de nuevos requerimientos para implementación de Punto de Venta en El Salvador</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <h3 data-es="Analista de Desarrollo" data-en="Development Analyst">Analista de Desarrollo</h3>
+                        <p class="company">Venezolana del Vidrio C.A. | Venezuela</p>
+                        <p class="period">
+                            <i class="fas fa-calendar"></i>
+                            <span data-es="Junio 2015 - Diciembre 2015" data-en="June 2015 - December 2015">Junio 2015 - Diciembre 2015</span>
+                        </p>
+                        <ul data-es="
+                            <li>Mantenimiento y mejora de sistema de gestión de incidencias</li>
+                            <li>Optimización significativa del tiempo de respuesta del sistema</li>
+                            <li>Implementación de monitoreo de rendimiento para evaluación de impacto de carga de datos</li>
+                            <li>Mejoras de escalabilidad del sistema para cargas crecientes de datos</li>
+                        " data-en="
+                            <li>Maintained and improved incident management system</li>
+                            <li>Optimized system response time significantly</li>
+                            <li>Implemented performance monitoring for data load impact assessment</li>
+                            <li>System scalability improvements for growing data loads</li>
+                        ">
+                            <li>Mantenimiento y mejora de sistema de gestión de incidencias</li>
+                            <li>Optimización significativa del tiempo de respuesta del sistema</li>
+                            <li>Implementación de monitoreo de rendimiento para evaluación de impacto de carga de datos</li>
+                            <li>Mejoras de escalabilidad del sistema para cargas crecientes de datos</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education & Certifications -->
+    <section id="education">
+        <div class="container">
+            <div class="section-title">
+                <h2 data-es="Educación y Certificaciones" data-en="Education & Certifications">Educación y Certificaciones</h2>
+                <p data-es="Formación académica y certificaciones profesionales" data-en="Academic background and professional certifications">Formación académica y certificaciones profesionales</p>
+            </div>
+            <div class="education-grid">
+                <div class="education-card">
+                    <h3 data-es="Ingeniería de Sistemas" data-en="Systems Engineer">Ingeniería de Sistemas</h3>
+                    <p class="institution">I.U.P Santiago Mariño | Venezuela</p>
+                    <p class="year">2010 - 2015</p>
+                    <p data-es="Formación integral en desarrollo de software, arquitectura de sistemas, bases de datos y gestión de proyectos tecnológicos." data-en="Comprehensive training in software development, systems architecture, databases and technology project management.">
+                        Formación integral en desarrollo de software, arquitectura de sistemas, bases de datos y gestión de proyectos tecnológicos.
+                    </p>
+                </div>
+
+                <div class="education-card">
+                    <h3 data-es="Bachiller en Ciencias" data-en="Bachelor of Science">Bachiller en Ciencias</h3>
+                    <p class="institution">U.E. Campo Solo | Venezuela</p>
+                    <p class="year">2004 - 2009</p>
+                    <p data-es="Educación secundaria con énfasis en ciencias." data-en="High school education with emphasis on sciences.">
+                        Educación secundaria con énfasis en ciencias.
+                    </p>
+                </div>
+
+                <div class="education-card">
+                    <h3>AWS Cloud Practitioner</h3>
+                    <p class="institution">Amazon Web Services</p>
+                    <p class="year" data-es="Válido hasta Diciembre 2025" data-en="Valid until December 2025">Válido hasta Diciembre 2025</p>
+                    <span class="cert-badge"><i class="fas fa-certificate"></i> <span data-es="Certificación" data-en="Certification">Certificación</span></span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-bg">
+        <div class="container">
+            <div class="section-title">
+                <h2 data-es="Contacto" data-en="Contact">Contacto</h2>
+                <p data-es="¿Interesado en trabajar juntos? Hablemos" data-en="Interested in working together? Let's talk">¿Interesado en trabajar juntos? Hablemos</p>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-cards">
+                    <div class="contact-card">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h4>Email</h4>
+                            <a href="mailto:mcor63@gmail.com">mcor63@gmail.com</a>
+                        </div>
+                    </div>
+                    <div class="contact-card">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h4 data-es="Teléfono" data-en="Phone">Teléfono</h4>
+                            <a href="tel:+573135530534">+57 313 553 0534</a>
+                        </div>
+                    </div>
+                    <div class="contact-card">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h4 data-es="Ubicación" data-en="Location">Ubicación</h4>
+                            <p>Medellín, Colombia</p>
+                        </div>
+                    </div>
+                    <div class="contact-card">
+                        <i class="fas fa-globe"></i>
+                        <div>
+                            <h4 data-es="Disponibilidad" data-en="Availability">Disponibilidad</h4>
+                            <p data-es="Remoto / Híbrido" data-en="Remote / Hybrid">Remoto / Híbrido</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="social-links">
+                    <h3 data-es="Encuéntrame en" data-en="Find me on">Encuéntrame en</h3>
+                    <div class="social-icons">
+                        <a href="https://www.linkedin.com/in/marioortega003/" target="_blank" class="social-icon" title="LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="https://github.com/macor003" target="_blank" class="social-icon" title="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="mailto:mcor63@gmail.com" class="social-icon" title="Email">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                        <a href="https://twitter.com/marioortega003" target="_blank" class="social-icon" title="Twitter">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                    </div>
+                    <div style="margin-top: 2rem; text-align: center;">
+                        <p data-es="¿Buscas un Arquitecto de Soluciones experimentado?" data-en="Looking for an experienced Solution Architect?">¿Buscas un Arquitecto de Soluciones experimentado?</p>
+                        <p data-es="Estoy disponible para proyectos freelance y oportunidades de consultoría." data-en="I'm available for freelance projects and consulting opportunities.">Estoy disponible para proyectos freelance y oportunidades de consultoría.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Mario Cesar Ortega Rodriguez. <span data-es="Todos los derechos reservados." data-en="All rights reserved.">Todos los derechos reservados.</span></p>
+        <p data-es="Desarrollado con pasión y café ☕" data-en="Developed with passion and coffee ☕">Desarrollado con pasión y café ☕</p>
+    </footer>
+
+    <!-- Download CV Button -->
+    <a href="files/Mario Ortega CV.pdf" download class="download-cv">
+        <i class="fas fa-download"></i>
+        <span data-es="Descargar CV" data-en="Download CV">Descargar CV</span>
+    </a>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-top" onclick="scrollToTop()">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+        // Language Toggle
+        let currentLang = 'es';
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'es' ? 'en' : 'es';
+            document.getElementById('lang-text').textContent = currentLang === 'es' ? 'EN' : 'ES';
+
+            // Update all elements with data-es and data-en attributes
+            document.querySelectorAll('[data-es][data-en]').forEach(element => {
+                const text = element.getAttribute('data-' + currentLang);
+                if (element.tagName === 'UL') {
+                    element.innerHTML = text;
+                } else {
+                    element.textContent = text;
+                }
+            });
+        }
+
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const navMenu = document.querySelector('.nav-menu');
+            navMenu.classList.toggle('active');
+        }
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                document.querySelector('.nav-menu').classList.remove('active');
+            });
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+
+            // Show/hide scroll to top button
+            const scrollTop = document.querySelector('.scroll-top');
+            if (window.scrollY > 300) {
+                scrollTop.classList.add('show');
+            } else {
+                scrollTop.classList.remove('show');
+            }
+        });
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offsetTop = target.offsetTop - 70;
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Scroll to top function
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Add animation to timeline items on scroll
+        const timelineObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.2 });
+
+        document.querySelectorAll('.timeline-item').forEach(item => {
+            item.style.opacity = '0';
+            item.style.transform = 'translateY(30px)';
+            item.style.transition = 'all 0.6s ease';
+            timelineObserver.observe(item);
+        });
+
+        // Add stagger animation to skill items on scroll
+        const skillsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const skillItems = entry.target.querySelectorAll('.skill-item');
+                    skillItems.forEach((item, index) => {
+                        setTimeout(() => {
+                            item.style.opacity = '1';
+                            item.style.transform = 'translateX(0)';
+                        }, index * 50);
+                    });
+                    skillsObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.3 });
+
+        document.querySelectorAll('.skill-category').forEach(category => {
+            category.querySelectorAll('.skill-item').forEach(item => {
+                item.style.opacity = '0';
+                item.style.transform = 'translateX(-20px)';
+                item.style.transition = 'all 0.4s ease';
+            });
+            skillsObserver.observe(category);
+        });
+    </script>
 </body>
-
 </html>
