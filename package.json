@@ -28,11 +28,11 @@
   "dependencies": {
     "bootstrap": "^4.0.0-beta",
     "font-awesome": "4.7.0",
+    "gsap": "^3.12.5",
     "jquery": "^3.2.1",
     "jquery.easing": "^1.4.1",
     "magnific-popup": "^1.1.0",
-    "popper.js": "^1.11.1",
-    "scrollreveal": "3.3.6"
+    "popper.js": "^1.11.1"
   },
   "devDependencies": {
     "browser-sync": "2.18.13",

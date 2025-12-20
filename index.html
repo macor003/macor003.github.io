@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mario Ortega - Solution Architect</title>
-    <link rel="shortcut icon" href="img/icono.ico" type="image/x-icon">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="alternate icon" href="img/icono.ico" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -192,7 +193,6 @@
             z-index: 2;
             max-width: 800px;
             padding: 2rem;
-            animation: fadeInUp 1s ease;
         }
 
         .hero-image {
@@ -203,7 +203,6 @@
             box-shadow: 0 10px 40px rgba(0,0,0,0.3);
             margin: 0 auto 2rem;
             object-fit: cover;
-            animation: float 3s ease-in-out infinite;
         }
 
         .hero h1 {
@@ -718,27 +717,6 @@
 
         footer a:hover {
             color: var(--secondary-color);
-        }
-
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-20px);
-            }
         }
 
         /* Responsive Design */
@@ -1559,6 +1537,198 @@
     </button>
 
     <script>
+        // ========================================
+        // GSAP ANIMATIONS
+        // ========================================
+
+        // Initialize GSAP animations when DOM is ready
+        document.addEventListener('DOMContentLoaded', function() {
+            // Register ScrollTrigger plugin
+            gsap.registerPlugin(ScrollTrigger);
+
+            // Initialize all animations
+            initHeroAnimations();
+            initScrollAnimations();
+        });
+
+        // Hero Section Animations
+        function initHeroAnimations() {
+            // Hero entrance timeline
+            const heroTimeline = gsap.timeline({ defaults: { ease: "power2.out" } });
+
+            heroTimeline
+                .from(".hero-image", {
+                    scale: 0.8,
+                    opacity: 0,
+                    duration: 0.8
+                })
+                .from(".hero h1", {
+                    y: 30,
+                    opacity: 0,
+                    duration: 0.6
+                }, "-=0.4")
+                .from(".hero .subtitle", {
+                    y: 20,
+                    opacity: 0,
+                    duration: 0.5
+                }, "-=0.3")
+                .from(".hero .description", {
+                    y: 20,
+                    opacity: 0,
+                    duration: 0.5
+                }, "-=0.2")
+                .from(".cta-buttons .btn", {
+                    y: 20,
+                    opacity: 0,
+                    duration: 0.4,
+                    stagger: 0.15
+                }, "-=0.2");
+
+            // Floating animation for hero image
+            gsap.to(".hero-image", {
+                y: -20,
+                duration: 3,
+                ease: "power1.inOut",
+                repeat: -1,
+                yoyo: true
+            });
+        }
+
+        // Scroll-triggered Animations
+        function initScrollAnimations() {
+            // Section Titles
+            gsap.utils.toArray(".section-title").forEach(title => {
+                gsap.from(title, {
+                    scrollTrigger: {
+                        trigger: title,
+                        start: "top 85%",
+                        toggleActions: "play none none reverse"
+                    },
+                    y: 30,
+                    opacity: 0,
+                    duration: 0.7,
+                    ease: "power2.out"
+                });
+            });
+
+            // About Section
+            gsap.from(".about-image img", {
+                scrollTrigger: {
+                    trigger: ".about-content",
+                    start: "top 70%",
+                    toggleActions: "play none none reverse"
+                },
+                scale: 0.9,
+                opacity: 0,
+                duration: 0.8,
+                ease: "back.out(1.2)"
+            });
+
+            gsap.from(".about-text", {
+                scrollTrigger: {
+                    trigger: ".about-content",
+                    start: "top 70%",
+                    toggleActions: "play none none reverse"
+                },
+                x: 50,
+                opacity: 0,
+                duration: 0.8,
+                delay: 0.2,
+                ease: "power2.out"
+            });
+
+            // Skills Section
+            gsap.utils.toArray(".skill-category").forEach(category => {
+                const items = category.querySelectorAll(".skill-item");
+
+                gsap.from(items, {
+                    scrollTrigger: {
+                        trigger: category,
+                        start: "top 75%",
+                        toggleActions: "play none none reverse"
+                    },
+                    x: -20,
+                    opacity: 0,
+                    duration: 0.5,
+                    stagger: 0.05,
+                    ease: "power2.out"
+                });
+            });
+
+            // Timeline Items
+            gsap.utils.toArray(".timeline-item").forEach((item, index) => {
+                gsap.from(item, {
+                    scrollTrigger: {
+                        trigger: item,
+                        start: "top 80%",
+                        toggleActions: "play none none reverse"
+                    },
+                    opacity: 0,
+                    y: 50,
+                    duration: 0.8,
+                    ease: "power2.out"
+                });
+            });
+
+            // Education Cards
+            const educationCards = gsap.utils.toArray(".education-card");
+            educationCards.forEach((card, index) => {
+                gsap.from(card, {
+                    scrollTrigger: {
+                        trigger: card,
+                        start: "top 85%",
+                        toggleActions: "play none none none",
+                        once: true
+                    },
+                    y: 40,
+                    opacity: 0,
+                    duration: 0.6,
+                    delay: index * 0.15,
+                    ease: "power2.out"
+                });
+            });
+
+            // Contact Section - Contact Cards
+            const contactCards = gsap.utils.toArray(".contact-card");
+            contactCards.forEach((card, index) => {
+                gsap.from(card, {
+                    scrollTrigger: {
+                        trigger: card,
+                        start: "top 85%",
+                        toggleActions: "play none none none",
+                        once: true
+                    },
+                    y: 30,
+                    opacity: 0,
+                    duration: 0.6,
+                    delay: index * 0.1,
+                    ease: "power2.out"
+                });
+            });
+
+            // Contact Section - Social Icons
+            const socialIcons = gsap.utils.toArray(".social-icon");
+            socialIcons.forEach((icon, index) => {
+                gsap.from(icon, {
+                    scrollTrigger: {
+                        trigger: icon,
+                        start: "top 90%",
+                        toggleActions: "play none none none",
+                        once: true
+                    },
+                    scale: 0,
+                    opacity: 0,
+                    duration: 0.5,
+                    delay: index * 0.08,
+                    ease: "back.out(1.5)"
+                });
+            });
+        }
+
+        // ========================================
+        // EXISTING FUNCTIONALITY
+        // ========================================
+
         // Language Toggle
         let currentLang = 'es';
 
@@ -1631,47 +1801,10 @@
             });
         }
 
-        // Add animation to timeline items on scroll
-        const timelineObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, { threshold: 0.2 });
-
-        document.querySelectorAll('.timeline-item').forEach(item => {
-            item.style.opacity = '0';
-            item.style.transform = 'translateY(30px)';
-            item.style.transition = 'all 0.6s ease';
-            timelineObserver.observe(item);
-        });
-
-        // Add stagger animation to skill items on scroll
-        const skillsObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const skillItems = entry.target.querySelectorAll('.skill-item');
-                    skillItems.forEach((item, index) => {
-                        setTimeout(() => {
-                            item.style.opacity = '1';
-                            item.style.transform = 'translateX(0)';
-                        }, index * 50);
-                    });
-                    skillsObserver.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.3 });
-
-        document.querySelectorAll('.skill-category').forEach(category => {
-            category.querySelectorAll('.skill-item').forEach(item => {
-                item.style.opacity = '0';
-                item.style.transform = 'translateX(-20px)';
-                item.style.transition = 'all 0.4s ease';
-            });
-            skillsObserver.observe(category);
-        });
     </script>
+
+    <!-- GSAP Animation Library -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
 </body>
 </html>
