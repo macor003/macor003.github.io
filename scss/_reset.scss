@@ -1,0 +1,124 @@
+/**
+ * RESET & BASE STYLES
+ *
+ * CSS reset and foundational styles for the entire application
+ * Includes box-sizing, body defaults, and common element resets
+ *
+ * Dependencies: _variables.scss
+ */
+
+// ========================================
+// CSS Reset
+// ========================================
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+// ========================================
+// Body Defaults
+// ========================================
+body {
+  font-family: $font-family;
+  color: $text-dark;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+// ========================================
+// Container
+// ========================================
+.container {
+  max-width: $container-max-width;
+  margin: 0 auto;
+  padding: 0 $spacing-lg;
+
+  @include tablet {
+    padding: 0 $spacing-sm;
+  }
+}
+
+// ========================================
+// Section Defaults
+// ========================================
+section {
+  padding: 5rem 0;
+
+  @include tablet {
+    padding: 3rem 0;
+  }
+}
+
+// ========================================
+// Typography
+// ========================================
+h1, h2, h3, h4, h5, h6 {
+  font-weight: $font-weight-bold;
+  line-height: 1.2;
+  margin-bottom: $spacing-sm;
+}
+
+h1 {
+  font-size: 2.5rem;
+
+  @include tablet {
+    font-size: 2rem;
+  }
+}
+
+h2 {
+  font-size: 2rem;
+
+  @include tablet {
+    font-size: 1.75rem;
+  }
+}
+
+h3 {
+  font-size: 1.5rem;
+
+  @include tablet {
+    font-size: 1.25rem;
+  }
+}
+
+p {
+  margin-bottom: $spacing-sm;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+// ========================================
+// Lists
+// ========================================
+ul, ol {
+  list-style: none;
+}
+
+// ========================================
+// Images
+// ========================================
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+// ========================================
+// Buttons
+// ========================================
+button {
+  cursor: pointer;
+  font-family: inherit;
+}
+
+// ========================================
+// Inputs
+// ========================================
+input, textarea, select {
+  font-family: inherit;
+}

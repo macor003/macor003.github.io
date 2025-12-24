@@ -1,0 +1,254 @@
+/**
+ * RESPONSIVE DESIGN
+ *
+ * Media queries for different screen sizes
+ * Mobile-first responsive adjustments
+ *
+ * Dependencies: _variables.scss, _mixins.scss
+ */
+
+// ========================================
+// Wide Screens (Large Laptops and Desktops)
+// ========================================
+@include wide {
+  .container {
+    max-width: $breakpoint-wide;
+  }
+}
+
+// ========================================
+// Desktop (1024px - 1440px)
+// ========================================
+@include desktop {
+  .hero h1 {
+    font-size: 3rem;
+  }
+
+  .section-title h2 {
+    font-size: 2.25rem;
+  }
+}
+
+// ========================================
+// Tablet (768px and below)
+// ========================================
+@include tablet {
+  // Typography adjustments
+  section {
+    padding: 3rem 0;
+  }
+
+  .section-title {
+    margin-bottom: 2rem;
+
+    h2 {
+      font-size: 2rem;
+    }
+  }
+
+  // About section
+  .about-content {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .contact-info {
+    grid-template-columns: 1fr;
+  }
+
+  // Timeline adjustments for mobile
+  .timeline::before {
+    left: 30px;
+  }
+
+  .timeline-item {
+    &:nth-child(odd),
+    &:nth-child(even) {
+      padding-left: 4rem;
+      padding-right: 0;
+    }
+  }
+
+  .timeline-icon {
+    left: 30px !important;
+    transform: translateX(0) translateY(0) !important;
+  }
+
+  // Contact grid
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  // Skills grid
+  .skills-grid {
+    grid-template-columns: 1fr;
+  }
+
+  // Education grid
+  .education-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+// ========================================
+// Mobile (480px and below)
+// ========================================
+@include mobile {
+  // Hero section
+  .hero {
+    padding: 2rem 1rem;
+
+    h1 {
+      font-size: 1.75rem;
+    }
+
+    .subtitle {
+      font-size: 1rem;
+    }
+
+    .description {
+      font-size: 0.9rem;
+    }
+  }
+
+  .hero-image {
+    width: 120px;
+    height: 120px;
+  }
+
+  // Buttons
+  .btn {
+    padding: 0.7rem 1.2rem;
+    font-size: 0.9rem;
+  }
+
+  .cta-buttons {
+    flex-direction: column;
+    width: 100%;
+
+    .btn {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+
+  // Sections
+  section {
+    padding: 2rem 1rem;
+  }
+
+  .section-title {
+    margin-bottom: 1.5rem;
+
+    h2 {
+      font-size: 1.75rem;
+    }
+
+    p {
+      font-size: 0.95rem;
+    }
+  }
+
+  // Cards
+  .skill-category,
+  .education-card,
+  .timeline-content {
+    padding: 1.5rem;
+  }
+
+  // Contact form
+  .contact-form-wrapper,
+  .contact-social-wrapper {
+    padding: 1.5rem;
+  }
+
+  .form-group {
+    margin-bottom: 1.25rem;
+  }
+
+  // Fixed buttons adjustments
+  .download-cv {
+    padding: 0.75rem 1rem;
+
+    span {
+      display: none;
+    }
+
+    i {
+      font-size: 1.25rem;
+    }
+  }
+
+  .scroll-top {
+    width: 45px;
+    height: 45px;
+    font-size: 1.25rem;
+  }
+}
+
+// ========================================
+// Small Tablets (between 481px - 768px)
+// ========================================
+@media (min-width: $breakpoint-mobile + 1) and (max-width: $breakpoint-tablet) {
+  .hero h1 {
+    font-size: 2.5rem;
+  }
+
+  .skills-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+// ========================================
+// Landscape Mobile
+// ========================================
+@media (max-height: 600px) and (orientation: landscape) {
+  .hero {
+    min-height: auto;
+    padding: 4rem 0 2rem;
+  }
+
+  .hero-image {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 1rem;
+  }
+
+  .hero h1 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .hero .subtitle {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .hero .description {
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+  }
+}
+
+// ========================================
+// Print Styles
+// ========================================
+@media print {
+  .navbar,
+  .download-cv,
+  .scroll-top,
+  .mobile-menu,
+  .cta-buttons {
+    display: none !important;
+  }
+
+  body {
+    color: #000;
+    background: #fff;
+  }
+
+  section {
+    page-break-inside: avoid;
+  }
+}

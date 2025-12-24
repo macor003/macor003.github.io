@@ -1,9 +1,36 @@
-@import "variables.scss";
-@import "mixins.scss";
-@import "global.scss";
-@import "navbar.scss";
-@import "masthead.scss";
-@import "services.scss";
-@import "portfolio.scss";
-@import "cta.scss";
-@import "bootstrap-overrides.scss";
+/**
+ * CREATIVE - MAIN SCSS ENTRY POINT
+ *
+ * Portfolio website for Mario Ortega
+ * This file imports all SCSS modules in the correct order
+ *
+ * Build: Run `gulp sass` to compile to CSS
+ */
+
+// ========================================
+// 1. Variables and Utilities
+// ========================================
+@import "variables";
+@import "mixins";
+
+// ========================================
+// 2. Base Styles
+// ========================================
+@import "reset";
+
+// ========================================
+// 3. Components
+// ========================================
+@import "navbar";
+@import "hero";
+@import "sections";
+@import "contact";
+@import "contact-form";
+@import "footer";
+@import "buttons";
+
+// ========================================
+// 4. Utilities
+// ========================================
+@import "animations";
+@import "responsive";
