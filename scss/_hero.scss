@@ -1,0 +1,180 @@
+/**
+ * HERO SECTION STYLES
+ *
+ * Main hero section with background image and floating profile picture
+ * Includes CTA buttons with gradient effects
+ *
+ * Dependencies: _variables.scss, _mixins.scss
+ */
+
+// ========================================
+// Hero Container
+// ========================================
+.hero {
+  min-height: 100vh;
+  background: $hero-gradient, url('../img/header.jpg');
+  @include background-cover;
+  background-attachment: fixed;
+  @include flex-center;
+  text-align: center;
+  color: $white;
+  position: relative;
+  overflow: hidden;
+  padding-top: 70px;
+
+  // Overlay gradient
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: $hero-gradient-overlay;
+  }
+
+  @include tablet {
+    padding: 6rem 1rem 4rem;
+    min-height: auto;
+  }
+}
+
+// ========================================
+// Hero Content
+// ========================================
+.hero-content {
+  position: relative;
+  z-index: $z-hero;
+  max-width: $content-max-width;
+  padding: $spacing-lg;
+
+  @include tablet {
+    padding: $spacing-sm;
+  }
+}
+
+// ========================================
+// Hero Image (Floating Profile Picture)
+// ========================================
+.hero-image {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  border: 5px solid $white;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  margin: 0 auto 2rem;
+  object-fit: cover;
+
+  @include tablet {
+    width: 150px;
+    height: 150px;
+  }
+}
+
+// ========================================
+// Hero Typography
+// ========================================
+.hero h1 {
+  font-size: 3.5rem;
+  margin-bottom: 1rem;
+  font-weight: $font-weight-bold;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+
+  @include tablet {
+    font-size: 2.5rem;
+  }
+
+  @include mobile {
+    font-size: 2rem;
+  }
+}
+
+.hero .subtitle {
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+  opacity: 0.9;
+
+  @include tablet {
+    font-size: 1.25rem;
+  }
+
+  @include mobile {
+    font-size: 1.1rem;
+  }
+}
+
+.hero .description {
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+  line-height: 1.8;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+
+  @include tablet {
+    font-size: 1rem;
+  }
+
+  @include mobile {
+    font-size: 0.95rem;
+  }
+}
+
+// ========================================
+// CTA Buttons
+// ========================================
+.cta-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  // Ensure buttons are visible by default (GSAP will override)
+  .btn {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+// ========================================
+// Button Styles
+// ========================================
+.btn {
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: $border-radius-pill;
+  cursor: pointer;
+  font-weight: $font-weight-semibold;
+  font-size: 1rem;
+  transition: $transition;
+  text-decoration: none;
+  @include flex-center-vertical;
+  gap: $spacing-xs;
+
+  @include tablet {
+    padding: 0.875rem 1.5rem;
+    font-size: 0.95rem;
+  }
+}
+
+.btn-primary {
+  background: $white;
+  color: $primary-color;
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  }
+}
+
+.btn-outline {
+  background: transparent;
+  color: $white;
+  border: 2px solid $white;
+
+  &:hover {
+    background: $white;
+    color: $primary-color;
+    transform: translateY(-3px);
+  }
+}

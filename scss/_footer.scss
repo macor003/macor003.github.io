@@ -1,0 +1,31 @@
+/**
+ * FOOTER STYLES
+ *
+ * Simple footer with copyright and links
+ *
+ * Dependencies: _variables.scss, _mixins.scss
+ */
+
+// ========================================
+// Footer
+// ========================================
+footer {
+  background: $primary-color;
+  color: $white;
+  text-align: center;
+  padding: $spacing-lg;
+
+  p {
+    margin-bottom: 0.5rem;
+  }
+
+  a {
+    color: $white;
+    text-decoration: none;
+    transition: $transition;
+
+    &:hover {
+      color: $secondary-color;
+    }
+  }
+}

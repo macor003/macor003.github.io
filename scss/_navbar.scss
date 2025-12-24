@@ -1,81 +1,180 @@
-// Styling for the navbar
-#mainNav {
-  border-color: fade-out($gray-darker, .95);
-  background-color: white;
-  @include sans-serif-font;
-  @include transition-all;
-  .navbar-brand {
-    font-weight: 700;
-    text-transform: uppercase;
-    color: $theme-primary;
-    @include sans-serif-font;
-    &:focus,
-    &:hover {
-      color: darken($theme-primary, .1);
+/**
+ * NAVBAR STYLES
+ *
+ * Transparent navbar that becomes solid on scroll
+ * Includes mobile menu with hamburger toggle
+ * Bilingual support (ES/EN)
+ *
+ * Dependencies: _variables.scss, _mixins.scss
+ */
+
+// ========================================
+// Navbar Container
+// ========================================
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: transparent;
+  box-shadow: none;
+  z-index: $z-navbar;
+  transition: $transition;
+
+  // Scrolled state
+  &.scrolled {
+    background: $white;
+    padding: 0.5rem 0;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+
+    .logo {
+      color: $primary-color;
+
+      span {
+        @include gradient-text;
+      }
+    }
+
+    .nav-menu a {
+      color: $text-dark;
+    }
+
+    .lang-switch {
+      background: $gradient;
+      border: none;
+    }
+
+    .mobile-menu span {
+      background: $primary-color;
     }
   }
-  .navbar-toggle {
-    font-size: 12px;
-    font-weight: 700;
-    text-transform: uppercase;
-    color: $gray-darker;
+}
+
+// ========================================
+// Nav Container
+// ========================================
+.nav-container {
+  @include container;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+
+  @include tablet {
+    padding: 1rem;
   }
-  .navbar-nav {
-    > li.nav-item {
-       > a.nav-link:focus,
-      > a.nav-link {
-        font-size: 13px;
-        font-weight: 700;
-        text-transform: uppercase;
-        color: $gray-darker;
-        &:hover {
-          color: $theme-primary;
-        }
-        &.active {
-          color: $theme-primary !important;
-          background-color: transparent;
-          &:hover {
-            background-color: transparent;
-          }
-        }
-      }
+}
+
+// ========================================
+// Logo
+// ========================================
+.logo {
+  font-size: 1.5rem;
+  font-weight: $font-weight-bold;
+  color: $white;
+  text-decoration: none;
+  transition: $transition;
+
+  span {
+    color: $white;
+    transition: $transition;
+  }
+}
+
+// ========================================
+// Nav Menu
+// ========================================
+.nav-menu {
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+  align-items: center;
+
+  a {
+    text-decoration: none;
+    color: $white;
+    font-weight: $font-weight-medium;
+    transition: $transition;
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: $gradient;
+      transition: $transition;
+    }
+
+    &:hover::after {
+      width: 100%;
     }
   }
-  @media (min-width: 992px) {
-    border-color: fade-out(white, .7);
-    background-color: transparent;
-    .navbar-brand {
-      color: fade-out(white, .3);
-      &:focus,
-      &:hover {
-        color: white;
-      }
+
+  @include tablet {
+    position: fixed;
+    left: -100%;
+    top: 70px;
+    flex-direction: column;
+    background: $white;
+    width: 100%;
+    text-align: center;
+    transition: $transition;
+    box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
+    gap: 0;
+
+    a {
+      color: $text-dark;
+      padding: 1.5rem 0;
+      width: 100%;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
     }
-    .navbar-nav > li.nav-item > a.nav-link,
-    .navbar-nav > li.nav-item > a.nav-link:focus {
-      color: fade-out(white, .3);
-      &:hover {
-        color: white;
-      }
+
+    &.active {
+      left: 0;
     }
-    &.navbar-shrink {
-      border-color: fade-out($gray-darker, .95);
-      background-color: white;
-      .navbar-brand {
-        font-size: 16px;
-        color: $theme-primary;
-        &:focus,
-        &:hover {
-          color: darken($theme-primary, .1);
-        }
-      }
-      .navbar-nav > li.nav-item > a.nav-link,
-      .navbar-nav > li.nav-item > a.nav-link:focus {
-        color: $gray-darker;
-        &:hover {
-          color: $theme-primary;
-        }
-      }
-    }
+  }
+}
+
+// ========================================
+// Language Switch Button
+// ========================================
+.lang-switch {
+  @include reset-button;
+  background: rgba(255, 255, 255, 0.2);
+  color: $white;
+  border: 2px solid $white;
+  padding: 0.5rem 1rem;
+  border-radius: $border-radius-pill;
+  font-weight: $font-weight-semibold;
+  transition: $transition;
+  @include flex-center-vertical;
+  gap: $spacing-xs;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+  }
+}
+
+// ========================================
+// Mobile Menu Toggle
+// ========================================
+.mobile-menu {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+
+  span {
+    width: 25px;
+    height: 3px;
+    background: $white;
+    transition: $transition;
+  }
+
+  @include tablet {
+    display: flex;
   }
 }
