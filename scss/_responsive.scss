@@ -1,8 +1,8 @@
 /**
  * RESPONSIVE DESIGN
  *
- * Media queries for different screen sizes
- * Mobile-first responsive adjustments
+ * Cross-cutting media queries. Component-local breakpoints (hero, buttons)
+ * live inline in their own files via the tablet/mobile mixins.
  *
  * Dependencies: _variables.scss, _mixins.scss
  */
@@ -17,75 +17,26 @@
 }
 
 // ========================================
-// Desktop (1024px - 1440px)
-// ========================================
-@include desktop {
-  .hero h1 {
-    font-size: 3rem;
-  }
-
-  .section-title h2 {
-    font-size: 2.25rem;
-  }
-}
-
-// ========================================
 // Tablet (768px and below)
 // ========================================
 @include tablet {
-  // Typography adjustments
   section {
-    padding: 3rem 0;
+    padding: 3.5rem 0;
   }
 
-  .section-title {
-    margin-bottom: 2rem;
-
-    h2 {
-      font-size: 2rem;
-    }
-  }
-
-  // About section
-  .about-content {
-    grid-template-columns: 1fr;
-    gap: 2rem;
-  }
-
-  .contact-info {
+  .about-facts {
     grid-template-columns: 1fr;
   }
 
-  // Timeline adjustments for mobile
-  .timeline::before {
-    left: 30px;
-  }
-
-  .timeline-item {
-    &:nth-child(odd),
-    &:nth-child(even) {
-      padding-left: 4rem;
-      padding-right: 0;
-    }
-  }
-
-  .timeline-icon {
-    left: 30px !important;
-    transform: translateX(0) translateY(0) !important;
-  }
-
-  // Contact grid
   .contact-grid {
     grid-template-columns: 1fr;
     gap: 2rem;
   }
 
-  // Skills grid
   .skills-grid {
     grid-template-columns: 1fr;
   }
 
-  // Education grid
   .education-grid {
     grid-template-columns: 1fr;
   }
@@ -96,25 +47,12 @@
 // ========================================
 @include mobile {
   // Hero section
-  .hero {
-    padding: 2rem 1rem;
-
-    h1 {
-      font-size: 1.75rem;
-    }
-
-    .subtitle {
-      font-size: 1rem;
-    }
-
-    .description {
-      font-size: 0.9rem;
-    }
+  .hero .eyebrow {
+    font-size: 0.75rem;
   }
 
-  .hero-image {
-    width: 120px;
-    height: 120px;
+  .hero-frame {
+    max-width: 160px;
   }
 
   // Buttons
@@ -135,14 +73,14 @@
 
   // Sections
   section {
-    padding: 2rem 1rem;
+    padding: 2.5rem 1rem;
   }
 
   .section-title {
     margin-bottom: 1.5rem;
 
     h2 {
-      font-size: 1.75rem;
+      font-size: 1.6rem;
     }
 
     p {
@@ -150,14 +88,8 @@
     }
   }
 
-  // Cards
-  .skill-category,
+  // Panels
   .education-card,
-  .timeline-content {
-    padding: 1.5rem;
-  }
-
-  // Contact form
   .contact-form-wrapper,
   .contact-social-wrapper {
     padding: 1.5rem;
@@ -166,35 +98,12 @@
   .form-group {
     margin-bottom: 1.25rem;
   }
-
-  // Fixed buttons adjustments
-  .download-cv {
-    padding: 0.75rem 1rem;
-
-    span {
-      display: none;
-    }
-
-    i {
-      font-size: 1.25rem;
-    }
-  }
-
-  .scroll-top {
-    width: 45px;
-    height: 45px;
-    font-size: 1.25rem;
-  }
 }
 
 // ========================================
 // Small Tablets (between 481px - 768px)
 // ========================================
 @media (min-width: $breakpoint-mobile + 1) and (max-width: $breakpoint-tablet) {
-  .hero h1 {
-    font-size: 2.5rem;
-  }
-
   .skills-grid {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -209,20 +118,13 @@
     padding: 4rem 0 2rem;
   }
 
-  .hero-image {
-    width: 100px;
-    height: 100px;
-    margin-bottom: 1rem;
+  .hero-frame {
+    max-width: 130px;
   }
 
   .hero h1 {
     font-size: 2rem;
     margin-bottom: 0.5rem;
-  }
-
-  .hero .subtitle {
-    font-size: 1rem;
-    margin-bottom: 1rem;
   }
 
   .hero .description {
@@ -236,7 +138,6 @@
 // ========================================
 @media print {
   .navbar,
-  .download-cv,
   .scroll-top,
   .mobile-menu,
   .cta-buttons {
@@ -244,8 +145,8 @@
   }
 
   body {
-    color: #000;
     background: #fff;
+    color: #000;
   }
 
   section {

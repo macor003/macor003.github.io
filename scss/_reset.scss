@@ -2,7 +2,6 @@
  * RESET & BASE STYLES
  *
  * CSS reset and foundational styles for the entire application
- * Includes box-sizing, body defaults, and common element resets
  *
  * Dependencies: _variables.scss
  */
@@ -19,11 +18,17 @@
 // ========================================
 // Body Defaults
 // ========================================
+html {
+  color-scheme: dark;
+}
+
 body {
-  font-family: $font-family;
-  color: $text-dark;
+  font-family: $font-body;
+  background: $ink;
+  color: $paper;
   line-height: 1.6;
   overflow-x: hidden;
+  counter-reset: section-index;
 }
 
 // ========================================
@@ -43,10 +48,10 @@ body {
 // Section Defaults
 // ========================================
 section {
-  padding: 5rem 0;
+  padding: 6rem 0;
 
   @include tablet {
-    padding: 3rem 0;
+    padding: 3.5rem 0;
   }
 }
 
@@ -54,9 +59,11 @@ section {
 // Typography
 // ========================================
 h1, h2, h3, h4, h5, h6 {
-  font-weight: $font-weight-bold;
+  font-family: $font-display;
+  font-weight: $font-weight-semibold;
   line-height: 1.2;
   margin-bottom: $spacing-sm;
+  letter-spacing: -0.01em;
 }
 
 h1 {
@@ -85,6 +92,7 @@ h3 {
 
 p {
   margin-bottom: $spacing-sm;
+  color: $mist;
 }
 
 a {
@@ -106,6 +114,19 @@ img {
   max-width: 100%;
   height: auto;
   display: block;
+}
+
+// ========================================
+// Selection & Focus
+// ========================================
+::selection {
+  background: $signal;
+  color: $ink;
+}
+
+:focus-visible {
+  outline: 2px solid $signal;
+  outline-offset: 3px;
 }
 
 // ========================================

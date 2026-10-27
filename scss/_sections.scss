@@ -2,44 +2,37 @@
  * SECTIONS STYLES
  *
  * Styles for About, Skills, Experience, and Education sections
- * Includes grids, cards, timelines, and interactive elements
  *
  * Dependencies: _variables.scss, _mixins.scss
  */
 
 // ========================================
-// Section Title
+// Section Title — mono index eyebrow, left-aligned, no gradient underline
 // ========================================
 .section-title {
-  text-align: center;
   margin-bottom: 3rem;
+  max-width: 640px;
+  counter-increment: section-index;
+
+  &::before {
+    content: '0' counter(section-index);
+    @include mono-label;
+    display: block;
+    margin-bottom: 0.6rem;
+  }
 
   h2 {
-    font-size: 2.5rem;
+    font-size: 2.25rem;
     margin-bottom: 0.5rem;
-    position: relative;
-    display: inline-block;
-
-    &::after {
-      content: '';
-      position: absolute;
-      bottom: -10px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 80px;
-      height: 4px;
-      background: $gradient;
-      border-radius: 2px;
-    }
 
     @include tablet {
-      font-size: 2rem;
+      font-size: 1.85rem;
     }
   }
 
   p {
-    color: $text-light;
-    font-size: 1.1rem;
+    color: $mist;
+    font-size: 1.05rem;
   }
 }
 
@@ -48,9 +41,9 @@
 // ========================================
 .about-content {
   display: grid;
-  grid-template-columns: 1fr 2fr;
+  grid-template-columns: 0.8fr 2fr;
   gap: 3rem;
-  align-items: center;
+  align-items: start;
 
   @include tablet {
     grid-template-columns: 1fr;
@@ -59,237 +52,192 @@
 }
 
 .about-image {
-  text-align: center;
+  @include corner-brackets(22px, -10px, $signal);
+  max-width: 280px;
+
+  @include tablet {
+    max-width: 200px;
+    margin: 0 auto;
+  }
 
   img {
     width: 100%;
-    max-width: 350px;
-    border-radius: $border-radius-lg;
-    box-shadow: $shadow;
-    transition: $transition;
-
-    &:hover {
-      transform: scale(1.05);
-    }
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border: 1px solid $line;
+    border-radius: $radius-md;
   }
 }
 
 .about-text {
-  @include card;
-
   h3 {
-    font-size: 2rem;
+    font-size: 1.75rem;
     margin-bottom: 1rem;
-    color: $primary-color;
+    color: $paper;
   }
 
   p {
-    color: $text-light;
+    color: $mist;
     margin-bottom: 1rem;
-    text-align: justify;
   }
 }
 
-.contact-info {
+.about-facts {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 1rem;
   margin-top: 2rem;
-
-  @include tablet {
-    grid-template-columns: 1fr;
-  }
+  padding-top: 1.5rem;
+  border-top: 1px solid $line;
 }
 
-.contact-item {
-  @include flex-center-vertical;
-  gap: $spacing-xs;
-  padding: 0.8rem;
-  background: $bg-light;
-  border-radius: $border-radius-sm;
-  transition: $transition;
-
-  &:hover {
-    background: $gradient;
-    color: $white;
-    transform: translateX(5px);
+.fact-item {
+  span:first-child {
+    @include mono-label;
+    display: block;
+    margin-bottom: 0.25rem;
+    font-size: 0.7rem;
   }
 
-  i {
-    font-size: 1.2rem;
+  span:last-child {
+    color: $paper;
+    font-weight: $font-weight-medium;
   }
 }
 
 // ========================================
 // Skills Section
 // ========================================
+.skills-bg {
+  background: $panel;
+}
+
 .skills-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2.5rem 3rem;
 }
 
 .skill-category {
-  @include card;
-  @include hover-lift;
-
   h3 {
-    font-size: 1.5rem;
-    margin-bottom: 1.5rem;
-    color: $primary-color;
+    font-size: 1.05rem;
+    margin-bottom: 1.1rem;
+    color: $paper;
+    font-family: $font-mono;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    font-weight: $font-weight-medium;
     @include flex-center-vertical;
-    gap: $spacing-xs;
+    gap: 0.6rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid $line;
   }
 
   i {
-    font-size: 1.8rem;
-    @include gradient-text;
+    color: $signal;
+    font-size: 1rem;
   }
 }
 
 .skill-item {
-  @include flex-center-vertical;
-  gap: 0.8rem;
-  padding: 0.6rem 0;
-
-  &:hover .skill-check {
-    transform: scale(1.15) rotate(360deg);
-    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
-  }
-
-  &:hover .skill-name {
-    color: $secondary-color;
-  }
-}
-
-.skill-check {
-  width: 26px;
-  height: 26px;
-  border-radius: 6px;
-  background: rgba(102, 126, 234, 0.1);
-  border: 2px solid #667eea;
-  @include flex-center;
-  font-size: 0.7rem;
-  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  padding: 0.4rem 0.75rem;
+  margin: 0 0.5rem 0.5rem 0;
+  border: 1px solid $line;
+  border-radius: $radius-sm;
+  font-size: 0.85rem;
+  font-weight: $font-weight-medium;
+  color: $mist;
   transition: $transition;
 
-  i {
-    color: #667eea;
-    font-weight: 900;
+  &:hover {
+    border-color: $signal;
+    color: $paper;
   }
 }
 
 .skill-name {
-  font-weight: $font-weight-medium;
-  color: $text-dark;
-  transition: $transition;
+  font-weight: inherit;
+  color: inherit;
 }
 
 // ========================================
 // Experience Section
 // ========================================
 .experience-bg {
-  background: $bg-light;
+  background: $panel;
 }
 
 .timeline {
   position: relative;
-  max-width: 1000px;
+  max-width: 900px;
   margin: 0 auto;
 
   &::before {
     content: '';
     position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 2px;
+    left: 0;
+    width: 1px;
     height: 100%;
-    background: $gradient;
-
-    @include tablet {
-      left: 30px;
-    }
+    background: $line;
   }
 }
 
 .timeline-item {
-  margin-bottom: 3rem;
+  margin-bottom: 2.5rem;
+  padding-left: 2.5rem;
   position: relative;
 
-  &:nth-child(odd) {
-    padding-right: calc(50% + 2rem);
-
-    @include tablet {
-      padding-right: 0;
-      padding-left: 4rem;
-    }
+  &::before {
+    content: '';
+    position: absolute;
+    left: -4px;
+    top: 0.5rem;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: $signal;
   }
 
-  &:nth-child(even) {
-    padding-left: calc(50% + 2rem);
-
-    @include tablet {
-      padding-left: 4rem;
-    }
+  &:last-child {
+    margin-bottom: 0;
   }
 }
 
 .timeline-content {
-  @include card;
-  position: relative;
-
-  &:hover {
-    transform: scale(1.03);
-    box-shadow: $shadow-hover;
-  }
-
   h3 {
-    font-size: 1.5rem;
-    margin-bottom: 0.5rem;
-    color: $primary-color;
+    font-size: 1.3rem;
+    margin-bottom: 0.35rem;
+    color: $paper;
   }
 
   .company {
-    font-weight: $font-weight-semibold;
-    color: $secondary-color;
-    margin-bottom: 0.5rem;
+    font-weight: $font-weight-medium;
+    color: $signal;
+    margin-bottom: 0.4rem;
   }
 
   .period {
-    color: $text-light;
-    font-size: 0.9rem;
+    @include mono-label;
+    color: $mist;
     margin-bottom: 1rem;
     @include flex-center-vertical;
     gap: $spacing-xs;
   }
 
   ul {
-    margin-left: 1.5rem;
-    color: $text-light;
-  }
+    margin-left: 1.25rem;
+    color: $mist;
 
-  li {
-    margin-bottom: 0.5rem;
-  }
-}
+    li {
+      margin-bottom: 0.5rem;
+      list-style: disc;
 
-.timeline-icon {
-  @include absolute-center;
-  left: 50%;
-  top: 20px;
-  transform: translateX(-50%) translateY(0);
-  width: 50px;
-  height: 50px;
-  background: $gradient;
-  border-radius: 50%;
-  @include flex-center;
-  color: $white;
-  font-size: 1.2rem;
-  box-shadow: 0 0 0 4px $white;
-
-  @include tablet {
-    left: 30px !important;
-    transform: translateX(0) translateY(0);
+      &::marker {
+        color: $line;
+      }
+    }
   }
 }
 
@@ -298,45 +246,47 @@
 // ========================================
 .education-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
 }
 
 .education-card {
-  @include card;
-  border-left: 5px solid transparent;
-
-  &:hover {
-    border-left-color: $secondary-color;
-    transform: translateX(10px);
-    box-shadow: $shadow-hover;
-  }
+  @include panel;
+  @include hover-line;
 
   h3 {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     margin-bottom: 0.5rem;
-    color: $primary-color;
+    color: $paper;
   }
 
   .institution {
-    color: $secondary-color;
-    font-weight: $font-weight-semibold;
+    color: $signal;
+    font-weight: $font-weight-medium;
     margin-bottom: 0.5rem;
   }
 
   .year {
-    color: $text-light;
-    font-size: 0.9rem;
+    @include mono-label;
+    color: $mist;
     margin-bottom: 1rem;
+  }
+
+  p:not(.institution):not(.year) {
+    color: $mist;
+    font-size: 0.95rem;
   }
 }
 
 .cert-badge {
-  display: inline-block;
-  background: $gradient;
-  color: $white;
-  padding: 0.3rem 0.8rem;
-  border-radius: 20px;
-  font-size: 0.8rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: $font-mono;
+  font-size: 0.75rem;
+  color: $signal;
+  border: 1px solid $signal;
+  padding: 0.3rem 0.7rem;
+  border-radius: $radius-sm;
   margin-top: 0.5rem;
 }

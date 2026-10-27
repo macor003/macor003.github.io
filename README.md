@@ -108,13 +108,10 @@ Professional with over **10+ years of experience** in software development, solu
 
 ---
 
-## 🎓 Education & Certifications
+## 🎓 Education
 
 **Systems Engineer**
 I.U.P Santiago Mariño | Venezuela (2010 - 2015)
-
-**AWS Cloud Practitioner**
-Amazon Web Services | Valid until December 2025
 
 **Bachelor of Science**
 U.E. Campo Solo | Venezuela (2004 - 2009)

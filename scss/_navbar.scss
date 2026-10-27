@@ -1,8 +1,8 @@
 /**
  * NAVBAR STYLES
  *
- * Transparent navbar that becomes solid on scroll
- * Includes mobile menu with hamburger toggle
+ * Flat, transparent navbar that gains a solid panel + hairline border on scroll.
+ * Nav links carry a mono index number (01, 02…) via CSS counters.
  * Bilingual support (ES/EN)
  *
  * Dependencies: _variables.scss, _mixins.scss
@@ -16,36 +16,16 @@
   top: 0;
   width: 100%;
   background: transparent;
-  box-shadow: none;
+  border-bottom: 1px solid transparent;
   z-index: $z-navbar;
   transition: $transition;
 
   // Scrolled state
   &.scrolled {
-    background: $white;
-    padding: 0.5rem 0;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-
-    .logo {
-      color: $primary-color;
-
-      span {
-        @include gradient-text;
-      }
-    }
-
-    .nav-menu a {
-      color: $text-dark;
-    }
-
-    .lang-switch {
-      background: $gradient;
-      border: none;
-    }
-
-    .mobile-menu span {
-      background: $primary-color;
-    }
+    background: rgba($ink, 0.92);
+    backdrop-filter: blur(8px);
+    border-bottom-color: $line;
+    padding: 0.25rem 0;
   }
 }
 
@@ -57,7 +37,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 2rem;
+  padding: 1.25rem 2rem;
 
   @include tablet {
     padding: 1rem;
@@ -68,15 +48,14 @@
 // Logo
 // ========================================
 .logo {
-  font-size: 1.5rem;
-  font-weight: $font-weight-bold;
-  color: $white;
+  font-family: $font-display;
+  font-size: 1.25rem;
+  font-weight: $font-weight-semibold;
+  color: $paper;
   text-decoration: none;
-  transition: $transition;
 
   span {
-    color: $white;
-    transition: $transition;
+    color: $signal;
   }
 }
 
@@ -88,47 +67,48 @@
   list-style: none;
   gap: 2rem;
   align-items: center;
+  counter-reset: nav-index;
 
-  a {
+  a.nav-link {
+    counter-increment: nav-index;
     text-decoration: none;
-    color: $white;
+    color: $mist;
+    font-size: 0.95rem;
     font-weight: $font-weight-medium;
     transition: $transition;
-    position: relative;
 
-    &::after {
-      content: '';
-      position: absolute;
-      bottom: -5px;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background: $gradient;
-      transition: $transition;
+    &::before {
+      content: '0' counter(nav-index) ' ';
+      font-family: $font-mono;
+      font-size: 0.75em;
+      color: $signal;
+      margin-right: 0.3em;
     }
 
-    &:hover::after {
-      width: 100%;
+    &:hover {
+      color: $paper;
     }
   }
 
   @include tablet {
     position: fixed;
     left: -100%;
-    top: 70px;
+    top: 64px;
     flex-direction: column;
-    background: $white;
+    background: $ink;
+    border-bottom: 1px solid $line;
     width: 100%;
-    text-align: center;
+    text-align: left;
     transition: $transition;
-    box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
     gap: 0;
+    align-items: stretch;
+    padding: 0.5rem 0;
 
-    a {
-      color: $text-dark;
-      padding: 1.5rem 0;
+    a.nav-link {
+      color: $paper;
+      padding: 1.1rem 1.5rem;
       width: 100%;
-      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+      border-bottom: 1px solid $line;
     }
 
     &.active {
@@ -138,23 +118,53 @@
 }
 
 // ========================================
+// Nav CV Button (moved out of the fixed corner, lives in the nav)
+// ========================================
+.nav-menu .download-cv {
+  @include reset-button;
+  display: inline-flex;
+  align-items: center;
+  gap: $spacing-xs;
+  text-decoration: none;
+  font-family: $font-mono;
+  font-size: 0.8rem;
+  color: $paper;
+  border: 1px solid $line;
+  border-radius: $radius-sm;
+  padding: 0.5rem 0.9rem;
+  transition: $transition;
+
+  &:hover {
+    border-color: $signal;
+    color: $signal;
+  }
+
+  @include tablet {
+    margin: 0.75rem 1.5rem;
+    justify-content: center;
+    border-bottom: 1px solid $line;
+  }
+}
+
+// ========================================
 // Language Switch Button
 // ========================================
 .lang-switch {
   @include reset-button;
-  background: rgba(255, 255, 255, 0.2);
-  color: $white;
-  border: 2px solid $white;
-  padding: 0.5rem 1rem;
-  border-radius: $border-radius-pill;
-  font-weight: $font-weight-semibold;
+  background: transparent;
+  color: $paper;
+  border: 1px solid $line;
+  padding: 0.45rem 0.85rem;
+  border-radius: $radius-sm;
+  font-family: $font-mono;
+  font-size: 0.8rem;
   transition: $transition;
   @include flex-center-vertical;
   gap: $spacing-xs;
 
   &:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+    border-color: $signal;
+    color: $signal;
   }
 }
 
@@ -168,9 +178,9 @@
   cursor: pointer;
 
   span {
-    width: 25px;
-    height: 3px;
-    background: $white;
+    width: 22px;
+    height: 2px;
+    background: $paper;
     transition: $transition;
   }
 

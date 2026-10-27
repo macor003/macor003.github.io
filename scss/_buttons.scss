@@ -1,74 +1,32 @@
 /**
- * BUTTONS STYLES
+ * FLOATING ACTION BUTTON
  *
- * Fixed position buttons: Download CV and Scroll to Top
- * Includes hover effects and animations
+ * Scroll-to-top — the only fixed floating control left on the page
+ * (the CV download moved into the navbar, see _navbar.scss)
  *
  * Dependencies: _variables.scss, _mixins.scss
  */
 
-// ========================================
-// Download CV Button (Fixed Bottom Left)
-// ========================================
-.download-cv {
-  position: fixed;
-  bottom: $spacing-lg;
-  left: $spacing-lg;
-  background: $accent-color;
-  color: $white;
-  padding: 1rem 1.5rem;
-  border-radius: $border-radius-pill;
-  text-decoration: none;
-  font-weight: $font-weight-semibold;
-  @include flex-center-vertical;
-  gap: $spacing-xs;
-  transition: $transition;
-  box-shadow: $button-shadow;
-  z-index: $z-buttons;
-
-  &:hover {
-    transform: translateY(-5px);
-    box-shadow: $button-shadow-hover;
-  }
-
-  @include tablet {
-    padding: 0.875rem 1.25rem;
-    font-size: 0.9rem;
-
-    span {
-      display: none;
-    }
-  }
-
-  @include mobile {
-    bottom: $spacing-sm;
-    left: $spacing-sm;
-  }
-}
-
-// ========================================
-// Scroll to Top Button (Fixed Bottom Right)
-// ========================================
 .scroll-top {
   position: fixed;
   bottom: $spacing-lg;
   right: $spacing-lg;
-  width: 50px;
-  height: 50px;
-  background: $gradient;
-  color: $white;
-  border: none;
-  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  background: $panel;
+  color: $paper;
+  border: 1px solid $line;
+  border-radius: $radius-sm;
   cursor: pointer;
   display: none;
   @include flex-center;
-  font-size: 1.5rem;
+  font-size: 1.1rem;
   transition: $transition;
   z-index: $z-buttons;
 
   &:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+    border-color: $signal;
+    color: $signal;
   }
 
   &.show {
@@ -78,8 +36,8 @@
   @include mobile {
     bottom: $spacing-sm;
     right: $spacing-sm;
-    width: 45px;
-    height: 45px;
-    font-size: 1.25rem;
+    width: 40px;
+    height: 40px;
+    font-size: 1rem;
   }
 }

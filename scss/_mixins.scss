@@ -2,7 +2,6 @@
  * MIXINS
  *
  * Reusable SCSS mixins for common patterns
- * Includes responsive breakpoints, flexbox helpers, and utility mixins
  *
  * Dependencies: _variables.scss
  */
@@ -11,26 +10,22 @@
 // Flexbox Utilities
 // ========================================
 
-// Flex centering (both axes)
 @mixin flex-center {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-// Flex centering (vertical only)
 @mixin flex-center-vertical {
   display: flex;
   align-items: center;
 }
 
-// Flex centering (horizontal only)
 @mixin flex-center-horizontal {
   display: flex;
   justify-content: center;
 }
 
-// Flex column
 @mixin flex-column {
   display: flex;
   flex-direction: column;
@@ -40,28 +35,24 @@
 // Responsive Breakpoints
 // ========================================
 
-// Mobile (max-width: 480px)
 @mixin mobile {
   @media (max-width: $breakpoint-mobile) {
     @content;
   }
 }
 
-// Tablet (max-width: 768px)
 @mixin tablet {
   @media (max-width: $breakpoint-tablet) {
     @content;
   }
 }
 
-// Desktop (min-width: 1024px)
 @mixin desktop {
   @media (min-width: $breakpoint-desktop) {
     @content;
   }
 }
 
-// Wide screens (min-width: 1440px)
 @mixin wide {
   @media (min-width: $breakpoint-wide) {
     @content;
@@ -69,23 +60,69 @@
 }
 
 // ========================================
-// Gradient Text
+// Mono Eyebrow Label
+// e.g. "// 01 sobre mí" — used above section titles and as form labels
 // ========================================
-@mixin gradient-text {
-  background: $gradient;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+@mixin mono-label {
+  font-family: $font-mono;
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: $signal;
 }
 
 // ========================================
-// Card Style
+// Flat Panel (replaces the old drop-shadow "card")
 // ========================================
-@mixin card {
-  background: $white;
-  border-radius: $border-radius-lg;
-  box-shadow: $shadow;
+@mixin panel {
+  background: $panel;
+  border: 1px solid $line;
+  border-radius: $radius-lg;
   padding: $spacing-lg;
+}
+
+// ========================================
+// Border-color hover (replaces lift + shadow)
+// ========================================
+@mixin hover-line($color: $signal) {
+  transition: $transition;
+  border-color: $line;
+
+  &:hover {
+    border-color: $color;
+  }
+}
+
+// ========================================
+// Corner-bracket frame — the signature "spec sheet" motif
+// Applied to a positioned wrapper around a photo
+// ========================================
+@mixin corner-brackets($size: 28px, $offset: -10px, $color: $signal) {
+  position: relative;
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    width: $size;
+    height: $size;
+    border: 2px solid $color;
+    pointer-events: none;
+  }
+
+  &::before {
+    top: $offset;
+    left: $offset;
+    border-right: none;
+    border-bottom: none;
+  }
+
+  &::after {
+    bottom: $offset;
+    right: $offset;
+    border-left: none;
+    border-top: none;
+  }
 }
 
 // ========================================
@@ -100,7 +137,7 @@
 // ========================================
 // Smooth Transitions
 // ========================================
-@mixin transition($property: all, $duration: 0.3s, $timing: ease) {
+@mixin transition($property: all, $duration: 0.25s, $timing: ease) {
   transition: $property $duration $timing;
 }
 
@@ -112,18 +149,6 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-}
-
-// ========================================
-// Hover Effect (lift and shadow)
-// ========================================
-@mixin hover-lift {
-  transition: $transition;
-
-  &:hover {
-    transform: translateY(-5px);
-    box-shadow: $shadow-hover;
-  }
 }
 
 // ========================================
@@ -169,4 +194,13 @@
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
   border: 0;
+}
+
+// ========================================
+// Reduced Motion
+// ========================================
+@mixin reduced-motion {
+  @media (prefers-reduced-motion: reduce) {
+    @content;
+  }
 }

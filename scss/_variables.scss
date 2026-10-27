@@ -1,44 +1,30 @@
 /**
  * VARIABLES
  *
- * Global SCSS variables for colors, spacing, transitions, and other design tokens
- * Converted from CSS custom properties for better SCSS integration
+ * Global SCSS design tokens: color, type, spacing, shape
  *
  * Dependencies: None
  */
 
 // ========================================
-// Colors
+// Colors — "solution architect" system palette
 // ========================================
-$primary-color: #2c3e50;
-$secondary-color: #3498db;
-$accent-color: #e74c3c;
-$text-dark: #2c3e50;
-$text-light: #7f8c8d;
-$bg-light: #ecf0f1;
-$white: #ffffff;
-
-// ========================================
-// Gradients
-// ========================================
-$gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-$hero-gradient: linear-gradient(rgba(44, 62, 80, 0.8), rgba(52, 152, 219, 0.8));
-$hero-gradient-overlay: linear-gradient(45deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
-
-// ========================================
-// Shadows
-// ========================================
-$shadow: 0 10px 30px rgba(0,0,0,0.1);
-$shadow-hover: 0 15px 40px rgba(0,0,0,0.15);
-$button-shadow: 0 5px 15px rgba(231, 76, 60, 0.3);
-$button-shadow-hover: 0 10px 25px rgba(231, 76, 60, 0.5);
+$ink: #10151b;          // base background
+$panel: #171e27;        // alternate surface (sections, cards)
+$panel-raised: #1c2430; // form controls, chips
+$line: #2b3542;         // hairline borders / dividers
+$paper: #eceef1;        // primary text
+$mist: #8993a4;         // secondary / muted text
+$signal: #e3a857;       // single warm accent (links, focus, primary action)
+$danger: #e0693f;       // error state, warm-red, distinct from $signal
+$success: #6fb98f;      // success state
 
 // ========================================
 // Transitions
 // ========================================
-$transition: all 0.3s ease;
-$transition-fast: all 0.2s ease;
-$transition-slow: all 0.5s ease;
+$transition: all 0.25s ease;
+$transition-fast: all 0.15s ease;
+$transition-slow: all 0.45s ease;
 
 // ========================================
 // Breakpoints
@@ -66,18 +52,19 @@ $spacing-lg: 2rem;
 $spacing-xl: 3rem;
 
 // ========================================
-// Border Radius
+// Border Radius — small & flat, not pill-shaped
 // ========================================
-$border-radius-sm: 8px;
-$border-radius-md: 10px;
-$border-radius-lg: 15px;
-$border-radius-pill: 50px;
+$radius-sm: 4px;
+$radius-md: 6px;
+$radius-lg: 8px;
 
 // ========================================
 // Typography
 // ========================================
-$font-family: 'Poppins', sans-serif;
-$font-weight-light: 300;
+$font-display: 'Space Grotesk', sans-serif;
+$font-body: 'Inter', sans-serif;
+$font-mono: 'IBM Plex Mono', monospace;
+
 $font-weight-regular: 400;
 $font-weight-medium: 500;
 $font-weight-semibold: 600;

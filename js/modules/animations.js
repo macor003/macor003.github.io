@@ -22,26 +22,26 @@ export function initHeroAnimations() {
     const heroTimeline = gsap.timeline({ defaults: { ease: "power2.out" } });
 
     heroTimeline
-        .from(".hero-image", {
-            scale: 0.8,
+        .from(".hero-frame", {
+            scale: 0.92,
             opacity: 0,
-            duration: 0.8
+            duration: 0.7
         })
+        .from(".hero .eyebrow", {
+            y: 16,
+            opacity: 0,
+            duration: 0.5
+        }, "-=0.3")
         .from(".hero h1", {
             y: 30,
             opacity: 0,
             duration: 0.6
-        }, "-=0.4")
-        .from(".hero .subtitle", {
-            y: 20,
-            opacity: 0,
-            duration: 0.5
         }, "-=0.3")
         .from(".hero .description", {
             y: 20,
             opacity: 0,
             duration: 0.5
-        }, "-=0.2")
+        }, "-=0.3")
         .fromTo(".cta-buttons .btn", {
             y: 20,
             opacity: 0
@@ -52,15 +52,6 @@ export function initHeroAnimations() {
             stagger: 0.15,
             clearProps: "all"
         }, "-=0.2");
-
-    // Floating animation for hero image
-    gsap.to(".hero-image", {
-        y: -20,
-        duration: 3,
-        ease: "power1.inOut",
-        repeat: -1,
-        yoyo: true
-    });
 }
 
 /**
@@ -249,6 +240,13 @@ export function initScrollAnimations() {
 export function init() {
     if (typeof gsap === 'undefined') {
         console.error('GSAP not loaded. Animations will not work.');
+        return;
+    }
+
+    // Respect the user's reduced-motion preference: skip GSAP entirely
+    // and let elements render in their final state (no `from()` hiding them).
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        console.log('Reduced motion preferred — animations skipped');
         return;
     }
 

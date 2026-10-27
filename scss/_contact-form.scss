@@ -2,7 +2,6 @@
  * CONTACT FORM STYLES
  *
  * Form with validation states, Cloudflare Turnstile widget
- * Includes input fields, labels, error/success states, and submit button
  *
  * Dependencies: _variables.scss, _mixins.scss
  */
@@ -11,12 +10,12 @@
 // Contact Form Wrapper
 // ========================================
 .contact-form-wrapper {
-  @include card;
+  @include panel;
 
   h3 {
     margin-bottom: 1.5rem;
-    color: $primary-color;
-    font-size: 1.5rem;
+    color: $paper;
+    font-size: 1.4rem;
   }
 }
 
@@ -32,25 +31,24 @@
     gap: $spacing-xs;
     margin-bottom: 0.5rem;
     font-weight: $font-weight-medium;
-    color: $text-dark;
-    font-size: 0.95rem;
+    color: $paper;
+    font-size: 0.9rem;
 
     i {
-      font-size: 1rem;
-      @include gradient-text;
+      color: $signal;
+      font-size: 0.9rem;
     }
   }
 
   .required {
-    color: $accent-color;
+    color: $signal;
     margin-left: 2px;
   }
 
   // Error States
   &.error {
     .form-control {
-      border-color: $accent-color;
-      background: rgba(231, 76, 60, 0.05);
+      border-color: $danger;
     }
 
     .error-message {
@@ -61,8 +59,7 @@
   // Success States
   &.success {
     .form-control {
-      border-color: #2ecc71;
-      background: rgba(46, 204, 113, 0.05);
+      border-color: $success;
     }
   }
 }
@@ -73,22 +70,22 @@
 .form-control {
   width: 100%;
   padding: 0.875rem 1rem;
-  border: 2px solid #e0e0e0;
-  border-radius: $border-radius-md;
-  font-family: $font-family;
+  border: 1px solid $line;
+  border-radius: $radius-md;
+  font-family: $font-body;
   font-size: 0.95rem;
   transition: $transition;
-  background: $white;
-  color: $text-dark;
+  background: $panel-raised;
+  color: $paper;
 
   &:focus {
     outline: none;
-    border-color: #667eea;
-    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    border-color: $signal;
+    box-shadow: 0 0 0 3px rgba($signal, 0.15);
   }
 
   &::placeholder {
-    color: $text-light;
+    color: $mist;
     opacity: 0.7;
   }
 }
@@ -103,10 +100,9 @@ textarea.form-control {
 // ========================================
 .error-message {
   display: none;
-  color: $accent-color;
+  color: $danger;
   font-size: 0.85rem;
   margin-top: 0.5rem;
-  padding-left: 0.5rem;
 }
 
 // ========================================
@@ -123,15 +119,15 @@ textarea.form-control {
 .privacy-info {
   margin: 1.5rem 0;
   padding: 0.75rem;
-  background: rgba(102, 126, 234, 0.05);
-  border-radius: $border-radius-sm;
+  border: 1px solid $line;
+  border-radius: $radius-sm;
   font-size: 0.8rem;
-  color: $text-light;
+  color: $mist;
   line-height: 1.5;
   text-align: center;
 
   a {
-    color: #667eea;
+    color: $signal;
     text-decoration: none;
     font-weight: $font-weight-medium;
 
@@ -146,11 +142,11 @@ textarea.form-control {
 // ========================================
 .btn-submit {
   width: 100%;
-  background: $gradient;
-  color: $white;
+  background: $signal;
+  color: $ink;
   padding: 1rem 2rem;
-  border: none;
-  border-radius: $border-radius-pill;
+  border: 1px solid $signal;
+  border-radius: $radius-sm;
   font-weight: $font-weight-semibold;
   font-size: 1rem;
   cursor: pointer;
@@ -160,16 +156,12 @@ textarea.form-control {
   position: relative;
 
   &:hover:not(:disabled) {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
-  }
-
-  &:active:not(:disabled) {
-    transform: translateY(-1px);
+    background: darken($signal, 8%);
+    border-color: darken($signal, 8%);
   }
 
   &:disabled {
-    opacity: 0.7;
+    opacity: 0.6;
     cursor: not-allowed;
   }
 
@@ -200,7 +192,7 @@ textarea.form-control {
 .form-status {
   margin-top: 1rem;
   padding: 1rem;
-  border-radius: $border-radius-md;
+  border-radius: $radius-md;
   display: none;
   animation: slideDown 0.3s ease;
 
@@ -209,32 +201,16 @@ textarea.form-control {
   }
 
   &.success {
-    background: rgba(46, 204, 113, 0.1);
-    border: 2px solid #2ecc71;
-    color: #27ae60;
+    border: 1px solid $success;
+    color: $success;
   }
 
   &.error {
-    background: rgba(231, 76, 60, 0.1);
-    border: 2px solid $accent-color;
-    color: $accent-color;
+    border: 1px solid $danger;
+    color: $danger;
   }
 
   i {
     margin-right: 0.5rem;
-  }
-}
-
-// ========================================
-// Animations
-// ========================================
-@keyframes slideDown {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
   }
 }

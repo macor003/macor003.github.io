@@ -1,8 +1,8 @@
 /**
  * HERO SECTION STYLES
  *
- * Main hero section with background image and floating profile picture
- * Includes CTA buttons with gradient effects
+ * Split layout: info column + squared photo frame with corner brackets
+ * (the "spec sheet" signature motif, reused in About)
  *
  * Dependencies: _variables.scss, _mixins.scss
  */
@@ -12,111 +12,108 @@
 // ========================================
 .hero {
   min-height: 100vh;
-  background: $hero-gradient, url('../img/header.jpg');
-  @include background-cover;
-  background-attachment: fixed;
+  background-color: $ink;
+  background-image:
+    radial-gradient(rgba($paper, 0.05) 1px, transparent 1px);
+  background-size: 26px 26px;
   @include flex-center;
-  text-align: center;
-  color: $white;
+  color: $paper;
   position: relative;
   overflow: hidden;
   padding-top: 70px;
 
-  // Overlay gradient
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: $hero-gradient-overlay;
-  }
-
   @include tablet {
-    padding: 6rem 1rem 4rem;
+    padding: 7rem 0 3rem;
     min-height: auto;
   }
 }
 
 // ========================================
-// Hero Content
+// Hero Grid
 // ========================================
-.hero-content {
+.hero-grid {
   position: relative;
   z-index: $z-hero;
-  max-width: $content-max-width;
-  padding: $spacing-lg;
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: $spacing-xl;
+  align-items: center;
 
   @include tablet {
-    padding: $spacing-sm;
+    grid-template-columns: 1fr;
+    gap: $spacing-lg;
+    text-align: center;
+  }
+}
+
+.hero-info {
+  max-width: 560px;
+
+  @include tablet {
+    max-width: 100%;
+    margin: 0 auto;
   }
 }
 
 // ========================================
-// Hero Image (Floating Profile Picture)
+// Hero Frame (signature corner-bracket photo)
 // ========================================
-.hero-image {
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
-  border: 5px solid $white;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-  margin: 0 auto 2rem;
-  object-fit: cover;
+.hero-frame {
+  @include corner-brackets(28px, -12px, $signal);
+  justify-self: center;
+  width: 100%;
+  max-width: 320px;
 
   @include tablet {
-    width: 150px;
-    height: 150px;
+    max-width: 220px;
+    order: -1;
   }
+}
+
+.hero-image {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border: 1px solid $line;
+  border-radius: $radius-md;
+  object-fit: cover;
+  display: block;
 }
 
 // ========================================
 // Hero Typography
 // ========================================
-.hero h1 {
-  font-size: 3.5rem;
+.hero .eyebrow {
+  @include mono-label;
   margin-bottom: 1rem;
-  font-weight: $font-weight-bold;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-
-  @include tablet {
-    font-size: 2.5rem;
-  }
-
-  @include mobile {
-    font-size: 2rem;
-  }
+  font-size: 0.85rem;
 }
 
-.hero .subtitle {
-  font-size: 1.5rem;
-  margin-bottom: 2rem;
-  opacity: 0.9;
+.hero h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  font-weight: $font-weight-semibold;
+  color: $paper;
 
   @include tablet {
-    font-size: 1.25rem;
+    font-size: 2.25rem;
   }
 
   @include mobile {
-    font-size: 1.1rem;
+    font-size: 1.85rem;
   }
 }
 
 .hero .description {
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   margin-bottom: 2rem;
   line-height: 1.8;
-  max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
+  color: $mist;
+  max-width: 520px;
 
   @include tablet {
     font-size: 1rem;
-  }
-
-  @include mobile {
-    font-size: 0.95rem;
+    margin-left: auto;
+    margin-right: auto;
   }
 }
 
@@ -126,10 +123,12 @@
 .cta-buttons {
   display: flex;
   gap: 1rem;
-  justify-content: center;
   flex-wrap: wrap;
 
-  // Ensure buttons are visible by default (GSAP will override)
+  @include tablet {
+    justify-content: center;
+  }
+
   .btn {
     opacity: 1;
     visibility: visible;
@@ -137,44 +136,44 @@
 }
 
 // ========================================
-// Button Styles
+// Button Styles — flat, small radius, no pills
 // ========================================
 .btn {
-  padding: 1rem 2rem;
-  border: none;
-  border-radius: $border-radius-pill;
+  padding: 0.9rem 1.6rem;
+  border: 1px solid transparent;
+  border-radius: $radius-sm;
   cursor: pointer;
-  font-weight: $font-weight-semibold;
-  font-size: 1rem;
+  font-weight: $font-weight-medium;
+  font-size: 0.95rem;
   transition: $transition;
   text-decoration: none;
   @include flex-center-vertical;
   gap: $spacing-xs;
 
   @include tablet {
-    padding: 0.875rem 1.5rem;
-    font-size: 0.95rem;
+    padding: 0.85rem 1.4rem;
+    font-size: 0.9rem;
   }
 }
 
 .btn-primary {
-  background: $white;
-  color: $primary-color;
+  background: $signal;
+  color: $ink;
+  border-color: $signal;
 
   &:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    background: darken($signal, 8%);
+    border-color: darken($signal, 8%);
   }
 }
 
 .btn-outline {
   background: transparent;
-  color: $white;
-  border: 2px solid $white;
+  color: $paper;
+  border-color: $line;
 
   &:hover {
-    background: $white;
-    color: $primary-color;
-    transform: translateY(-3px);
+    border-color: $signal;
+    color: $signal;
   }
 }

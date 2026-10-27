@@ -14,7 +14,7 @@
     <link rel="alternate icon" href="img/icono.ico" type="image/x-icon">
 
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -43,6 +43,12 @@
                     <i class="fas fa-globe"></i>
                     <span id="lang-text">EN</span>
                 </button></li>
+                <li>
+                    <a href="files/Mario Ortega CV.pdf" download class="download-cv">
+                        <i class="fas fa-download"></i>
+                        <span data-es="Descargar CV" data-en="Download CV">Descargar CV</span>
+                    </a>
+                </li>
             </ul>
             <div class="mobile-menu" onclick="toggleMobileMenu()">
                 <span></span>
@@ -59,22 +65,26 @@
          CTA buttons
          ======================================== -->
     <section id="home" class="hero">
-        <div class="hero-content">
-            <img src="img/MarioOrtega.jpg" alt="Mario Ortega" class="hero-image">
-            <h1 data-es="Mario Cesar Ortega Rodriguez" data-en="Mario Cesar Ortega Rodriguez">Mario Cesar Ortega Rodriguez</h1>
-            <p class="subtitle" data-es="Arquitecto de Soluciones" data-en="Solution Architect">Arquitecto de Soluciones</p>
-            <p class="description" data-es="Profesional con más de 10 años de experiencia en desarrollo de software, arquitectura de soluciones y liderazgo técnico. Especializado en transformación digital y modernización de aplicaciones empresariales." data-en="Professional with over 10 years of experience in software development, solution architecture and technical leadership. Specialized in digital transformation and enterprise application modernization.">
-                Profesional con más de 10 años de experiencia en desarrollo de software, arquitectura de soluciones y liderazgo técnico. Especializado en transformación digital y modernización de aplicaciones empresariales.
-            </p>
-            <div class="cta-buttons">
-                <a href="#contact" class="btn btn-primary">
-                    <i class="fas fa-envelope"></i>
-                    <span data-es="Contáctame" data-en="Contact Me">Contáctame</span>
-                </a>
-                <a href="#about" class="btn btn-outline">
-                    <i class="fas fa-user"></i>
-                    <span data-es="Conocer Más" data-en="Learn More">Conocer Más</span>
-                </a>
+        <div class="hero-grid container">
+            <div class="hero-info">
+                <p class="eyebrow" data-es="Arquitecto de Soluciones — Medellín, CO" data-en="Solution Architect — Medellín, CO">Arquitecto de Soluciones — Medellín, CO</p>
+                <h1 data-es="Mario Cesar Ortega Rodriguez" data-en="Mario Cesar Ortega Rodriguez">Mario Cesar Ortega Rodriguez</h1>
+                <p class="description" data-es="Profesional con más de 10 años de experiencia en desarrollo de software, arquitectura de soluciones y liderazgo técnico. Especializado en transformación digital y modernización de aplicaciones empresariales." data-en="Professional with over 10 years of experience in software development, solution architecture and technical leadership. Specialized in digital transformation and enterprise application modernization.">
+                    Profesional con más de 10 años de experiencia en desarrollo de software, arquitectura de soluciones y liderazgo técnico. Especializado en transformación digital y modernización de aplicaciones empresariales.
+                </p>
+                <div class="cta-buttons">
+                    <a href="#contact" class="btn btn-primary">
+                        <i class="fas fa-envelope"></i>
+                        <span data-es="Contáctame" data-en="Contact Me">Contáctame</span>
+                    </a>
+                    <a href="#about" class="btn btn-outline">
+                        <i class="fas fa-user"></i>
+                        <span data-es="Conocer Más" data-en="Learn More">Conocer Más</span>
+                    </a>
+                </div>
+            </div>
+            <div class="hero-frame">
+                <img src="img/MarioOrtega.jpg" alt="Mario Ortega" class="hero-image">
             </div>
         </div>
     </section>
@@ -101,14 +111,14 @@
                     <p data-es="Especializado en arquitecturas cloud, microservicios, DevOps y transformación digital. He liderado exitosamente proyectos de modernización de aplicaciones legacy a arquitecturas modernas basadas en contenedores y orquestación." data-en="Specialized in cloud architectures, microservices, DevOps and digital transformation. I have successfully led legacy application modernization projects to modern container-based and orchestration architectures.">
                         Especializado en arquitecturas cloud, microservicios, DevOps y transformación digital. He liderado exitosamente proyectos de modernización de aplicaciones legacy a arquitecturas modernas basadas en contenedores y orquestación.
                     </p>
-                    <div class="contact-info">
-                        <div class="contact-item">
-                            <i class="fas fa-map-marker-alt"></i>
+                    <div class="about-facts">
+                        <div class="fact-item">
+                            <span data-es="Ubicación" data-en="Location">Ubicación</span>
                             <span>Medellín, Colombia</span>
                         </div>
-                        <div class="contact-item">
-                            <i class="fas fa-briefcase"></i>
-                            <span data-es="10+ años de experiencia" data-en="10+ years of experience">10+ años de experiencia</span>
+                        <div class="fact-item">
+                            <span data-es="Experiencia" data-en="Experience">Experiencia</span>
+                            <span data-es="10+ años" data-en="10+ years">10+ años</span>
                         </div>
                     </div>
                 </div>
@@ -129,206 +139,56 @@
             <div class="skills-grid">
                 <div class="skill-category">
                     <h3><i class="fas fa-code"></i><span data-es="Lenguajes de Programación" data-en="Programming Languages">Lenguajes de Programación</span></h3>
-                    <div class="skill-item">
-                        <div class="skill-check">
-                            <i class="fas fa-check"></i>
-                        </div>
-                        <span class="skill-name">Java</span>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-check">
-                            <i class="fas fa-check"></i>
-                        </div>
-                        <span class="skill-name">TypeScript / JavaScript</span>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-check">
-                            <i class="fas fa-check"></i>
-                        </div>
-                        <span class="skill-name">C#</span>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-check">
-                            <i class="fas fa-check"></i>
-                        </div>
-                        <span class="skill-name">Python</span>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-check">
-                            <i class="fas fa-check"></i>
-                        </div>
-                        <span class="skill-name">Bash</span>
-                    </div>
+                    <span class="skill-item">Java</span>
+                    <span class="skill-item">TypeScript / JavaScript</span>
+                    <span class="skill-item">C#</span>
+                    <span class="skill-item">Python</span>
+                    <span class="skill-item">Bash</span>
                 </div>
 
                 <div class="skill-category">
                     <h3><i class="fas fa-cubes"></i><span data-es="Frameworks & Tecnologías" data-en="Frameworks & Technologies">Frameworks & Tecnologías</span></h3>
-                    <div class="skill-item">
-                        <div class="skill-check">
-                            <i class="fas fa-check"></i>
-                        </div>
-                        <span class="skill-name">Spring Framework</span>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-check">
-                            <i class="fas fa-check"></i>
-                        </div>
-                        <span class="skill-name">Spring WebFlux</span>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-check">
-                            <i class="fas fa-check"></i>
-                        </div>
-                        <span class="skill-name">Spring Boot / MVC</span>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-check">
-                            <i class="fas fa-check"></i>
-                        </div>
-                        <span class="skill-name">.NET Core</span>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-check">
-                            <i class="fas fa-check"></i>
-                        </div>
-                        <span class="skill-name">ReactJS</span>
-                    </div>
+                    <span class="skill-item">Spring Framework</span>
+                    <span class="skill-item">Spring WebFlux</span>
+                    <span class="skill-item">Spring Boot / MVC</span>
+                    <span class="skill-item">.NET Core</span>
+                    <span class="skill-item">ReactJS</span>
                 </div>
 
                 <div class="skill-category">
                     <h3><i class="fas fa-cloud"></i><span data-es="Cloud & DevOps" data-en="Cloud & DevOps">Cloud & DevOps</span></h3>
-                    <div class="skill-item">
-                        <div class="skill-check">
-                            <i class="fas fa-check"></i>
-                        </div>
-                        <span class="skill-name">Azure</span>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-check">
-                            <i class="fas fa-check"></i>
-                        </div>
-                        <span class="skill-name">AWS</span>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-check">
-                            <i class="fas fa-check"></i>
-                        </div>
-                        <span class="skill-name">Google Cloud Platform (GCP)</span>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-check">
-                            <i class="fas fa-check"></i>
-                        </div>
-                        <span class="skill-name">Docker</span>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-check">
-                            <i class="fas fa-check"></i>
-                        </div>
-                        <span class="skill-name">Kubernetes (AKS)</span>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-check">
-                            <i class="fas fa-check"></i>
-                        </div>
-                        <span class="skill-name">Azure DevOps</span>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-check">
-                            <i class="fas fa-check"></i>
-                        </div>
-                        <span class="skill-name">CI/CD Pipelines</span>
-                    </div>
+                    <span class="skill-item">Azure</span>
+                    <span class="skill-item">AWS</span>
+                    <span class="skill-item">Google Cloud Platform (GCP)</span>
+                    <span class="skill-item">Docker</span>
+                    <span class="skill-item">Kubernetes (AKS)</span>
+                    <span class="skill-item">Azure DevOps</span>
+                    <span class="skill-item">CI/CD Pipelines</span>
                 </div>
 
                 <div class="skill-category">
                     <h3><i class="fas fa-database"></i><span data-es="Bases de Datos" data-en="Databases">Bases de Datos</span></h3>
-                    <div class="skill-item">
-                        <div class="skill-check">
-                            <i class="fas fa-check"></i>
-                        </div>
-                        <span class="skill-name">PostgreSQL</span>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-check">
-                            <i class="fas fa-check"></i>
-                        </div>
-                        <span class="skill-name">SQL Server</span>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-check">
-                            <i class="fas fa-check"></i>
-                        </div>
-                        <span class="skill-name">MongoDB</span>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-check">
-                            <i class="fas fa-check"></i>
-                        </div>
-                        <span class="skill-name">Oracle 11g</span>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-check">
-                            <i class="fas fa-check"></i>
-                        </div>
-                        <span class="skill-name">MySQL</span>
-                    </div>
+                    <span class="skill-item">PostgreSQL</span>
+                    <span class="skill-item">SQL Server</span>
+                    <span class="skill-item">MongoDB</span>
+                    <span class="skill-item">Oracle 11g</span>
+                    <span class="skill-item">MySQL</span>
                 </div>
 
                 <div class="skill-category">
                     <h3><i class="fas fa-project-diagram"></i><span data-es="Arquitectura & Mensajería" data-en="Architecture & Messaging">Arquitectura & Mensajería</span></h3>
-                    <div class="skill-item">
-                        <div class="skill-check">
-                            <i class="fas fa-check"></i>
-                        </div>
-                        <span class="skill-name">Microservicios</span>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-check">
-                            <i class="fas fa-check"></i>
-                        </div>
-                        <span class="skill-name">REST APIs</span>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-check">
-                            <i class="fas fa-check"></i>
-                        </div>
-                        <span class="skill-name">RabbitMQ</span>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-check">
-                            <i class="fas fa-check"></i>
-                        </div>
-                        <span class="skill-name">Google Pub/Sub</span>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-check">
-                            <i class="fas fa-check"></i>
-                        </div>
-                        <span class="skill-name">AWS SQS</span>
-                    </div>
+                    <span class="skill-item">Microservicios</span>
+                    <span class="skill-item">REST APIs</span>
+                    <span class="skill-item">RabbitMQ</span>
+                    <span class="skill-item">Google Pub/Sub</span>
+                    <span class="skill-item">AWS SQS</span>
                 </div>
 
                 <div class="skill-category">
                     <h3><i class="fas fa-robot"></i><span data-es="Herramientas IA" data-en="AI Development Tools">Herramientas IA</span></h3>
-                    <div class="skill-item">
-                        <div class="skill-check">
-                            <i class="fas fa-check"></i>
-                        </div>
-                        <span class="skill-name">GitHub Copilot</span>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-check">
-                            <i class="fas fa-check"></i>
-                        </div>
-                        <span class="skill-name">Claude Code</span>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-check">
-                            <i class="fas fa-check"></i>
-                        </div>
-                        <span class="skill-name">v0 Vercel</span>
-                    </div>
+                    <span class="skill-item">GitHub Copilot</span>
+                    <span class="skill-item">Claude Code</span>
+                    <span class="skill-item">v0 Vercel</span>
                 </div>
             </div>
         </div>
@@ -346,9 +206,6 @@
             </div>
             <div class="timeline">
                 <div class="timeline-item">
-                    <div class="timeline-icon">
-                        <i class="fas fa-briefcase"></i>
-                    </div>
                     <div class="timeline-content">
                         <h3 data-es="Arquitecto de Soluciones" data-en="Solutions Architect">Arquitecto de Soluciones</h3>
                         <p class="company">Sofka Technologies S.A.S.</p>
@@ -379,9 +236,6 @@
                 </div>
 
                 <div class="timeline-item">
-                    <div class="timeline-icon">
-                        <i class="fas fa-code"></i>
-                    </div>
                     <div class="timeline-content">
                         <h3 data-es="Líder Técnico" data-en="Technical Lead">Líder Técnico</h3>
                         <p class="company">Sofka Technologies S.A.S.</p>
@@ -412,9 +266,6 @@
                 </div>
 
                 <div class="timeline-item">
-                    <div class="timeline-icon">
-                        <i class="fas fa-laptop-code"></i>
-                    </div>
                     <div class="timeline-content">
                         <h3 data-es="Consultor de Desarrollo" data-en="Development Consultant">Consultor de Desarrollo</h3>
                         <p class="company">Sofka Technologies S.A.S.</p>
@@ -445,9 +296,6 @@
                 </div>
 
                 <div class="timeline-item">
-                    <div class="timeline-icon">
-                        <i class="fas fa-server"></i>
-                    </div>
                     <div class="timeline-content">
                         <h3 data-es="Analista de Aplicaciones" data-en="Applications Analyst">Analista de Aplicaciones</h3>
                         <p class="company">INTELIX SYNERGY, C.A. | Venezuela</p>
@@ -478,9 +326,6 @@
                 </div>
 
                 <div class="timeline-item">
-                    <div class="timeline-icon">
-                        <i class="fas fa-code-branch"></i>
-                    </div>
                     <div class="timeline-content">
                         <h3 data-es="Analista Programador" data-en="Programmer Analyst">Analista Programador</h3>
                         <p class="company">Ferretería EPA C.A. | Venezuela</p>
@@ -511,9 +356,6 @@
                 </div>
 
                 <div class="timeline-item">
-                    <div class="timeline-icon">
-                        <i class="fas fa-graduation-cap"></i>
-                    </div>
                     <div class="timeline-content">
                         <h3 data-es="Analista de Desarrollo" data-en="Development Analyst">Analista de Desarrollo</h3>
                         <p class="company">Venezolana del Vidrio C.A. | Venezuela</p>
@@ -550,8 +392,8 @@
     <section id="education">
         <div class="container">
             <div class="section-title">
-                <h2 data-es="Educación y Certificaciones" data-en="Education & Certifications">Educación y Certificaciones</h2>
-                <p data-es="Formación académica y certificaciones profesionales" data-en="Academic background and professional certifications">Formación académica y certificaciones profesionales</p>
+                <h2 data-es="Educación" data-en="Education">Educación</h2>
+                <p data-es="Formación académica" data-en="Academic background">Formación académica</p>
             </div>
             <div class="education-grid">
                 <div class="education-card">
@@ -570,13 +412,6 @@
                     <p data-es="Educación secundaria con énfasis en ciencias." data-en="High school education with emphasis on sciences.">
                         Educación secundaria con énfasis en ciencias.
                     </p>
-                </div>
-
-                <div class="education-card">
-                    <h3>AWS Cloud Practitioner</h3>
-                    <p class="institution">Amazon Web Services</p>
-                    <p class="year" data-es="Válido hasta Diciembre 2025" data-en="Valid until December 2025">Válido hasta Diciembre 2025</p>
-                    <span class="cert-badge"><i class="fas fa-certificate"></i> <span data-es="Certificación" data-en="Certification">Certificación</span></span>
                 </div>
             </div>
         </div>
@@ -736,14 +571,9 @@
     </footer>
 
     <!-- ========================================
-         FIXED BUTTONS
-         Download CV and Scroll to Top
+         FIXED BUTTON
+         Scroll to Top
          ======================================== -->
-    <a href="files/Mario Ortega CV.pdf" download class="download-cv">
-        <i class="fas fa-download"></i>
-        <span data-es="Descargar CV" data-en="Download CV">Descargar CV</span>
-    </a>
-
     <button class="scroll-top" onclick="scrollToTop()">
         <i class="fas fa-arrow-up"></i>
     </button>
