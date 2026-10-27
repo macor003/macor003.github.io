@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,582 +9,521 @@
 
     <title>Mario Ortega | Solution Architect</title>
 
+    <!-- Apply saved theme before first paint to avoid a flash -->
+    <script>
+        try {
+            var t = localStorage.getItem('preferred-theme');
+            if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t);
+        } catch (e) {}
+    </script>
+
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
-    <link rel="alternate icon" href="img/icono.ico" type="image/x-icon">
+    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32.png">
+    <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+    <meta name="theme-color" content="#09090b">
 
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Orbitron:wght@600;700;800&display=swap" rel="stylesheet">
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <!-- Custom CSS (compiled from SCSS modules) -->
-    <link rel="stylesheet" href="css/creative.min.css">
+    <!-- Custom CSS (compiled from scss/) -->
+    <link rel="stylesheet" href="css/style.min.css">
 </head>
 <body>
+    <a href="#home" class="skip-link" data-es="Saltar al contenido" data-en="Skip to content">Saltar al contenido</a>
+
     <!-- ========================================
-         NAVIGATION
-         Transparent navbar with scroll effect
-         Mobile responsive with hamburger menu
-         Language toggle (ES/EN)
+         TITLEBAR
+         IDE-style window chrome: wordmark, breadcrumbs, actions
          ======================================== -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <a href="#" class="logo">Mario<span>Ortega</span></a>
-            <ul class="nav-menu">
-                <li><a href="#home" class="nav-link" data-es="Inicio" data-en="Home">Inicio</a></li>
-                <li><a href="#about" class="nav-link" data-es="Sobre Mí" data-en="About">Sobre Mí</a></li>
-                <li><a href="#skills" class="nav-link" data-es="Habilidades" data-en="Skills">Habilidades</a></li>
-                <li><a href="#experience" class="nav-link" data-es="Experiencia" data-en="Experience">Experiencia</a></li>
-                <li><a href="#education" class="nav-link" data-es="Educación" data-en="Education">Educación</a></li>
-                <li><a href="#contact" class="nav-link" data-es="Contacto" data-en="Contact">Contacto</a></li>
-                <li><button class="lang-switch" onclick="toggleLanguage()">
-                    <i class="fas fa-globe"></i>
-                    <span id="lang-text">EN</span>
-                </button></li>
-                <li>
-                    <a href="files/Mario Ortega CV.pdf" download class="download-cv">
-                        <i class="fas fa-download"></i>
-                        <span data-es="Descargar CV" data-en="Download CV">Descargar CV</span>
-                    </a>
-                </li>
-            </ul>
-            <div class="mobile-menu" onclick="toggleMobileMenu()">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
+    <header class="titlebar">
+        <div class="titlebar-left">
+            <span class="window-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+            <a href="#home" class="wordmark">mario<span>/</span>ortega</a>
+            <span class="scope-crumbs">
+                <span class="scope-project">portfolio</span>
+                <span class="scope-sep">·</span>
+                <span class="scope-branch"><i class="fas fa-code-branch"></i> main</span>
+            </span>
         </div>
-    </nav>
-
-    <!-- ========================================
-         HERO SECTION
-         Animated entrance with GSAP
-         Floating profile image
-         CTA buttons
-         ======================================== -->
-    <section id="home" class="hero">
-        <div class="hero-grid container">
-            <div class="hero-info">
-                <p class="eyebrow" data-es="Arquitecto de Soluciones — Medellín, CO" data-en="Solution Architect — Medellín, CO">Arquitecto de Soluciones — Medellín, CO</p>
-                <h1 data-es="Mario Cesar Ortega Rodriguez" data-en="Mario Cesar Ortega Rodriguez">Mario Cesar Ortega Rodriguez</h1>
-                <p class="description" data-es="Profesional con más de 10 años de experiencia en desarrollo de software, arquitectura de soluciones y liderazgo técnico. Especializado en transformación digital y modernización de aplicaciones empresariales." data-en="Professional with over 10 years of experience in software development, solution architecture and technical leadership. Specialized in digital transformation and enterprise application modernization.">
-                    Profesional con más de 10 años de experiencia en desarrollo de software, arquitectura de soluciones y liderazgo técnico. Especializado en transformación digital y modernización de aplicaciones empresariales.
-                </p>
-                <div class="cta-buttons">
-                    <a href="#contact" class="btn btn-primary">
-                        <i class="fas fa-envelope"></i>
-                        <span data-es="Contáctame" data-en="Contact Me">Contáctame</span>
-                    </a>
-                    <a href="#about" class="btn btn-outline">
-                        <i class="fas fa-user"></i>
-                        <span data-es="Conocer Más" data-en="Learn More">Conocer Más</span>
-                    </a>
-                </div>
-            </div>
-            <div class="hero-frame">
-                <img src="img/MarioOrtega.jpg" alt="Mario Ortega" class="hero-image">
-            </div>
+        <div class="titlebar-right">
+            <a href="https://github.com/macor003" target="_blank" rel="noopener" class="chrome-btn" aria-label="GitHub">
+                <i class="fab fa-github"></i>
+                <span class="chrome-label">macor003</span>
+            </a>
+            <button class="chrome-btn" onclick="toggleLanguage()" aria-label="Language">
+                <i class="fas fa-globe"></i>
+                <span id="lang-text">EN</span>
+            </button>
+            <button class="chrome-btn" onclick="toggleTheme()" aria-label="Theme">
+                <i class="fas fa-moon theme-icon-dark"></i>
+                <i class="fas fa-sun theme-icon-light"></i>
+            </button>
+            <a href="#" data-cv-generate class="btn btn-primary btn-sm">
+                <i class="fas fa-download"></i>
+                <span data-es="CV" data-en="CV">CV</span>
+            </a>
+            <button class="chrome-btn nav-toggle" onclick="toggleRail()" aria-label="Menu">
+                <i class="fas fa-bars"></i>
+            </button>
         </div>
-    </section>
+    </header>
 
-    <!-- ========================================
-         ABOUT SECTION
-         Professional background and contact info
-         ======================================== -->
-    <section id="about">
-        <div class="container">
-            <div class="section-title">
-                <h2 data-es="Sobre Mí" data-en="About Me">Sobre Mí</h2>
-                <p data-es="Conoce más sobre mi trayectoria profesional" data-en="Learn more about my professional journey">Conoce más sobre mi trayectoria profesional</p>
+    <div class="cols">
+        <!-- ========================================
+             LEFT RAIL
+             Explorer tree: every section is a "file"
+             ======================================== -->
+        <aside class="rail-left" id="rail">
+            <div class="rail-heading" data-es="Explorador" data-en="Explorer">Explorador</div>
+            <nav class="tree">
+                <div class="tree-row folder"><i class="fas fa-chevron-down"></i><i class="fas fa-folder-open"></i> portfolio</div>
+                <a href="#home" class="tree-row file" data-section="home"><i class="fab fa-markdown"></i> README.md</a>
+                <a href="#about" class="tree-row file" data-section="about"><i class="fas fa-user"></i> about.md</a>
+                <a href="#skills" class="tree-row file" data-section="skills"><i class="fas fa-layer-group"></i> skills.yaml</a>
+                <a href="#experience" class="tree-row file" data-section="experience"><i class="fas fa-code-commit"></i> experience.log</a>
+                <a href="#education" class="tree-row file" data-section="education"><i class="fas fa-graduation-cap"></i> education.json</a>
+                <a href="#contact" class="tree-row file" data-section="contact"><i class="fas fa-terminal"></i> contact.sh</a>
+                <a href="#" data-cv-generate class="tree-row file"><i class="fas fa-file-pdf"></i> cv.pdf <b class="tree-tag">pdf</b></a>
+            </nav>
+
+            <div class="rail-note" id="railNote">
+                <button class="rail-note-dismiss" onclick="dismissRailNote()" aria-label="Close">&times;</button>
+                <p data-es="Este portafolio es un IDE: cada sección es un archivo. Usa el explorador o las pestañas para navegar." data-en="This portfolio is an IDE: every section is a file. Use the explorer or the tabs to navigate.">Este portafolio es un IDE: cada sección es un archivo. Usa el explorador o las pestañas para navegar.</p>
+                <button class="btn btn-ghost btn-sm" onclick="dismissRailNote()" data-es="Entendido" data-en="Understood">Entendido</button>
             </div>
-            <div class="about-content">
-                <div class="about-image">
-                    <img src="img/MarioOrtega.jpg" alt="Mario Ortega">
-                </div>
-                <div class="about-text">
-                    <h3 data-es="Arquitecto de Soluciones & Líder Técnico" data-en="Solution Architect & Technical Leader">Arquitecto de Soluciones & Líder Técnico</h3>
-                    <p data-es="Ingeniero de Sistemas con más de una década de experiencia liderando equipos de desarrollo y diseñando arquitecturas de software escalables. Mi pasión es transformar ideas complejas en soluciones tecnológicas robustas y eficientes." data-en="Systems Engineer with over a decade of experience leading development teams and designing scalable software architectures. My passion is transforming complex ideas into robust and efficient technological solutions.">
-                        Ingeniero de Sistemas con más de una década de experiencia liderando equipos de desarrollo y diseñando arquitecturas de software escalables. Mi pasión es transformar ideas complejas en soluciones tecnológicas robustas y eficientes.
-                    </p>
-                    <p data-es="Especializado en arquitecturas cloud, microservicios, DevOps y transformación digital. He liderado exitosamente proyectos de modernización de aplicaciones legacy a arquitecturas modernas basadas en contenedores y orquestación." data-en="Specialized in cloud architectures, microservices, DevOps and digital transformation. I have successfully led legacy application modernization projects to modern container-based and orchestration architectures.">
-                        Especializado en arquitecturas cloud, microservicios, DevOps y transformación digital. He liderado exitosamente proyectos de modernización de aplicaciones legacy a arquitecturas modernas basadas en contenedores y orquestación.
-                    </p>
-                    <div class="about-facts">
-                        <div class="fact-item">
-                            <span data-es="Ubicación" data-en="Location">Ubicación</span>
-                            <span>Medellín, Colombia</span>
-                        </div>
-                        <div class="fact-item">
-                            <span data-es="Experiencia" data-en="Experience">Experiencia</span>
-                            <span data-es="10+ años" data-en="10+ years">10+ años</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+        </aside>
+        <div class="rail-backdrop" onclick="toggleRail()"></div>
 
-    <!-- ========================================
-         SKILLS SECTION
-         Technical skills organized by category
-         ======================================== -->
-    <section id="skills" class="skills-bg">
-        <div class="container">
-            <div class="section-title">
-                <h2 data-es="Habilidades Técnicas" data-en="Technical Skills">Habilidades Técnicas</h2>
-                <p data-es="Tecnologías y herramientas con las que trabajo" data-en="Technologies and tools I work with">Tecnologías y herramientas con las que trabajo</p>
-            </div>
-            <div class="skills-grid">
-                <div class="skill-category">
-                    <h3><i class="fas fa-code"></i><span data-es="Lenguajes de Programación" data-en="Programming Languages">Lenguajes de Programación</span></h3>
-                    <span class="skill-item">Java</span>
-                    <span class="skill-item">TypeScript / JavaScript</span>
-                    <span class="skill-item">C#</span>
-                    <span class="skill-item">Python</span>
-                    <span class="skill-item">Bash</span>
-                </div>
+        <div class="center">
+            <!-- Tabstrip: open "files", synced with scroll position -->
+            <nav class="tabstrip" aria-label="Sections">
+                <a href="#home" class="tab" data-section="home"><i class="fab fa-markdown"></i> README.md</a>
+                <a href="#about" class="tab" data-section="about">about.md</a>
+                <a href="#skills" class="tab" data-section="skills">skills.yaml</a>
+                <a href="#experience" class="tab" data-section="experience">experience.log</a>
+                <a href="#education" class="tab" data-section="education">education.json</a>
+                <a href="#contact" class="tab" data-section="contact">contact.sh</a>
+            </nav>
 
-                <div class="skill-category">
-                    <h3><i class="fas fa-cubes"></i><span data-es="Frameworks & Tecnologías" data-en="Frameworks & Technologies">Frameworks & Tecnologías</span></h3>
-                    <span class="skill-item">Spring Framework</span>
-                    <span class="skill-item">Spring WebFlux</span>
-                    <span class="skill-item">Spring Boot / MVC</span>
-                    <span class="skill-item">.NET Core</span>
-                    <span class="skill-item">ReactJS</span>
-                </div>
-
-                <div class="skill-category">
-                    <h3><i class="fas fa-cloud"></i><span data-es="Cloud & DevOps" data-en="Cloud & DevOps">Cloud & DevOps</span></h3>
-                    <span class="skill-item">Azure</span>
-                    <span class="skill-item">AWS</span>
-                    <span class="skill-item">Google Cloud Platform (GCP)</span>
-                    <span class="skill-item">Docker</span>
-                    <span class="skill-item">Kubernetes (AKS)</span>
-                    <span class="skill-item">Azure DevOps</span>
-                    <span class="skill-item">CI/CD Pipelines</span>
-                </div>
-
-                <div class="skill-category">
-                    <h3><i class="fas fa-database"></i><span data-es="Bases de Datos" data-en="Databases">Bases de Datos</span></h3>
-                    <span class="skill-item">PostgreSQL</span>
-                    <span class="skill-item">SQL Server</span>
-                    <span class="skill-item">MongoDB</span>
-                    <span class="skill-item">Oracle 11g</span>
-                    <span class="skill-item">MySQL</span>
-                </div>
-
-                <div class="skill-category">
-                    <h3><i class="fas fa-project-diagram"></i><span data-es="Arquitectura & Mensajería" data-en="Architecture & Messaging">Arquitectura & Mensajería</span></h3>
-                    <span class="skill-item">Microservicios</span>
-                    <span class="skill-item">REST APIs</span>
-                    <span class="skill-item">RabbitMQ</span>
-                    <span class="skill-item">Google Pub/Sub</span>
-                    <span class="skill-item">AWS SQS</span>
-                </div>
-
-                <div class="skill-category">
-                    <h3><i class="fas fa-robot"></i><span data-es="Herramientas IA" data-en="AI Development Tools">Herramientas IA</span></h3>
-                    <span class="skill-item">GitHub Copilot</span>
-                    <span class="skill-item">Claude Code</span>
-                    <span class="skill-item">v0 Vercel</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ========================================
-         EXPERIENCE SECTION
-         Professional timeline
-         ======================================== -->
-    <section id="experience" class="experience-bg">
-        <div class="container">
-            <div class="section-title">
-                <h2 data-es="Experiencia Profesional" data-en="Professional Experience">Experiencia Profesional</h2>
-                <p data-es="Mi trayectoria en el mundo del desarrollo de software" data-en="My journey in the software development world">Mi trayectoria en el mundo del desarrollo de software</p>
-            </div>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <h3 data-es="Arquitecto de Soluciones" data-en="Solutions Architect">Arquitecto de Soluciones</h3>
-                        <p class="company">Sofka Technologies S.A.S.</p>
-                        <p class="period">
-                            <i class="fas fa-calendar"></i>
-                            <span data-es="Enero 2022 - Presente" data-en="January 2022 - Present">Enero 2022 - Presente</span>
-                        </p>
-                        <ul data-es="
-                            <li>Liderazgo de iniciativas estratégicas de modernización tecnológica para clientes empresariales</li>
-                            <li>Diseño de arquitecturas basadas en Azure para Femsa México, optimizando procesos de pólizas de seguros</li>
-                            <li>Liderazgo de migración de sistema core de Java 6 a Java 21 con arquitectura de microservicios para L.O. Trading</li>
-                            <li>Integración de herramientas de IA como GitHub Copilot y Claude Code en flujos de desarrollo</li>
-                            <li>Mentoría de múltiples equipos de desarrollo como Account Technical Coach en Ecuador</li>
-                        " data-en="
-                            <li>Led strategic technological modernization initiatives for enterprise clients</li>
-                            <li>Designed Azure-based architectures for Femsa Mexico, optimizing insurance policy processes</li>
-                            <li>Leading core system migration from Java 6 to Java 21 with microservices architecture for L.O. Trading</li>
-                            <li>Integrated AI tools like GitHub Copilot and Claude Code in development workflows</li>
-                            <li>Mentored multiple development teams as Account Technical Coach in Ecuador</li>
-                        ">
-                            <li>Liderazgo de iniciativas estratégicas de modernización tecnológica para clientes empresariales</li>
-                            <li>Diseño de arquitecturas basadas en Azure para Femsa México, optimizando procesos de pólizas de seguros</li>
-                            <li>Liderazgo de migración de sistema core de Java 6 a Java 21 con arquitectura de microservicios para L.O. Trading</li>
-                            <li>Integración de herramientas de IA como GitHub Copilot y Claude Code en flujos de desarrollo</li>
-                            <li>Mentoría de múltiples equipos de desarrollo como Account Technical Coach en Ecuador</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <h3 data-es="Líder Técnico" data-en="Technical Lead">Líder Técnico</h3>
-                        <p class="company">Sofka Technologies S.A.S.</p>
-                        <p class="period">
-                            <i class="fas fa-calendar"></i>
-                            <span data-es="Enero 2021 - Diciembre 2021" data-en="January 2021 - December 2021">Enero 2021 - Diciembre 2021</span>
-                        </p>
-                        <ul data-es="
-                            <li>Dirección de múltiples proyectos de integración para el programa omnicanal de Grupo Éxito</li>
-                            <li>Desarrollo de sistemas de pago, transferencias de dinero e integraciones de apuestas para más de 7,000 terminales POS</li>
-                            <li>Integración exitosa de terminales POS con proveedores nacionales de apuestas (BetPlay, RushBet, WPlay)</li>
-                            <li>Implementación de soluciones de pago móvil con múltiples billeteras (Tuya, TIC Móvil Cafam, Rappi)</li>
-                            <li>Gestión del sistema de consecutivos fiscales controlando más de 600 tiendas</li>
-                        " data-en="
-                            <li>Directed multiple integration projects for Grupo Éxito's omnichannel program</li>
-                            <li>Led development of payment systems, money transfers, and betting integrations for 7,000+ POS terminals</li>
-                            <li>Successfully integrated 7,000+ POS terminals with national betting providers (BetPlay, RushBet, WPlay)</li>
-                            <li>Implemented mobile payment solutions with multiple wallets (Tuya, TIC Móvil Cafam, Rappi)</li>
-                            <li>Managed fiscal consecutive system controlling 600+ stores</li>
-                        ">
-                            <li>Dirección de múltiples proyectos de integración para el programa omnicanal de Grupo Éxito</li>
-                            <li>Desarrollo de sistemas de pago, transferencias de dinero e integraciones de apuestas para más de 7,000 terminales POS</li>
-                            <li>Integración exitosa de terminales POS con proveedores nacionales de apuestas (BetPlay, RushBet, WPlay)</li>
-                            <li>Implementación de soluciones de pago móvil con múltiples billeteras (Tuya, TIC Móvil Cafam, Rappi)</li>
-                            <li>Gestión del sistema de consecutivos fiscales controlando más de 600 tiendas</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <h3 data-es="Consultor de Desarrollo" data-en="Development Consultant">Consultor de Desarrollo</h3>
-                        <p class="company">Sofka Technologies S.A.S.</p>
-                        <p class="period">
-                            <i class="fas fa-calendar"></i>
-                            <span data-es="Julio 2019 - Diciembre 2020" data-en="July 2019 - December 2020">Julio 2019 - Diciembre 2020</span>
-                        </p>
-                        <ul data-es="
-                            <li>Participación en programa SUMATE para transformación omnicanal de Grupo Éxito</li>
-                            <li>Desarrollo de microservicios con Spring WebFlux para ecosistema digital (e-commerce, PIM, OMS)</li>
-                            <li>Construcción de integraciones críticas entre plataformas PIM, OMS y Vtex (exito.com)</li>
-                            <li>Implementación de mensajería con RabbitMQ, GCP Pub/Sub y AWS SQS</li>
-                            <li>Despliegue de soluciones escalables en Azure Kubernetes Services (AKS)</li>
-                        " data-en="
-                            <li>Participated in SUMATE program for Grupo Éxito's omnichannel transformation</li>
-                            <li>Developed microservices with Spring WebFlux for digital ecosystem (e-commerce, PIM, OMS)</li>
-                            <li>Built critical integrations between PIM, OMS, and Vtex (exito.com) platforms</li>
-                            <li>Implemented messaging with RabbitMQ, GCP Pub/Sub, and AWS SQS</li>
-                            <li>Deployed scalable solutions on Azure Kubernetes Services (AKS)</li>
-                        ">
-                            <li>Participación en programa SUMATE para transformación omnicanal de Grupo Éxito</li>
-                            <li>Desarrollo de microservicios con Spring WebFlux para ecosistema digital (e-commerce, PIM, OMS)</li>
-                            <li>Construcción de integraciones críticas entre plataformas PIM, OMS y Vtex (exito.com)</li>
-                            <li>Implementación de mensajería con RabbitMQ, GCP Pub/Sub y AWS SQS</li>
-                            <li>Despliegue de soluciones escalables en Azure Kubernetes Services (AKS)</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <h3 data-es="Analista de Aplicaciones" data-en="Applications Analyst">Analista de Aplicaciones</h3>
-                        <p class="company">INTELIX SYNERGY, C.A. | Venezuela</p>
-                        <p class="period">
-                            <i class="fas fa-calendar"></i>
-                            <span data-es="Enero 2018 - Junio 2019" data-en="January 2018 - June 2019">Enero 2018 - Junio 2019</span>
-                        </p>
-                        <ul data-es="
-                            <li>Liderazgo técnico en empresa tecnológica del grupo Ferretería EPA</li>
-                            <li>Dirección del Sistema de Punto de Venta y servicios asociados (Spring y RMI)</li>
-                            <li>Migración de infraestructura AS400 a servidores Intel</li>
-                            <li>Implementación de Sistema de Factura Electrónica en Guatemala</li>
-                            <li>Apertura técnica de nueva tienda EPA Guatemala (Tienda 4)</li>
-                        " data-en="
-                            <li>Technical leadership in technology company within Ferretería EPA group</li>
-                            <li>Led Point of Sale System and all associated services (Spring and RMI)</li>
-                            <li>Infrastructure migration from AS400 to Intel servers</li>
-                            <li>Implemented Electronic Invoice System in Guatemala</li>
-                            <li>Technical implementation for new EPA Guatemala store opening (Store 4)</li>
-                        ">
-                            <li>Liderazgo técnico en empresa tecnológica del grupo Ferretería EPA</li>
-                            <li>Dirección del Sistema de Punto de Venta y servicios asociados (Spring y RMI)</li>
-                            <li>Migración de infraestructura AS400 a servidores Intel</li>
-                            <li>Implementación de Sistema de Factura Electrónica en Guatemala</li>
-                            <li>Apertura técnica de nueva tienda EPA Guatemala (Tienda 4)</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <h3 data-es="Analista Programador" data-en="Programmer Analyst">Analista Programador</h3>
-                        <p class="company">Ferretería EPA C.A. | Venezuela</p>
-                        <p class="period">
-                            <i class="fas fa-calendar"></i>
-                            <span data-es="Febrero 2016 - Diciembre 2017" data-en="February 2016 - December 2017">Febrero 2016 - Diciembre 2017</span>
-                        </p>
-                        <ul data-es="
-                            <li>Desarrollo de módulos críticos del sistema POS con manejo multi-threaded</li>
-                            <li>Modernización de servicios legacy RMI a Spring REST para operaciones en Guatemala</li>
-                            <li>Optimización del Servicio de Devoluciones con historial completo y reglas de negocio</li>
-                            <li>Mantenimiento de tecnología de Cola de Servicios (ventas devueltas, pendientes, cotizaciones)</li>
-                            <li>Desarrollo de nuevos requerimientos para implementación de Punto de Venta en El Salvador</li>
-                        " data-en="
-                            <li>Developed critical POS system modules with multi-threaded service queue handling</li>
-                            <li>Led technical modernization from legacy RMI services to Spring REST for Guatemala operations</li>
-                            <li>Optimized Returns Service with complete history tracking and business rules</li>
-                            <li>Maintained Services Queue technology (sales returns, pending sales, quotations)</li>
-                            <li>Developed new requirements for Point of Sale implementation in El Salvador</li>
-                        ">
-                            <li>Desarrollo de módulos críticos del sistema POS con manejo multi-threaded</li>
-                            <li>Modernización de servicios legacy RMI a Spring REST para operaciones en Guatemala</li>
-                            <li>Optimización del Servicio de Devoluciones con historial completo y reglas de negocio</li>
-                            <li>Mantenimiento de tecnología de Cola de Servicios (ventas devueltas, pendientes, cotizaciones)</li>
-                            <li>Desarrollo de nuevos requerimientos para implementación de Punto de Venta en El Salvador</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <h3 data-es="Analista de Desarrollo" data-en="Development Analyst">Analista de Desarrollo</h3>
-                        <p class="company">Venezolana del Vidrio C.A. | Venezuela</p>
-                        <p class="period">
-                            <i class="fas fa-calendar"></i>
-                            <span data-es="Junio 2015 - Diciembre 2015" data-en="June 2015 - December 2015">Junio 2015 - Diciembre 2015</span>
-                        </p>
-                        <ul data-es="
-                            <li>Mantenimiento y mejora de sistema de gestión de incidencias</li>
-                            <li>Optimización significativa del tiempo de respuesta del sistema</li>
-                            <li>Implementación de monitoreo de rendimiento para evaluación de impacto de carga de datos</li>
-                            <li>Mejoras de escalabilidad del sistema para cargas crecientes de datos</li>
-                        " data-en="
-                            <li>Maintained and improved incident management system</li>
-                            <li>Optimized system response time significantly</li>
-                            <li>Implemented performance monitoring for data load impact assessment</li>
-                            <li>System scalability improvements for growing data loads</li>
-                        ">
-                            <li>Mantenimiento y mejora de sistema de gestión de incidencias</li>
-                            <li>Optimización significativa del tiempo de respuesta del sistema</li>
-                            <li>Implementación de monitoreo de rendimiento para evaluación de impacto de carga de datos</li>
-                            <li>Mejoras de escalabilidad del sistema para cargas crecientes de datos</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ========================================
-         EDUCATION & CERTIFICATIONS SECTION
-         Academic background and professional certifications
-         ======================================== -->
-    <section id="education">
-        <div class="container">
-            <div class="section-title">
-                <h2 data-es="Educación" data-en="Education">Educación</h2>
-                <p data-es="Formación académica" data-en="Academic background">Formación académica</p>
-            </div>
-            <div class="education-grid">
-                <div class="education-card">
-                    <h3 data-es="Ingeniería de Sistemas" data-en="Systems Engineer">Ingeniería de Sistemas</h3>
-                    <p class="institution">I.U.P Santiago Mariño | Venezuela</p>
-                    <p class="year">2010 - 2015</p>
-                    <p data-es="Formación integral en desarrollo de software, arquitectura de sistemas, bases de datos y gestión de proyectos tecnológicos." data-en="Comprehensive training in software development, systems architecture, databases and technology project management.">
-                        Formación integral en desarrollo de software, arquitectura de sistemas, bases de datos y gestión de proyectos tecnológicos.
-                    </p>
-                </div>
-
-                <div class="education-card">
-                    <h3 data-es="Bachiller en Ciencias" data-en="Bachelor of Science">Bachiller en Ciencias</h3>
-                    <p class="institution">U.E. Campo Solo | Venezuela</p>
-                    <p class="year">2004 - 2009</p>
-                    <p data-es="Educación secundaria con énfasis en ciencias." data-en="High school education with emphasis on sciences.">
-                        Educación secundaria con énfasis en ciencias.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ========================================
-         CONTACT SECTION
-         Social networks and contact form
-         ======================================== -->
-    <section id="contact" class="contact-bg">
-        <div class="container">
-            <div class="section-title">
-                <h2 data-es="Contacto" data-en="Contact">Contacto</h2>
-                <p data-es="¿Interesado en trabajar juntos? Hablemos" data-en="Interested in working together? Let's talk">¿Interesado en trabajar juntos? Hablemos</p>
-            </div>
-            <div class="contact-grid">
-                <!-- Social Links Section -->
-                <div class="contact-social-wrapper">
-                    <h3 data-es="Conecta conmigo" data-en="Connect with me">Conecta conmigo</h3>
-                    <p data-es="Sígueme en redes sociales o envíame un mensaje directo" data-en="Follow me on social media or send me a direct message">Sígueme en redes sociales o envíame un mensaje directo</p>
-
-                    <div class="social-links-grid">
-                        <a href="https://www.linkedin.com/in/marioortega003/" target="_blank" class="social-link-card">
-                            <div class="social-icon-wrapper">
-                                <i class="fab fa-linkedin-in"></i>
+            <main class="editor">
+                <!-- ========================================
+                     HERO — README.md
+                     ======================================== -->
+                <section id="home" class="file-section hero">
+                    <div class="hero-grid">
+                        <div class="hero-info">
+                            <p class="file-comment">&lt;!-- README.md --&gt;</p>
+                            <p class="hero-kicker">
+                                <span class="pill pill-accent"><span class="pulse"></span> <span data-es="Disponible para proyectos" data-en="Open to projects">Disponible para proyectos</span></span>
+                                <span class="pill pill-ai"><i class="fas fa-wand-magic-sparkles"></i> AI-native</span>
+                                <span class="pill"><i class="fas fa-location-dot"></i> Medellín, CO</span>
+                            </p>
+                            <h1 class="hero-title">Mario<br>Ortega</h1>
+                            <p class="hero-tagline" data-es="Arquitecto de soluciones que moderniza sistemas legacy, diseña y desarrolla nuevas soluciones con agentes de IA y desarrollo guiado por especificaciones." data-en="Solution architect who modernizes legacy systems and designs and builds new solutions with AI agents and spec-driven development.">Arquitecto de soluciones que moderniza sistemas legacy, diseña y desarrolla nuevas soluciones con agentes de IA y desarrollo guiado por especificaciones.</p>
+                            <p class="hero-lede" data-es="Más de 10 años en desarrollo de software, arquitectura cloud y liderazgo técnico. Hoy llevo Spec-Driven Development, agentes y skills de Claude Code al ciclo de ingeniería: de la especificación al backlog, del código legado a la revisión automatizada, con el contexto tratado como parte de la arquitectura." data-en="10+ years in software development, cloud architecture and technical leadership. Today I bring Spec-Driven Development, agents and Claude Code skills into the engineering lifecycle: from spec to backlog, from legacy code to automated review, with context treated as part of the architecture.">Más de 10 años en desarrollo de software, arquitectura cloud y liderazgo técnico. Hoy llevo Spec-Driven Development, agentes y skills de Claude Code al ciclo de ingeniería: de la especificación al backlog, del código legado a la revisión automatizada, con el contexto tratado como parte de la arquitectura.</p>
+                            <div class="hero-ctas">
+                                <a href="#contact" class="btn btn-primary">
+                                    <i class="fas fa-paper-plane"></i>
+                                    <span data-es="Hablemos" data-en="Let's talk">Hablemos</span>
+                                </a>
+                                <a href="#experience" class="btn">
+                                    <i class="fas fa-code-commit"></i>
+                                    <span data-es="Ver experiencia" data-en="See experience">Ver experiencia</span>
+                                </a>
                             </div>
-                            <div class="social-info">
-                                <h4>LinkedIn</h4>
-                                <p data-es="Conéctate profesionalmente" data-en="Connect professionally">Conéctate profesionalmente</p>
-                            </div>
-                        </a>
+                        </div>
 
-                        <a href="https://github.com/macor003" target="_blank" class="social-link-card">
-                            <div class="social-icon-wrapper">
+                        <!-- Terminal replay -->
+                        <div class="terminal" data-terminal>
+                            <div class="terminal-head">
+                                <span class="window-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+                                <span class="terminal-title">zsh — mario@medellin</span>
+                            </div>
+                            <div class="terminal-body">
+                                <p class="t-line t-cmd"><span class="t-prompt">$</span> whoami</p>
+                                <p class="t-line t-out" data-es="mario-ortega — arquitecto de soluciones · líder técnico" data-en="mario-ortega — solution architect · tech lead">mario-ortega — arquitecto de soluciones · líder técnico</p>
+                                <p class="t-line t-cmd"><span class="t-prompt">$</span> cat stack.txt</p>
+                                <p class="t-line t-out">java · spring · azure · aws · kubernetes</p>
+                                <p class="t-line t-cmd"><span class="t-prompt">$</span> claude -p <span class="t-str" data-es="&quot;¿cómo trabajas?&quot;" data-en="&quot;how do you work?&quot;">"¿cómo trabajas?"</span></p>
+                                <p class="t-line t-out t-ai" data-es="✦ spec → plan → tasks → agentes → code review" data-en="✦ spec → plan → tasks → agents → code review">✦ spec → plan → tasks → agentes → code review</p>
+                                <p class="t-line t-cmd"><span class="t-prompt">$</span> uptime</p>
+                                <p class="t-line t-out" data-es="10+ años en producción · 0 sistemas legacy temidos" data-en="10+ years in production · 0 legacy systems feared">10+ años en producción · 0 sistemas legacy temidos</p>
+                                <p class="t-line t-cmd"><span class="t-prompt">$</span> git log -1 --oneline</p>
+                                <p class="t-line t-out"><span class="t-hash">f3a9c21</span> <span class="t-ok" data-es="(HEAD -> main) Arquitecto @ Sofka" data-en="(HEAD -> main) Architect @ Sofka">(HEAD -> main) Arquitecto @ Sofka</span></p>
+                                <p class="t-line t-cmd t-last"><span class="t-prompt">$</span> <span class="caret"></span></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Beats: three AI-first principles -->
+                    <div class="beats">
+                        <div class="beat" data-reveal>
+                            <span class="beat-num">01 · spec-driven</span>
+                            <h3 data-es="La especificación primero, luego el agente." data-en="Spec first, then the agent.">La especificación primero, luego el agente.</h3>
+                            <p data-es="Spec-Driven Development con GitHub Spec-Kit y Claude Code: spec, plan y tasks con approval gates antes de que se escriba una línea de código." data-en="Spec-Driven Development with GitHub Spec-Kit and Claude Code: spec, plan and tasks with approval gates before a single line of code is written.">Spec-Driven Development con GitHub Spec-Kit y Claude Code: spec, plan y tasks con approval gates antes de que se escriba una línea de código.</p>
+                            <div class="chips beat-tags"><span class="chip chip-accent">SDD</span><span class="chip">Spec-Kit</span><span class="chip">Claude Code</span></div>
+                        </div>
+                        <div class="beat" data-reveal>
+                            <span class="beat-num">02 · agents</span>
+                            <h3 data-es="Agentes que leen código legado." data-en="Agents that read legacy code.">Agentes que leen código legado.</h3>
+                            <p data-es="Skills reutilizables de Claude Code que convierten stored procedures y código JSP/Spring en historias Gherkin listas para Azure DevOps, y hacen code review por severidad." data-en="Reusable Claude Code skills that turn stored procedures and JSP/Spring code into Gherkin stories ready for Azure DevOps, and run code reviews ranked by severity.">Skills reutilizables de Claude Code que convierten stored procedures y código JSP/Spring en historias Gherkin listas para Azure DevOps, y hacen code review por severidad.</p>
+                            <div class="chips beat-tags"><span class="chip chip-accent" data-es="Agentes" data-en="Agents">Agentes</span><span class="chip">Skills</span><span class="chip">Gherkin</span></div>
+                        </div>
+                        <div class="beat" data-reveal>
+                            <span class="beat-num">03 · context</span>
+                            <h3 data-es="El contexto también se diseña." data-en="Context is designed too.">El contexto también se diseña.</h3>
+                            <p data-es="Ingeniería de contexto para agentes: CLAUDE.md y scoping de reglas que recortaron ~50k tokens del consumo base por sesión." data-en="Context engineering for agents: CLAUDE.md and rule scoping that cut ~50k tokens from the baseline consumption per session.">Ingeniería de contexto para agentes: CLAUDE.md y scoping de reglas que recortaron ~50k tokens del consumo base por sesión.</p>
+                            <div class="chips beat-tags"><span class="chip chip-accent" data-es="Ingeniería de contexto" data-en="Context engineering">Ingeniería de contexto</span><span class="chip">CLAUDE.md</span></div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ========================================
+                     ABOUT — about.md
+                     ======================================== -->
+                <section id="about" class="file-section">
+                    <p class="file-comment">## about.md</p>
+                    <h2 class="section-title" data-es="Sobre mí" data-en="About me">Sobre mí</h2>
+
+                    <div class="about-grid">
+                        <figure class="preview-card" data-reveal>
+                            <div class="preview-head">
+                                <i class="fas fa-image"></i> MarioOrtega.jpg
+                            </div>
+                            <img src="img/MarioOrtega2.jpeg" alt="Mario Ortega" loading="lazy">
+                        </figure>
+
+                        <div class="about-text" data-reveal>
+                            <h3 data-es="Arquitecto de Soluciones & Líder Técnico" data-en="Solution Architect & Technical Leader">Arquitecto de Soluciones & Líder Técnico</h3>
+                            <p data-es="Ingeniero de Sistemas con más de una década de experiencia liderando equipos de desarrollo y diseñando arquitecturas de software escalables. Mi pasión es transformar ideas complejas en soluciones tecnológicas robustas y eficientes." data-en="Systems Engineer with over a decade of experience leading development teams and designing scalable software architectures. My passion is transforming complex ideas into robust and efficient technological solutions.">Ingeniero de Sistemas con más de una década de experiencia liderando equipos de desarrollo y diseñando arquitecturas de software escalables. Mi pasión es transformar ideas complejas en soluciones tecnológicas robustas y eficientes.</p>
+                            <p data-es="Especializado en arquitecturas cloud, microservicios, DevOps y transformación digital. He liderado proyectos de modernización de aplicaciones legacy a arquitecturas basadas en contenedores y orquestación." data-en="Specialized in cloud architectures, microservices, DevOps and digital transformation. I have led legacy application modernization projects to container-based and orchestration architectures.">Especializado en arquitecturas cloud, microservicios, DevOps y transformación digital. He liderado proyectos de modernización de aplicaciones legacy a arquitecturas basadas en contenedores y orquestación.</p>
+
+                            <dl class="kv">
+                                <div><dt data-es="ubicación" data-en="location">ubicación</dt><dd>Medellín, Colombia</dd></div>
+                                <div><dt data-es="experiencia" data-en="experience">experiencia</dt><dd data-es="10+ años" data-en="10+ years">10+ años</dd></div>
+                                <div><dt data-es="enfoque" data-en="focus">enfoque</dt><dd data-es="cloud · microservicios · modernización" data-en="cloud · microservices · modernization">cloud · microservicios · modernización</dd></div>
+                                <div><dt data-es="idiomas" data-en="languages">idiomas</dt><dd data-es="español · inglés" data-en="spanish · english">español · inglés</dd></div>
+                            </dl>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ========================================
+                     SKILLS — skills.yaml
+                     ======================================== -->
+                <section id="skills" class="file-section">
+                    <p class="file-comment"># skills.yaml</p>
+                    <h2 class="section-title" data-es="Habilidades técnicas" data-en="Technical skills">Habilidades técnicas</h2>
+                    <p class="section-lede" data-es="Tecnologías y herramientas con las que trabajo a diario." data-en="Technologies and tools I work with every day.">Tecnologías y herramientas con las que trabajo a diario.</p>
+
+                    <div class="feature-grid">
+                        <article class="feature-card feature-card-accent" data-reveal>
+                            <div class="feature-head"><i class="fas fa-robot"></i><span class="feature-key">ai_tools:</span></div>
+                            <h3 data-es="Herramientas IA" data-en="AI tools">Herramientas IA</h3>
+                            <div class="chips"><span class="chip">Claude</span><span class="chip" data-es="Claude Code (skills, CLAUDE.md, gestión de contexto)" data-en="Claude Code (skills, CLAUDE.md, context management)">Claude Code (skills, CLAUDE.md, gestión de contexto)</span><span class="chip">Spec-Driven Development (GitHub Spec-Kit)</span><span class="chip">GitHub Copilot</span><span class="chip">v0 Vercel</span></div>
+                        </article>
+                        <article class="feature-card" data-reveal>
+                            <div class="feature-head"><i class="fas fa-code"></i><span class="feature-key">languages:</span></div>
+                            <h3 data-es="Lenguajes" data-en="Languages">Lenguajes</h3>
+                            <div class="chips"><span class="chip">Java</span><span class="chip">C#</span><span class="chip">TypeScript / JavaScript</span><span class="chip">Python</span><span class="chip">Bash</span><span class="chip">SQL (T-SQL)</span></div>
+                        </article>
+                        <article class="feature-card" data-reveal>
+                            <div class="feature-head"><i class="fas fa-cubes"></i><span class="feature-key">frameworks:</span></div>
+                            <h3>Frameworks</h3>
+                            <div class="chips"><span class="chip">Spring Boot</span><span class="chip">Spring WebFlux / Project Reactor</span><span class="chip">.NET 8 / .NET Core</span><span class="chip">Entity Framework Core</span><span class="chip">MediatR</span><span class="chip">ReactJS</span></div>
+                        </article>
+                        <article class="feature-card" data-reveal>
+                            <div class="feature-head"><i class="fas fa-cloud"></i><span class="feature-key">cloud_devops:</span></div>
+                            <h3>Cloud & DevOps</h3>
+                            <div class="chips"><span class="chip">Azure (AKS, ACR, Entra ID, Key Vault, Artifacts)</span><span class="chip">AWS</span><span class="chip">GCP</span><span class="chip">Docker / Docker Compose</span><span class="chip">Kubernetes</span><span class="chip" data-es="Azure DevOps (pipelines, agentes self-hosted)" data-en="Azure DevOps (pipelines, self-hosted agents)">Azure DevOps (pipelines, agentes self-hosted)</span><span class="chip">SonarQube</span><span class="chip">Nginx</span><span class="chip">Portainer</span></div>
+                        </article>
+                        <article class="feature-card" data-reveal>
+                            <div class="feature-head"><i class="fas fa-database"></i><span class="feature-key">data:</span></div>
+                            <h3 data-es="Bases de datos y datos" data-en="Databases & data">Bases de datos y datos</h3>
+                            <div class="chips"><span class="chip">PostgreSQL</span><span class="chip">SQL Server</span><span class="chip">MongoDB</span><span class="chip">Oracle</span><span class="chip">MySQL</span><span class="chip">Elasticsearch / Kibana</span><span class="chip">PeerDB (CDC)</span></div>
+                        </article>
+                        <article class="feature-card" data-reveal>
+                            <div class="feature-head"><i class="fas fa-diagram-project"></i><span class="feature-key">architecture:</span></div>
+                            <h3 data-es="Arquitectura" data-en="Architecture">Arquitectura</h3>
+                            <div class="chips"><span class="chip" data-es="Microservicios" data-en="Microservices">Microservicios</span><span class="chip" data-es="Arquitectura reactiva" data-en="Reactive architecture">Arquitectura reactiva</span><span class="chip">Clean Architecture</span><span class="chip">CQRS</span><span class="chip">DDD</span><span class="chip">Pipes & Filters</span><span class="chip">ADRs</span><span class="chip" data-es="Motores de reglas (NRules)" data-en="Rule engines (NRules)">Motores de reglas (NRules)</span><span class="chip">REST APIs</span><span class="chip">OAuth 2.0 / Keycloak</span></div>
+                        </article>
+                        <article class="feature-card" data-reveal>
+                            <div class="feature-head"><i class="fas fa-right-left"></i><span class="feature-key">messaging:</span></div>
+                            <h3 data-es="Mensajería" data-en="Messaging">Mensajería</h3>
+                            <div class="chips"><span class="chip">RabbitMQ</span><span class="chip">Google Pub/Sub</span><span class="chip">AWS SQS</span></div>
+                        </article>
+                        <article class="feature-card" data-reveal>
+                            <div class="feature-head"><i class="fas fa-list-check"></i><span class="feature-key">methodologies:</span></div>
+                            <h3 data-es="Metodologías" data-en="Methodologies">Metodologías</h3>
+                            <div class="chips"><span class="chip">BDD / Gherkin</span><span class="chip" data-es="Estimación PERT" data-en="PERT estimation">Estimación PERT</span><span class="chip" data-es="Gobierno técnico con ADRs" data-en="Technical governance with ADRs">Gobierno técnico con ADRs</span></div>
+                        </article>
+                    </div>
+                </section>
+
+                <!-- ========================================
+                     EXPERIENCE — experience.log
+                     git log style timeline
+                     ======================================== -->
+                <section id="experience" class="file-section">
+                    <p class="file-comment">$ git log --graph experience.log</p>
+                    <h2 class="section-title" data-es="Experiencia profesional" data-en="Professional experience">Experiencia profesional</h2>
+
+                    <ol class="gitlog">
+                        <li class="commit" data-reveal>
+                            <div class="commit-meta">
+                                <span class="commit-hash">commit f3a9c21</span>
+                                <span class="pill pill-accent">HEAD → main</span>
+                                <span class="commit-date" data-es="Ene 2022 — Presente" data-en="Jan 2022 — Present">Ene 2022 — Presente</span>
+                            </div>
+                            <h3 data-es="Arquitecto de Soluciones" data-en="Solutions Architect">Arquitecto de Soluciones</h3>
+                            <p class="commit-company">Sofka Technologies S.A.S.</p>
+                            <ul class="commit-body commit-body-grouped"
+                                data-es="&lt;li class=&quot;commit-group&quot;&gt;&lt;span&gt;Arquitectura y modernización&lt;/span&gt;&lt;ul&gt;&lt;li&gt;Liderazgo técnico de la modernización del sistema core de un cliente empresarial: migración de un monolito Java 6 + JSP a microservicios reactivos (Java 21, Spring WebFlux) sobre Azure, con AKS en topología hub-spoke, PostgreSQL, Keycloak y replicación CDC con PeerDB hacia Elasticsearch.&lt;/li&gt;&lt;li&gt;Diseño de la migración de pipelines batch EDI en SQL Server a APIs REST síncronas en .NET 8 (Clean Architecture, CQRS/MediatR, EF Core) para una plataforma de seguros de salud. Incluyó ingeniería inversa de stored procedures de hasta ~5.000 líneas para preservar las reglas de negocio implícitas, con estimaciones PERT por historia.&lt;/li&gt;&lt;li&gt;Definición arquitectónica para migrar un sistema de información de laboratorio clínico (LIS) en AS/400 a microservicios. Construí el marco de clasificación de reglas de negocio (motor de reglas NRules vs. dominio) con DDD y ADRs, considerando requisitos de cumplimiento ISO 15189/CAP.&lt;/li&gt;&lt;li&gt;Diseño de arquitecturas basadas en Azure para un cliente del sector asegurador en México, optimizando procesos de pólizas de seguros.&lt;/li&gt;&lt;li&gt;Estrategia de paquetes NuGet en Azure Artifacts para centralizar entidades, DTOs y mappers compartidos entre microservicios .NET.&lt;/li&gt;&lt;li&gt;Integración de correo transaccional con Microsoft Graph API (OAuth 2.0 Client Credentials, App Registrations en Entra ID) en reemplazo de SMTP.&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;li class=&quot;commit-group&quot;&gt;&lt;span&gt;IA aplicada a la ingeniería de software&lt;/span&gt;&lt;ul&gt;&lt;li&gt;Diseño y construcción de skills reutilizables de Claude Code que automatizan el paso de código legado a backlog:&lt;ul&gt;&lt;li&gt;análisis de stored procedures&lt;/li&gt;&lt;li&gt;generación de historias de usuario en Gherkin&lt;/li&gt;&lt;li&gt;conversión de código JSP/Spring a HUs&lt;/li&gt;&lt;li&gt;exportación CSV importable a Azure DevOps&lt;/li&gt;&lt;li&gt;code review de Java reactivo con reportes clasificados por severidad y esfuerzo&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;li&gt;Adopción de Spec-Driven Development con GitHub Spec-Kit y Claude Code: un flujo documentation-first (spec, plan, tasks) con approval gates antes de implementar.&lt;/li&gt;&lt;li&gt;Optimización de contexto en un framework interno de desarrollo sobre Claude Code. Analicé ~142k tokens controlables por sesión y diseñé una estrategia de scoping de reglas para reducir ~50k tokens del consumo base.&lt;/li&gt;&lt;li&gt;Integración de GitHub Copilot y Claude Code en los flujos de desarrollo de los equipos.&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;li class=&quot;commit-group&quot;&gt;&lt;span&gt;Liderazgo y mentoría&lt;/span&gt;&lt;ul&gt;&lt;li&gt;Liderazgo de iniciativas estratégicas de modernización tecnológica para clientes empresariales.&lt;/li&gt;&lt;li&gt;Mentoría de múltiples equipos de desarrollo como Account Technical Coach en Ecuador.&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;"
+                                data-en="&lt;li class=&quot;commit-group&quot;&gt;&lt;span&gt;Architecture &amp;amp; modernization&lt;/span&gt;&lt;ul&gt;&lt;li&gt;Technical lead for the modernization of an enterprise client&#x27;s core system: migrated a Java 6 + JSP monolith to reactive microservices (Java 21, Spring WebFlux) on Azure, with AKS in a hub-spoke topology, PostgreSQL, Keycloak and CDC replication with PeerDB to Elasticsearch.&lt;/li&gt;&lt;li&gt;Designed the migration of SQL Server EDI batch pipelines to synchronous REST APIs in .NET 8 (Clean Architecture, CQRS/MediatR, EF Core) for a health insurance platform. Included reverse engineering of stored procedures of up to ~5,000 lines to preserve implicit business rules, with PERT estimates per story.&lt;/li&gt;&lt;li&gt;Architecture definition to migrate an AS/400 clinical laboratory information system (LIS) to microservices. Built the business-rule classification framework (NRules rule engine vs. domain) with DDD and ADRs, accounting for ISO 15189/CAP compliance requirements.&lt;/li&gt;&lt;li&gt;Designed Azure-based architectures for an insurance-sector client in Mexico, optimizing insurance policy processes.&lt;/li&gt;&lt;li&gt;NuGet package strategy on Azure Artifacts to centralize entities, DTOs and mappers shared across .NET microservices.&lt;/li&gt;&lt;li&gt;Integrated transactional email with Microsoft Graph API (OAuth 2.0 Client Credentials, App Registrations in Entra ID), replacing SMTP.&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;li class=&quot;commit-group&quot;&gt;&lt;span&gt;AI applied to software engineering&lt;/span&gt;&lt;ul&gt;&lt;li&gt;Designed and built reusable Claude Code skills that automate the path from legacy code to backlog:&lt;ul&gt;&lt;li&gt;stored procedure analysis&lt;/li&gt;&lt;li&gt;user story generation in Gherkin&lt;/li&gt;&lt;li&gt;JSP/Spring code to user stories conversion&lt;/li&gt;&lt;li&gt;CSV export importable into Azure DevOps&lt;/li&gt;&lt;li&gt;reactive Java code review with reports ranked by severity and effort&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;li&gt;Adopted Spec-Driven Development with GitHub Spec-Kit and Claude Code: a documentation-first flow (spec, plan, tasks) with approval gates before implementation.&lt;/li&gt;&lt;li&gt;Context optimization in an internal development framework built on Claude Code. Analyzed ~142k controllable tokens per session and designed a rule-scoping strategy to cut ~50k tokens from the baseline consumption.&lt;/li&gt;&lt;li&gt;Integrated GitHub Copilot and Claude Code into the teams&#x27; development workflows.&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;li class=&quot;commit-group&quot;&gt;&lt;span&gt;Leadership &amp;amp; mentoring&lt;/span&gt;&lt;ul&gt;&lt;li&gt;Led strategic technological modernization initiatives for enterprise clients.&lt;/li&gt;&lt;li&gt;Mentored multiple development teams as Account Technical Coach in Ecuador.&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;">
+                                <li class="commit-group"><span>Arquitectura y modernización</span><ul><li>Liderazgo técnico de la modernización del sistema core de un cliente empresarial: migración de un monolito Java 6 + JSP a microservicios reactivos (Java 21, Spring WebFlux) sobre Azure, con AKS en topología hub-spoke, PostgreSQL, Keycloak y replicación CDC con PeerDB hacia Elasticsearch.</li><li>Diseño de la migración de pipelines batch EDI en SQL Server a APIs REST síncronas en .NET 8 (Clean Architecture, CQRS/MediatR, EF Core) para una plataforma de seguros de salud. Incluyó ingeniería inversa de stored procedures de hasta ~5.000 líneas para preservar las reglas de negocio implícitas, con estimaciones PERT por historia.</li><li>Definición arquitectónica para migrar un sistema de información de laboratorio clínico (LIS) en AS/400 a microservicios. Construí el marco de clasificación de reglas de negocio (motor de reglas NRules vs. dominio) con DDD y ADRs, considerando requisitos de cumplimiento ISO 15189/CAP.</li><li>Diseño de arquitecturas basadas en Azure para un cliente del sector asegurador en México, optimizando procesos de pólizas de seguros.</li><li>Estrategia de paquetes NuGet en Azure Artifacts para centralizar entidades, DTOs y mappers compartidos entre microservicios .NET.</li><li>Integración de correo transaccional con Microsoft Graph API (OAuth 2.0 Client Credentials, App Registrations en Entra ID) en reemplazo de SMTP.</li></ul></li><li class="commit-group"><span>IA aplicada a la ingeniería de software</span><ul><li>Diseño y construcción de skills reutilizables de Claude Code que automatizan el paso de código legado a backlog:<ul><li>análisis de stored procedures</li><li>generación de historias de usuario en Gherkin</li><li>conversión de código JSP/Spring a HUs</li><li>exportación CSV importable a Azure DevOps</li><li>code review de Java reactivo con reportes clasificados por severidad y esfuerzo</li></ul></li><li>Adopción de Spec-Driven Development con GitHub Spec-Kit y Claude Code: un flujo documentation-first (spec, plan, tasks) con approval gates antes de implementar.</li><li>Optimización de contexto en un framework interno de desarrollo sobre Claude Code. Analicé ~142k tokens controlables por sesión y diseñé una estrategia de scoping de reglas para reducir ~50k tokens del consumo base.</li><li>Integración de GitHub Copilot y Claude Code en los flujos de desarrollo de los equipos.</li></ul></li><li class="commit-group"><span>Liderazgo y mentoría</span><ul><li>Liderazgo de iniciativas estratégicas de modernización tecnológica para clientes empresariales.</li><li>Mentoría de múltiples equipos de desarrollo como Account Technical Coach en Ecuador.</li></ul></li>
+                            </ul>
+                        </li>
+
+                        <li class="commit" data-reveal>
+                            <div class="commit-meta">
+                                <span class="commit-hash">commit b72e0d4</span>
+                                <span class="commit-date" data-es="Ene 2021 — Dic 2021" data-en="Jan 2021 — Dec 2021">Ene 2021 — Dic 2021</span>
+                            </div>
+                            <h3 data-es="Líder Técnico" data-en="Technical Lead">Líder Técnico</h3>
+                            <p class="commit-company">Sofka Technologies S.A.S.</p>
+                            <ul class="commit-body"
+                                data-es="&lt;li&gt;Dirección de múltiples proyectos de integración para el programa omnicanal de una cadena de retail&lt;/li&gt;&lt;li&gt;Desarrollo de sistemas de pago, transferencias de dinero e integraciones de apuestas para más de 7,000 terminales POS&lt;/li&gt;&lt;li&gt;Integración exitosa de terminales POS con proveedores nacionales de apuestas&lt;/li&gt;&lt;li&gt;Implementación de soluciones de pago móvil con múltiples billeteras digitales&lt;/li&gt;&lt;li&gt;Gestión del sistema de consecutivos fiscales controlando más de 600 tiendas&lt;/li&gt;"
+                                data-en="&lt;li&gt;Directed multiple integration projects for a retail chain's omnichannel program&lt;/li&gt;&lt;li&gt;Led development of payment systems, money transfers, and betting integrations for 7,000+ POS terminals&lt;/li&gt;&lt;li&gt;Successfully integrated 7,000+ POS terminals with national betting providers&lt;/li&gt;&lt;li&gt;Implemented mobile payment solutions with multiple digital wallets&lt;/li&gt;&lt;li&gt;Managed fiscal consecutive system controlling 600+ stores&lt;/li&gt;">
+                                <li>Dirección de múltiples proyectos de integración para el programa omnicanal de una cadena de retail</li>
+                                <li>Desarrollo de sistemas de pago, transferencias de dinero e integraciones de apuestas para más de 7,000 terminales POS</li>
+                                <li>Integración exitosa de terminales POS con proveedores nacionales de apuestas</li>
+                                <li>Implementación de soluciones de pago móvil con múltiples billeteras digitales</li>
+                                <li>Gestión del sistema de consecutivos fiscales controlando más de 600 tiendas</li>
+                            </ul>
+                        </li>
+
+                        <li class="commit" data-reveal>
+                            <div class="commit-meta">
+                                <span class="commit-hash">commit 9c41e8a</span>
+                                <span class="commit-date" data-es="Jul 2019 — Dic 2020" data-en="Jul 2019 — Dec 2020">Jul 2019 — Dic 2020</span>
+                            </div>
+                            <h3 data-es="Consultor de Desarrollo" data-en="Development Consultant">Consultor de Desarrollo</h3>
+                            <p class="commit-company">Sofka Technologies S.A.S.</p>
+                            <ul class="commit-body"
+                                data-es="&lt;li&gt;Participación en un programa de transformación omnicanal para una cadena de retail&lt;/li&gt;&lt;li&gt;Desarrollo de microservicios con Spring WebFlux para ecosistema digital (e-commerce, PIM, OMS)&lt;/li&gt;&lt;li&gt;Construcción de integraciones críticas entre plataformas PIM, OMS y e-commerce (Vtex)&lt;/li&gt;&lt;li&gt;Implementación de mensajería con RabbitMQ, GCP Pub/Sub y AWS SQS&lt;/li&gt;&lt;li&gt;Despliegue de soluciones escalables en Azure Kubernetes Services (AKS)&lt;/li&gt;"
+                                data-en="&lt;li&gt;Participated in an omnichannel transformation program for a retail chain&lt;/li&gt;&lt;li&gt;Developed microservices with Spring WebFlux for digital ecosystem (e-commerce, PIM, OMS)&lt;/li&gt;&lt;li&gt;Built critical integrations between PIM, OMS, and e-commerce (Vtex) platforms&lt;/li&gt;&lt;li&gt;Implemented messaging with RabbitMQ, GCP Pub/Sub, and AWS SQS&lt;/li&gt;&lt;li&gt;Deployed scalable solutions on Azure Kubernetes Services (AKS)&lt;/li&gt;">
+                                <li>Participación en un programa de transformación omnicanal para una cadena de retail</li>
+                                <li>Desarrollo de microservicios con Spring WebFlux para ecosistema digital (e-commerce, PIM, OMS)</li>
+                                <li>Construcción de integraciones críticas entre plataformas PIM, OMS y e-commerce (Vtex)</li>
+                                <li>Implementación de mensajería con RabbitMQ, GCP Pub/Sub y AWS SQS</li>
+                                <li>Despliegue de soluciones escalables en Azure Kubernetes Services (AKS)</li>
+                            </ul>
+                        </li>
+
+                        <li class="commit" data-reveal>
+                            <div class="commit-meta">
+                                <span class="commit-hash">commit 4de7b19</span>
+                                <span class="commit-date" data-es="Ene 2018 — Jun 2019" data-en="Jan 2018 — Jun 2019">Ene 2018 — Jun 2019</span>
+                            </div>
+                            <h3 data-es="Analista de Aplicaciones" data-en="Applications Analyst">Analista de Aplicaciones</h3>
+                            <p class="commit-company">INTELIX SYNERGY, C.A. · Venezuela</p>
+                            <ul class="commit-body"
+                                data-es="&lt;li&gt;Liderazgo técnico en la empresa tecnológica de un grupo empresarial de retail&lt;/li&gt;&lt;li&gt;Dirección del Sistema de Punto de Venta y servicios asociados (Spring y RMI)&lt;/li&gt;&lt;li&gt;Migración de infraestructura AS400 a servidores Intel&lt;/li&gt;&lt;li&gt;Implementación de Sistema de Factura Electrónica en Guatemala&lt;/li&gt;&lt;li&gt;Apertura técnica de una nueva tienda en Guatemala&lt;/li&gt;"
+                                data-en="&lt;li&gt;Technical leadership in the technology company of a retail business group&lt;/li&gt;&lt;li&gt;Led Point of Sale System and all associated services (Spring and RMI)&lt;/li&gt;&lt;li&gt;Infrastructure migration from AS400 to Intel servers&lt;/li&gt;&lt;li&gt;Implemented Electronic Invoice System in Guatemala&lt;/li&gt;&lt;li&gt;Technical implementation for a new store opening in Guatemala&lt;/li&gt;">
+                                <li>Liderazgo técnico en la empresa tecnológica de un grupo empresarial de retail</li>
+                                <li>Dirección del Sistema de Punto de Venta y servicios asociados (Spring y RMI)</li>
+                                <li>Migración de infraestructura AS400 a servidores Intel</li>
+                                <li>Implementación de Sistema de Factura Electrónica en Guatemala</li>
+                                <li>Apertura técnica de una nueva tienda en Guatemala</li>
+                            </ul>
+                        </li>
+
+                        <li class="commit" data-reveal>
+                            <div class="commit-meta">
+                                <span class="commit-hash">commit a08f3c6</span>
+                                <span class="commit-date" data-es="Feb 2016 — Dic 2017" data-en="Feb 2016 — Dec 2017">Feb 2016 — Dic 2017</span>
+                            </div>
+                            <h3 data-es="Analista Programador" data-en="Programmer Analyst">Analista Programador</h3>
+                            <p class="commit-company">Ferretería EPA C.A. · Venezuela</p>
+                            <ul class="commit-body"
+                                data-es="&lt;li&gt;Desarrollo de módulos críticos del sistema POS con manejo multi-threaded&lt;/li&gt;&lt;li&gt;Modernización de servicios legacy RMI a Spring REST para operaciones en Guatemala&lt;/li&gt;&lt;li&gt;Optimización del Servicio de Devoluciones con historial completo y reglas de negocio&lt;/li&gt;&lt;li&gt;Mantenimiento de tecnología de Cola de Servicios (ventas devueltas, pendientes, cotizaciones)&lt;/li&gt;&lt;li&gt;Desarrollo de nuevos requerimientos para implementación de Punto de Venta en El Salvador&lt;/li&gt;"
+                                data-en="&lt;li&gt;Developed critical POS system modules with multi-threaded service queue handling&lt;/li&gt;&lt;li&gt;Led technical modernization from legacy RMI services to Spring REST for Guatemala operations&lt;/li&gt;&lt;li&gt;Optimized Returns Service with complete history tracking and business rules&lt;/li&gt;&lt;li&gt;Maintained Services Queue technology (sales returns, pending sales, quotations)&lt;/li&gt;&lt;li&gt;Developed new requirements for Point of Sale implementation in El Salvador&lt;/li&gt;">
+                                <li>Desarrollo de módulos críticos del sistema POS con manejo multi-threaded</li>
+                                <li>Modernización de servicios legacy RMI a Spring REST para operaciones en Guatemala</li>
+                                <li>Optimización del Servicio de Devoluciones con historial completo y reglas de negocio</li>
+                                <li>Mantenimiento de tecnología de Cola de Servicios (ventas devueltas, pendientes, cotizaciones)</li>
+                                <li>Desarrollo de nuevos requerimientos para implementación de Punto de Venta en El Salvador</li>
+                            </ul>
+                        </li>
+
+                        <li class="commit" data-reveal>
+                            <div class="commit-meta">
+                                <span class="commit-hash">commit 1b5d27e</span>
+                                <span class="pill" data-es="commit inicial" data-en="initial commit">commit inicial</span>
+                                <span class="commit-date" data-es="Jun 2015 — Dic 2015" data-en="Jun 2015 — Dec 2015">Jun 2015 — Dic 2015</span>
+                            </div>
+                            <h3 data-es="Analista de Desarrollo" data-en="Development Analyst">Analista de Desarrollo</h3>
+                            <p class="commit-company">Venezolana del Vidrio C.A. · Venezuela</p>
+                            <ul class="commit-body"
+                                data-es="&lt;li&gt;Mantenimiento y mejora de sistema de gestión de incidencias&lt;/li&gt;&lt;li&gt;Optimización significativa del tiempo de respuesta del sistema&lt;/li&gt;&lt;li&gt;Implementación de monitoreo de rendimiento para evaluación de impacto de carga de datos&lt;/li&gt;&lt;li&gt;Mejoras de escalabilidad del sistema para cargas crecientes de datos&lt;/li&gt;"
+                                data-en="&lt;li&gt;Maintained and improved incident management system&lt;/li&gt;&lt;li&gt;Optimized system response time significantly&lt;/li&gt;&lt;li&gt;Implemented performance monitoring for data load impact assessment&lt;/li&gt;&lt;li&gt;System scalability improvements for growing data loads&lt;/li&gt;">
+                                <li>Mantenimiento y mejora de sistema de gestión de incidencias</li>
+                                <li>Optimización significativa del tiempo de respuesta del sistema</li>
+                                <li>Implementación de monitoreo de rendimiento para evaluación de impacto de carga de datos</li>
+                                <li>Mejoras de escalabilidad del sistema para cargas crecientes de datos</li>
+                            </ul>
+                        </li>
+                    </ol>
+                </section>
+
+                <!-- ========================================
+                     EDUCATION — education.json
+                     ======================================== -->
+                <section id="education" class="file-section">
+                    <p class="file-comment">// education.json</p>
+                    <h2 class="section-title" data-es="Educación" data-en="Education">Educación</h2>
+
+                    <div class="feature-grid">
+                        <article class="feature-card" data-reveal>
+                            <div class="feature-head"><i class="fas fa-graduation-cap"></i><span class="feature-key">"degree"</span><span class="feature-year">2010 — 2015</span></div>
+                            <h3 data-es="Ingeniería de Sistemas" data-en="Systems Engineering">Ingeniería de Sistemas</h3>
+                            <p class="feature-sub">I.U.P Santiago Mariño · Venezuela</p>
+                            <p data-es="Formación integral en desarrollo de software, arquitectura de sistemas, bases de datos y gestión de proyectos tecnológicos." data-en="Comprehensive training in software development, systems architecture, databases and technology project management.">Formación integral en desarrollo de software, arquitectura de sistemas, bases de datos y gestión de proyectos tecnológicos.</p>
+                        </article>
+                        <article class="feature-card" data-reveal>
+                            <div class="feature-head"><i class="fas fa-school"></i><span class="feature-key">"highschool"</span><span class="feature-year">2004 — 2009</span></div>
+                            <h3 data-es="Bachiller en Ciencias" data-en="Bachelor of Science">Bachiller en Ciencias</h3>
+                            <p class="feature-sub">U.E. Campo Solo · Venezuela</p>
+                            <p data-es="Educación secundaria con énfasis en ciencias." data-en="High school education with emphasis on sciences.">Educación secundaria con énfasis en ciencias.</p>
+                        </article>
+                    </div>
+                </section>
+
+                <!-- ========================================
+                     CONTACT — contact.sh
+                     Chat-style form (reuses contact-form.js)
+                     ======================================== -->
+                <section id="contact" class="file-section">
+                    <p class="file-comment">#!/bin/bash — contact.sh</p>
+                    <h2 class="section-title" data-es="Hablemos" data-en="Let's talk">Hablemos</h2>
+                    <p class="section-lede" data-es="¿Interesado en trabajar juntos? Escríbeme y te responderé pronto." data-en="Interested in working together? Write me and I'll reply soon.">¿Interesado en trabajar juntos? Escríbeme y te responderé pronto.</p>
+
+                    <div class="contact-grid">
+                        <div class="chat-demo" data-reveal>
+                            <div class="chat-head">
+                                <span class="chat-avatar"><img src="img/MarioOrtega.jpg" alt=""></span>
+                                <div>
+                                    <strong>Mario Ortega</strong>
+                                    <span class="chat-status"><span class="pulse"></span> <span data-es="en línea" data-en="online">en línea</span></span>
+                                </div>
+                            </div>
+
+                            <div class="chat-msg assistant">
+                                <p data-es="¡Hola! 👋 Cuéntame sobre tu proyecto, tu equipo o el reto técnico que tienes en mente." data-en="Hi! 👋 Tell me about your project, your team or the technical challenge you have in mind.">¡Hola! 👋 Cuéntame sobre tu proyecto, tu equipo o el reto técnico que tienes en mente.</p>
+                            </div>
+
+                            <form id="contactForm" class="chat-composer" novalidate>
+                                <div class="composer-fields">
+                                    <div class="form-group">
+                                        <label for="user_name" data-es="nombre" data-en="name">nombre</label>
+                                        <input type="text" id="user_name" name="user_name" class="form-control" required
+                                            data-es-placeholder="Ej: Mario Ortega" data-en-placeholder="e.g: Mario Ortega" placeholder="Ej: Mario Ortega">
+                                        <span class="error-message" data-es="Por favor ingresa tu nombre" data-en="Please enter your name">Por favor ingresa tu nombre</span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="user_email">email</label>
+                                        <input type="email" id="user_email" name="user_email" class="form-control" required
+                                            data-es-placeholder="tu@email.com" data-en-placeholder="you@email.com" placeholder="tu@email.com">
+                                        <span class="error-message" data-es="Por favor ingresa un correo válido" data-en="Please enter a valid email">Por favor ingresa un correo válido</span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group composer-box">
+                                    <label for="message" class="sr-only" data-es="Mensaje" data-en="Message">Mensaje</label>
+                                    <textarea id="message" name="message" class="form-control" rows="4" required
+                                        data-es-placeholder="Escribe tu mensaje aquí..." data-en-placeholder="Write your message here..." placeholder="Escribe tu mensaje aquí..."></textarea>
+                                    <span class="error-message" data-es="Por favor escribe un mensaje" data-en="Please write a message">Por favor escribe un mensaje</span>
+                                    <div class="composer-row">
+                                        <span class="chip chip-dim"><i class="fas fa-shield-halved"></i> Turnstile</span>
+                                        <span class="chip chip-dim">EmailJS</span>
+                                        <button type="submit" class="send-btn" id="submitBtn">
+                                            <span class="btn-text"><span data-es="Enviar" data-en="Send">Enviar</span> <i class="fas fa-arrow-up"></i></span>
+                                            <span class="btn-loading"><i class="fas fa-spinner fa-spin"></i> <span data-es="Enviando..." data-en="Sending...">Enviando...</span></span>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="turnstile-container" id="turnstile-widget"></div>
+
+                                <p class="privacy-info">
+                                    <span data-es="Protegido por Cloudflare Turnstile para prevenir spam." data-en="Protected by Cloudflare Turnstile to prevent spam.">Protegido por Cloudflare Turnstile para prevenir spam.</span>
+                                    <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener" data-es="Política de privacidad" data-en="Privacy Policy">Política de privacidad</a>
+                                </p>
+
+                                <div id="formStatus" class="form-status"></div>
+                            </form>
+                        </div>
+
+                        <div class="social-list" data-reveal>
+                            <p class="rail-heading" data-es="Conecta conmigo" data-en="Connect with me">Conecta conmigo</p>
+                            <a href="https://www.linkedin.com/in/marioortega003/" target="_blank" rel="noopener" class="social-card">
+                                <i class="fab fa-linkedin"></i>
+                                <span><strong>LinkedIn</strong><small>/in/marioortega003</small></span>
+                                <i class="fas fa-arrow-up-right-from-square social-go"></i>
+                            </a>
+                            <a href="https://github.com/macor003" target="_blank" rel="noopener" class="social-card">
                                 <i class="fab fa-github"></i>
-                            </div>
-                            <div class="social-info">
-                                <h4>GitHub</h4>
-                                <p data-es="Ve mis proyectos" data-en="See my projects">Ve mis proyectos</p>
-                            </div>
-                        </a>
-
-                        <a href="https://twitter.com/marioortega003" target="_blank" class="social-link-card">
-                            <div class="social-icon-wrapper">
+                                <span><strong>GitHub</strong><small>@macor003</small></span>
+                                <i class="fas fa-arrow-up-right-from-square social-go"></i>
+                            </a>
+                            <a href="https://twitter.com/marioortega003" target="_blank" rel="noopener" class="social-card">
                                 <i class="fab fa-twitter"></i>
-                            </div>
-                            <div class="social-info">
-                                <h4>Twitter</h4>
-                                <p data-es="Sígueme en Twitter" data-en="Follow me on Twitter">Sígueme en Twitter</p>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Contact Form -->
-                <div class="contact-form-wrapper">
-                    <h3 data-es="Envíame un mensaje" data-en="Send me a message">Envíame un mensaje</h3>
-
-                    <form id="contactForm" class="contact-form" novalidate>
-                        <!-- Name Field -->
-                        <div class="form-group">
-                            <label for="user_name">
-                                <i class="fas fa-user"></i>
-                                <span data-es="Nombre completo" data-en="Full name">Nombre completo</span>
-                                <span class="required">*</span>
-                            </label>
-                            <input
-                                type="text"
-                                id="user_name"
-                                name="user_name"
-                                class="form-control"
-                                required
-                                data-es-placeholder="Ej: Mario Ortega"
-                                data-en-placeholder="e.g: Mario Ortega"
-                                placeholder="Ej: Mario Ortega"
-                            >
-                            <span class="error-message" data-es="Por favor ingresa tu nombre" data-en="Please enter your name">Por favor ingresa tu nombre</span>
-                        </div>
-
-                        <!-- Email Field -->
-                        <div class="form-group">
-                            <label for="user_email">
-                                <i class="fas fa-envelope"></i>
-                                <span data-es="Correo electrónico" data-en="Email address">Correo electrónico</span>
-                                <span class="required">*</span>
-                            </label>
-                            <input
-                                type="email"
-                                id="user_email"
-                                name="user_email"
-                                class="form-control"
-                                required
-                                data-es-placeholder="tu@email.com"
-                                data-en-placeholder="you@email.com"
-                                placeholder="tu@email.com"
-                            >
-                            <span class="error-message" data-es="Por favor ingresa un correo válido" data-en="Please enter a valid email">Por favor ingresa un correo válido</span>
-                        </div>
-
-                        <!-- Message Field -->
-                        <div class="form-group">
-                            <label for="message">
-                                <i class="fas fa-comment-dots"></i>
-                                <span data-es="Mensaje" data-en="Message">Mensaje</span>
-                                <span class="required">*</span>
-                            </label>
-                            <textarea
-                                id="message"
-                                name="message"
-                                class="form-control"
-                                rows="5"
-                                required
-                                data-es-placeholder="Escribe tu mensaje aquí..."
-                                data-en-placeholder="Write your message here..."
-                                placeholder="Escribe tu mensaje aquí..."
-                            ></textarea>
-                            <span class="error-message" data-es="Por favor escribe un mensaje" data-en="Please write a message">Por favor escribe un mensaje</span>
-                        </div>
-
-                        <!-- Turnstile Widget Container -->
-                        <div class="turnstile-container" id="turnstile-widget"></div>
-
-                        <!-- Privacy Info -->
-                        <div class="privacy-info">
-                            <small data-es="Este sitio está protegido por Cloudflare Turnstile para prevenir spam. " data-en="This site is protected by Cloudflare Turnstile to prevent spam. ">
-                                Este sitio está protegido por Cloudflare Turnstile para prevenir spam.
-                            </small>
-                            <a href="https://www.cloudflare.com/privacypolicy/" target="_blank">
-                                <span data-es="Política de privacidad" data-en="Privacy Policy">Política de privacidad</span>
+                                <span><strong>Twitter</strong><small>@marioortega003</small></span>
+                                <i class="fas fa-arrow-up-right-from-square social-go"></i>
+                            </a>
+                            <a href="#" data-cv-generate class="social-card">
+                                <i class="fas fa-file-pdf"></i>
+                                <span><strong data-es="Currículum" data-en="Résumé">Currículum</strong><small>Mario Ortega CV.pdf</small></span>
+                                <i class="fas fa-download social-go"></i>
                             </a>
                         </div>
+                    </div>
+                </section>
 
-                        <!-- Submit Button -->
-                        <button type="submit" class="btn-submit" id="submitBtn">
-                            <span class="btn-text" data-es="Enviar mensaje" data-en="Send message">Enviar mensaje</span>
-                            <span class="btn-loading" style="display: none;">
-                                <i class="fas fa-spinner fa-spin"></i>
-                                <span data-es="Enviando..." data-en="Sending...">Enviando...</span>
-                            </span>
-                        </button>
-
-                        <!-- Status Messages -->
-                        <div id="formStatus" class="form-status"></div>
-                    </form>
-                </div>
-            </div>
+                <!-- ========================================
+                     FOOTER — terminal replay + copyright
+                     ======================================== -->
+                <footer class="footer">
+                    <div class="install-line">
+                        <code><span class="t-prompt">$</span> curl -sL macor003.github.io/cv | open</code>
+                        <span class="install-ok">⬇ Mario Ortega CV.pdf · sha256 verified ✓</span>
+                    </div>
+                    <p class="footer-copy">
+                        &copy; <span id="year">2026</span> Mario Cesar Ortega Rodriguez ·
+                        <span data-es="Hecho con café ☕ y mucho git" data-en="Built with coffee ☕ and lots of git">Hecho con café ☕ y mucho git</span>
+                    </p>
+                </footer>
+            </main>
         </div>
-    </section>
+    </div>
 
     <!-- ========================================
-         FOOTER
-         Simple footer with copyright
+         STATUS BAR
          ======================================== -->
-    <footer>
-        <p>&copy; 2024 Mario Cesar Ortega Rodriguez. <span data-es="Todos los derechos reservados." data-en="All rights reserved.">Todos los derechos reservados.</span></p>
-        <p data-es="Desarrollado con pasión y café ☕" data-en="Developed with passion and coffee ☕">Desarrollado con pasión y café ☕</p>
-    </footer>
-
-    <!-- ========================================
-         FIXED BUTTON
-         Scroll to Top
-         ======================================== -->
-    <button class="scroll-top" onclick="scrollToTop()">
-        <i class="fas fa-arrow-up"></i>
-    </button>
-
-    <!-- ========================================
-         EXTERNAL LIBRARIES
-         Load before custom scripts
-         ======================================== -->
-    <!-- GSAP Animation Library -->
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+    <div class="statusbar">
+        <span class="status-item status-accent"><i class="fas fa-code-branch"></i> main</span>
+        <span class="status-item"><span class="pulse"></span> <span data-es="disponible" data-en="available">disponible</span></span>
+        <span class="status-item status-file" id="statusFile">README.md</span>
+        <span class="status-spacer"></span>
+        <span class="status-item status-hide-sm">UTF-8</span>
+        <span class="status-item status-hide-sm">Medellín · UTC−5</span>
+    </div>
 
     <!-- EmailJS SDK -->
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
@@ -592,8 +531,7 @@
     <!-- Cloudflare Turnstile -->
     <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 
-    <!-- Custom JavaScript (ES6 Modules) -->
+    <!-- Main JavaScript (ES6 modules) -->
     <script type="module" src="js/main.js"></script>
-
 </body>
 </html>

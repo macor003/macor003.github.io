@@ -1,104 +1,330 @@
-/**
- * CONTACT SECTION STYLES
- *
- * Main contact section with social network cards
- * Two-column layout: social networks (left) and contact form (right)
- *
- * Dependencies: _variables.scss, _mixins.scss
- */
+// ========================================
+// CONTACT
+// Chat-style form + social cards
+// Class names match js/modules/contact-form.js (.form-group, .error,
+// .error-message, #submitBtn.loading, #formStatus.show)
+// ========================================
 
-// ========================================
-// Contact Section Background
-// ========================================
-.contact-bg {
-  background: $panel;
-}
-
-// ========================================
-// Contact Grid Layout
-// ========================================
 .contact-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 3rem;
-
-  @include tablet {
-    grid-template-columns: 1fr;
-    gap: 2rem;
-  }
+    display: grid;
+    grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+    gap: 1.5rem;
+    align-items: start;
 }
 
-// ========================================
-// Contact Social Wrapper
-// ========================================
-.contact-social-wrapper {
-  @include panel;
-
-  h3 {
-    margin-bottom: 0.5rem;
-    color: $paper;
-    font-size: 1.4rem;
-  }
-
-  > p {
-    color: $mist;
-    margin-bottom: 2rem;
-    font-size: 0.95rem;
-  }
+.chat-demo {
+    border: 1px solid var(--border);
+    border-radius: $radius-lg;
+    background: var(--chrome);
+    box-shadow: var(--shadow);
+    overflow: hidden;
 }
 
-// ========================================
-// Social Links Grid
-// ========================================
-.social-links-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 0.75rem;
-}
+.chat-head {
+    display: flex;
+    align-items: center;
+    gap: .75rem;
+    padding: .8rem 1rem;
+    border-bottom: 1px solid var(--border);
 
-.social-link-card {
-  @include flex-center-vertical;
-  gap: 1rem;
-  padding: 1rem;
-  border: 1px solid $line;
-  border-radius: $radius-md;
-  text-decoration: none;
-  transition: $transition;
-
-  &:hover {
-    border-color: $signal;
-
-    .social-icon-wrapper {
-      border-color: $signal;
-      color: $signal;
+    strong {
+        display: block;
+        font-size: .9rem;
+        font-weight: 600;
     }
-  }
 }
 
-.social-icon-wrapper {
-  width: 44px;
-  height: 44px;
-  min-width: 44px;
-  border: 1px solid $line;
-  color: $paper;
-  @include flex-center;
-  border-radius: $radius-sm;
-  font-size: 1.1rem;
-  transition: $transition;
+.chat-avatar img {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid var(--border2);
 }
 
-.social-info {
-  h4 {
-    margin: 0 0 0.2rem 0;
-    color: $paper;
-    font-size: 0.95rem;
-    font-family: $font-body;
-    font-weight: $font-weight-semibold;
-  }
+.chat-status {
+    display: inline-flex;
+    align-items: center;
+    gap: .4rem;
+    font-family: var(--font-mono);
+    font-size: .7rem;
+    color: var(--accent);
 
-  p {
-    margin: 0;
-    color: $mist;
-    font-size: 0.85rem;
-  }
+    .pulse {
+        width: 6px;
+        height: 6px;
+    }
+}
+
+.chat-msg {
+    padding: 1.1rem 1rem .4rem;
+
+    p {
+        max-width: 46ch;
+        padding: .75rem 1rem;
+        border: 1px solid var(--border);
+        border-radius: 4px $radius-lg $radius-lg $radius-lg;
+        background: var(--elevated);
+        font-size: .92rem;
+    }
+}
+
+.chat-composer {
+    padding: 1rem;
+}
+
+.composer-fields {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: .75rem;
+    margin-bottom: .75rem;
+}
+
+.form-group {
+    label {
+        display: block;
+        margin-bottom: .3rem;
+        font-family: var(--font-mono);
+        font-size: .72rem;
+        font-variant-ligatures: none;
+        color: var(--hint);
+
+        &::before {
+            content: "--";
+            color: var(--accent);
+        }
+    }
+}
+
+.form-control {
+    width: 100%;
+    padding: .65rem .8rem;
+    border: 1px solid var(--border);
+    border-radius: $radius-sm;
+    background: var(--input);
+    color: var(--text);
+    font-family: var(--font-sans);
+    font-size: .9rem;
+    transition: border-color .15s, box-shadow .15s;
+
+    &::placeholder {
+        color: var(--hint);
+    }
+
+    &:focus {
+        outline: none;
+        border-color: var(--accent);
+        box-shadow: 0 0 0 3px var(--accent-soft);
+    }
+}
+
+.composer-box {
+    border: 1px solid var(--border);
+    border-radius: $radius-md;
+    background: var(--input);
+    transition: border-color .15s, box-shadow .15s;
+
+    &:focus-within {
+        border-color: var(--accent);
+        box-shadow: 0 0 0 3px var(--accent-soft);
+    }
+
+    textarea {
+        display: block;
+        border: 0;
+        background: transparent;
+        resize: vertical;
+        min-height: 110px;
+
+        &:focus {
+            box-shadow: none;
+        }
+    }
+
+    .error-message {
+        padding: 0 .8rem;
+    }
+}
+
+.composer-row {
+    display: flex;
+    align-items: center;
+    gap: .4rem;
+    padding: .5rem;
+    border-top: 1px solid var(--border);
+}
+
+.send-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: .45rem;
+    height: 34px;
+    margin-left: auto;
+    padding: 0 .9rem;
+    border-radius: $radius-sm;
+    background: var(--accent);
+    color: var(--on-accent);
+    font-weight: 600;
+    font-size: .85rem;
+    transition: background .15s;
+
+    &:hover:not(:disabled) {
+        background: var(--accent-hover);
+    }
+
+    &:disabled {
+        opacity: .7;
+        cursor: progress;
+    }
+
+    .btn-text,
+    .btn-loading {
+        display: inline-flex;
+        align-items: center;
+        gap: .45rem;
+    }
+
+    .btn-loading {
+        display: none;
+    }
+
+    &.loading {
+        .btn-text { display: none; }
+        .btn-loading { display: inline-flex; }
+    }
+}
+
+// Validation states
+.error-message {
+    display: none;
+    margin-top: .3rem;
+    font-family: var(--font-mono);
+    font-size: .72rem;
+    color: var(--red);
+}
+
+.form-group.error {
+    .error-message {
+        display: block;
+    }
+
+    .form-control {
+        border-color: var(--red);
+    }
+
+    &.composer-box {
+        border-color: var(--red);
+    }
+}
+
+.turnstile-container {
+    margin-top: .9rem;
+
+    &:empty {
+        display: none;
+    }
+}
+
+.privacy-info {
+    margin-top: .8rem;
+    font-size: .74rem;
+    color: var(--hint);
+
+    a {
+        color: var(--accent);
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
+
+.form-status {
+    display: none;
+    margin-top: .9rem;
+    padding: .75rem 1rem;
+    border: 1px solid var(--border);
+    border-radius: $radius-sm;
+    font-size: .86rem;
+
+    &.show {
+        display: block;
+    }
+
+    &.success {
+        color: var(--accent);
+        border-color: color-mix(in srgb, var(--accent) 40%, transparent);
+        background: var(--accent-soft);
+    }
+
+    &.error {
+        color: var(--red);
+        border-color: color-mix(in srgb, var(--red) 40%, transparent);
+        background: color-mix(in srgb, var(--red) 8%, transparent);
+    }
+}
+
+// ---------- Social cards ----------
+.social-list {
+    display: flex;
+    flex-direction: column;
+    gap: .6rem;
+
+    .rail-heading {
+        padding-left: 0;
+    }
+}
+
+.social-card {
+    display: flex;
+    align-items: center;
+    gap: .9rem;
+    padding: .85rem 1rem;
+    border: 1px solid var(--border);
+    border-radius: $radius-md;
+    background: var(--chrome);
+    transition: border-color .15s, transform .15s var(--ease);
+
+    > i:first-child {
+        width: 22px;
+        font-size: 1.2rem;
+        text-align: center;
+        color: var(--muted);
+    }
+
+    span {
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+    }
+
+    strong {
+        font-size: .9rem;
+        font-weight: 600;
+    }
+
+    small {
+        font-family: var(--font-mono);
+        font-size: .72rem;
+        color: var(--hint);
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    &:hover {
+        border-color: var(--accent);
+        transform: translateX(3px);
+
+        > i:first-child,
+        .social-go {
+            color: var(--accent);
+        }
+    }
+}
+
+.social-go {
+    margin-left: auto;
+    font-size: .75rem;
+    color: var(--hint);
 }

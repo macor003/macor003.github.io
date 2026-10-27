@@ -1,49 +1,40 @@
 /**
  * MAIN APPLICATION ENTRY POINT
  *
- * Initializes all modules when DOM is ready
- * Handles module loading order and dependencies
+ * IDE-style portfolio: language, IDE shell, effects, contact form and the
+ * client-side CV generator.
  *
  * Portfolio Website for Mario Ortega
  * https://macor003.github.io
  */
 
-import * as Animations from './modules/animations.js';
 import * as Language from './modules/language.js';
-import * as Navigation from './modules/navigation.js';
 import * as ContactForm from './modules/contact-form.js';
+import * as Shell from './modules/shell.js';
+import * as Effects from './modules/effects.js';
+import * as CV from './modules/cv.js';
 
-// Initialize when DOM is ready
 document.addEventListener('DOMContentLoaded', function() {
     console.log('Portfolio initialized');
-    console.log('Version: 2.0.0');
-    console.log('Build: ' + new Date().toISOString());
 
-    // Initialize modules in order
     // 1. Language must be first (other modules may depend on it)
     Language.init();
 
-    // 2. Navigation (navbar, mobile menu, scroll effects)
-    Navigation.init();
+    // 2. Shell (theme, explorer, tabs, scroll spy)
+    Shell.init();
 
-    // 3. Animations (GSAP requires DOM to be ready)
-    Animations.init();
+    // 3. Effects (terminal replay, reveal on scroll)
+    Effects.init();
 
     // 4. Contact Form (depends on language module)
     ContactForm.init();
 
-    console.log('All modules loaded successfully');
+    // 5. CV generator (builds the PDF from the page content)
+    CV.init();
 });
 
 // Make functions globally available for onclick handlers in HTML
 window.toggleLanguage = Language.toggleLanguage;
-window.scrollToTop = Navigation.scrollToTop;
-window.toggleMobileMenu = Navigation.toggleMobileMenu;
-
-// Export functions for external use if needed
-export {
-    Animations,
-    Language,
-    Navigation,
-    ContactForm
-};
+window.toggleTheme = Shell.toggleTheme;
+window.toggleRail = () => Shell.toggleRail();
+window.dismissRailNote = Shell.dismissRailNote;

@@ -1,0 +1,12 @@
+/*!
+ * Mario Ortega — Portfolio v2
+ * IDE-inspired theme (reference: thinkrail.ai)
+ * Compile: npx sass scss/style.scss css/style.css
+ */
+
+@import 'tokens';
+@import 'base';
+@import 'shell';
+@import 'sections';
+@import 'contact';
+@import 'responsive';

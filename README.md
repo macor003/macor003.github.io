@@ -64,34 +64,34 @@ Professional with over **10+ years of experience** in software development, solu
 ### Solution Architect @ Sofka Technologies S.A.S.
 **January 2022 - Present**
 - Leading strategic technological modernization initiatives for enterprise clients
-- Designed Azure-based architectures for Femsa Mexico, optimizing insurance policy processes
-- Leading core system migration from Java 6 to Java 21 with microservices architecture for L.O. Trading
+- Designed Azure-based architectures for an insurance-sector client in Mexico, optimizing insurance policy processes
+- Leading core system migration from Java 6 to Java 21 with reactive microservices for an enterprise client
 - Integrated AI tools (GitHub Copilot, Claude Code) in development workflows
 - Mentoring multiple development teams as Account Technical Coach in Ecuador
 
 ### Technical Lead @ Sofka Technologies S.A.S.
 **January 2021 - December 2021**
-- Directed multiple integration projects for Grupo Éxito's omnichannel program
+- Directed multiple integration projects for a retail chain's omnichannel program
 - Led development of payment systems, money transfers, and betting integrations for **7,000+ POS terminals**
-- Successfully integrated POS terminals with national betting providers (BetPlay, RushBet, WPlay)
-- Implemented mobile payment solutions with multiple wallets (Tuya, TIC Móvil Cafam, Rappi)
+- Successfully integrated POS terminals with national betting providers
+- Implemented mobile payment solutions with multiple digital wallets
 - Managed fiscal consecutive system controlling **600+ stores**
 
 ### Development Consultant @ Sofka Technologies S.A.S.
 **July 2019 - December 2020**
-- Participated in SUMATE program for Grupo Éxito's omnichannel transformation
+- Participated in an omnichannel transformation program for a retail chain
 - Developed microservices with Spring WebFlux for digital ecosystem (e-commerce, PIM, OMS)
-- Built critical integrations between PIM, OMS, and Vtex (exito.com) platforms
+- Built critical integrations between PIM, OMS, and e-commerce (Vtex) platforms
 - Implemented messaging with RabbitMQ, GCP Pub/Sub, and AWS SQS
 - Deployed scalable solutions on Azure Kubernetes Services (AKS)
 
 ### Applications Analyst @ INTELIX SYNERGY, C.A. | Venezuela
 **January 2018 - June 2019**
-- Technical leadership in technology company within Ferretería EPA group
+- Technical leadership in the technology company of a retail business group
 - Led Point of Sale System and all associated services (Spring and RMI)
 - Infrastructure migration from AS400 to Intel servers
 - Implemented Electronic Invoice System in Guatemala
-- Technical implementation for new EPA Guatemala store opening
+- Technical implementation for a new store opening in Guatemala
 
 ### Programmer Analyst @ Ferretería EPA C.A. | Venezuela
 **February 2016 - December 2017**
