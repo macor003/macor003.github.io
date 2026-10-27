@@ -4,323 +4,133 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is a personal portfolio website for Mario Ortega (Software Engineer & Solution Architect) hosted on GitHub Pages (macor003.github.io). The site is a modern, fully responsive one-page portfolio with modular architecture.
+This is a personal portfolio website for Mario Ortega (Software Engineer & Solution Architect) hosted on GitHub Pages (macor003.github.io). It is a one-page, fully responsive, bilingual (ES/EN) portfolio styled as an IDE (design reference: thinkrail.ai).
 
-**Latest Update (December 2024):** The codebase has been completely refactored from a single-file monolith (2,499 lines) to a clean modular structure with separated SCSS and JavaScript modules.
+**Latest Update (October 2026):** v3 redesign. The site now looks like an IDE window (titlebar, explorer rail, file tabs, status bar) where every section is a "file". GSAP was removed, and the CV PDF is generated client-side from the page content (there is no static CV file anymore).
 
 ## Architecture
 
-### Modern Modular Structure
-
-The project now uses a clean separation of concerns:
-- **HTML:** Clean semantic markup (777 lines, 46KB)
-- **CSS:** Modular SCSS compiled to minified CSS (18KB)
-- **JavaScript:** ES6 modules loaded natively (no bundler required)
+- **HTML:** `index.html` — semantic markup, all copy bilingual via `data-es` / `data-en`
+- **CSS:** Modular SCSS compiled to `css/style.min.css`
+- **JavaScript:** Native ES6 modules (no bundler)
 
 ### Directory Structure
 
 ```
 /
-├── index.html              # Clean HTML (no inline CSS/JS)
-├── index-backup.html       # Backup of previous version
+├── index.html              # The site (IDE-style one-pager)
+├── index-backup.html       # Pre-refactor single-file version (historical, not linked)
+├── favicon.svg             # ">_" prompt icon (+ img/favicon-32.png, img/apple-touch-icon.png)
 │
-├── /scss/                  # SCSS Source Files (12 modules)
-│   ├── creative.scss       # Main entry point (imports all modules)
-│   ├── _variables.scss     # Design tokens (colors, spacing, etc.)
-│   ├── _mixins.scss        # Reusable SCSS mixins
-│   ├── _reset.scss         # CSS reset and base styles
-│   ├── _navbar.scss        # Navigation bar styles
-│   ├── _hero.scss          # Hero section with floating image
-│   ├── _sections.scss      # About, Skills, Experience, Education
-│   ├── _contact.scss       # Contact section social cards
-│   ├── _contact-form.scss  # Form with validation styles
-│   ├── _footer.scss        # Footer styles
-│   ├── _buttons.scss       # Fixed buttons (CV, scroll-to-top)
-│   ├── _animations.scss    # Keyframe animations
-│   └── _responsive.scss    # Media queries for all breakpoints
+├── /scss/                  # SCSS sources
+│   ├── style.scss          # Entry point (imports all partials)
+│   ├── _tokens.scss        # Layout constants + theme colors as CSS custom properties (dark/light)
+│   ├── _base.scss          # Reset, typography, buttons, pills, chips, reveal-on-scroll, keyframes
+│   ├── _shell.scss         # IDE chrome: titlebar, explorer rail, tabstrip, status bar
+│   ├── _sections.scss      # Hero, terminal, beats, about, feature cards, git-log experience, footer
+│   ├── _contact.scss       # Chat-style contact form + social cards
+│   └── _responsive.scss    # Breakpoints + print stylesheet
 │
-├── /css/                   # Compiled CSS Output
-│   ├── creative.css        # Compiled CSS (26KB)
-│   └── creative.min.css    # Minified CSS (18KB) - Used in production
+├── /css/
+│   ├── style.css           # Compiled CSS
+│   └── style.min.css       # Minified CSS — used by index.html
 │
-├── /js/                    # JavaScript Files
-│   ├── main.js             # Entry point - imports all modules
-│   └── /modules/           # ES6 Modules
-│       ├── animations.js   # GSAP animations (~200 lines)
-│       ├── language.js     # Bilingual switcher (~80 lines)
-│       ├── navigation.js   # Navbar & mobile menu (~100 lines)
-│       ├── contact-form.js # Form validation & EmailJS (~250 lines)
-│       └── utils.js        # Helper functions (~50 lines)
+├── /js/
+│   ├── main.js             # Entry point — imports and initializes all modules
+│   └── /modules/
+│       ├── language.js     # ES/EN switcher (browser detection + localStorage)
+│       ├── shell.js        # Theme toggle, explorer drawer, rail note, scroll spy
+│       ├── effects.js      # Terminal replay + reveal on scroll (IntersectionObserver)
+│       ├── contact-form.js # Validation, EmailJS, Cloudflare Turnstile
+│       ├── cv.js           # Client-side CV PDF generator (pdfmake)
+│       └── utils.js        # sanitizeInput, debounce, throttle
 │
-├── /img/                   # Images (header, profile, etc.)
-├── /files/                 # Downloadable files (CV PDF)
-└── /iconos/                # Icons and favicon
+├── /img/                   # Profile photos (MarioOrtega.jpg, MarioOrtega2.jpeg), icons
+└── /iconos/                # Legacy favicon.ico
 ```
+
+`gulpfile.js`, `package.json` and `/vendor` are leftovers from the original Start Bootstrap template and are not used by the site.
 
 ## Build System
 
-### SCSS Compilation
+The project uses **Dart Sass** (via npx):
 
-The project uses **Dart Sass** (via npx) for SCSS compilation. The old node-sass dependency has been replaced.
-
-**Compile SCSS:**
 ```bash
-# Compile SCSS to CSS
-npx sass scss/creative.scss css/creative.css
-
-# Minify CSS
-npx clean-css-cli -o css/creative.min.css css/creative.css
+npx sass --no-source-map scss/style.scss css/style.css
+npx clean-css-cli -o css/style.min.css css/style.css
 ```
 
-**Note:** The legacy `npm install` and `gulp` commands may fail due to deprecated node-sass. Use the npx commands above instead.
+Deprecation warnings about `@import` are expected and safe to ignore. Always commit `css/style.css` and `css/style.min.css` together with SCSS changes.
 
-### JavaScript Modules
+JavaScript needs no build step.
 
-The project uses **native ES6 modules** (no bundler required). Modules are loaded via:
-```html
-<script type="module" src="js/main.js"></script>
-```
+### Local Testing
 
-**Module Organization:**
-- `main.js` - Entry point that imports and initializes all modules
-- `modules/animations.js` - GSAP-based scroll animations
-- `modules/language.js` - Spanish/English language toggle
-- `modules/navigation.js` - Navbar scroll effects, mobile menu, smooth scrolling
-- `modules/contact-form.js` - Form validation, EmailJS integration, Cloudflare Turnstile
-- `modules/utils.js` - Reusable utility functions (sanitization, debounce, throttle)
-
-### Development Workflow
-
-**Local Testing:**
 ```bash
-# Start local HTTP server (required for ES6 modules and Turnstile)
+# Serve from the repository root (required for ES modules and Turnstile)
 python3 -m http.server 8000
-
-# Open in browser
 # http://localhost:8000
 ```
 
-**Making Changes:**
-
-1. **CSS Changes:**
-   ```bash
-   # Edit SCSS files in /scss
-   npx sass scss/creative.scss css/creative.css
-   npx clean-css-cli -o css/creative.min.css css/creative.css
-   ```
-
-2. **JavaScript Changes:**
-   - Edit module files in `/js/modules/`
-   - No build step required (ES6 modules load natively)
-   - Refresh browser to see changes
-
-3. **HTML Changes:**
-   - Edit `index.html`
-   - Refresh browser to see changes
+`python3 -m http.server` sends no cache headers, so Chrome often keeps stale ES modules. While developing, open DevTools → Network → **Disable cache**; otherwise JS changes may appear not to work.
 
 ## Key Technologies
 
-### Frontend Framework
-- **Pure HTML/CSS/JS** - No framework dependencies
-- **ES6 Modules** - Native browser module support
-- **SCSS** - CSS preprocessor with modular architecture
+- **Pure HTML/CSS/JS** with native ES6 modules
+- **Google Fonts:** Orbitron (display), Geist (text), JetBrains Mono (code)
+- **Font Awesome 6.4.0** — icons
+- **EmailJS** — contact form delivery
+- **Cloudflare Turnstile** — spam protection widget
+- **pdfmake 0.2.12** — CV PDF generation, loaded lazily from cdnjs on first CV click
 
-### Libraries & Services
-- **GSAP 3.12.5** - Animation library with ScrollTrigger plugin
-- **Font Awesome 6.4.0** - Icon library
-- **EmailJS** - Email service for static sites (contact form)
-- **Cloudflare Turnstile** - Privacy-focused CAPTCHA alternative
-- **Google Fonts** - Poppins font family
+## Features
 
-### Features
+**Theming:** dark (default) and light themes. Colors are CSS custom properties in `_tokens.scss` (`:root` / `:root[data-theme="light"]`). An inline script in `<head>` applies the saved theme (`localStorage` key `preferred-theme`) before first paint.
 
-**Bilingual Support:**
-- Spanish/English toggle using data attributes
-- All content has `data-es` and `data-en` attributes
-- Language state managed by `language.js` module
+**Bilingual support:** every text node has `data-es` and `data-en`. `language.js` swaps `textContent`, except for `<ul>` elements, whose attributes hold escaped `<li>` HTML that is set via `innerHTML` (used by the experience lists). Placeholders use `data-es-placeholder` / `data-en-placeholder`.
 
-**Contact Form:**
-- Client-side validation with real-time feedback
-- Input sanitization (XSS prevention)
-- EmailJS integration for email sending
-- Cloudflare Turnstile for spam protection
-- Bilingual error messages
+**Reveal on scroll:** elements with `data-reveal` are visible by default; `effects.js` adds `.reveal-ready` to `<html>` only once JS runs, so content never stays hidden if modules fail to load.
 
-**Animations:**
-- GSAP timeline for hero section entrance
-- Scroll-triggered animations for all sections
-- Floating profile image animation
-- Mobile-responsive with optimized animations
+**CV PDF (`cv.js`):** any element with `data-cv-generate` builds the résumé from the text currently on the page, in the active language (profile, AI focus beats, experience, skills, education, languages). The contact email is added only to the PDF (`CONTACT_EMAIL`). Headings use `keepWithNext()` so they never end up orphaned at a page bottom (pdfmake only passes `headlineLevel` through to `pageBreakBefore`, so the heading's node count is stored there). If pdfmake cannot load, it falls back to `window.print()`.
 
-**Responsive Design:**
-- Mobile-first approach
-- Breakpoints: 480px (mobile), 768px (tablet), 1024px (desktop), 1440px (wide)
-- Mobile menu with hamburger toggle
-- Optimized layouts for all screen sizes
+**Contact form:** client-side validation with bilingual errors, `sanitizeInput` before sending, EmailJS template params `name`, `email`, `title`, `time`, `message`. The recipient is fixed in the EmailJS template (not sent from the browser). Note: EmailJS does not verify the Turnstile token, so restrict allowed domains and rate limits in the EmailJS dashboard.
 
-## SCSS Module Details
+**Responsive:** breakpoints at 480px, 768px and 1024px. Below 1024px the explorer rail becomes a slide-in drawer (`body.rail-open`).
 
-### Core Modules
-- `_variables.scss` - Colors, spacing, transitions, breakpoints, z-index scale
-- `_mixins.scss` - Flexbox helpers, responsive breakpoints, gradient text, card styles
+## Content Rules
 
-### Component Modules
-- `_reset.scss` - CSS reset, body defaults, typography base
-- `_navbar.scss` - Transparent navbar with scroll effect, mobile menu
-- `_hero.scss` - Hero section with background image, floating profile picture, CTA buttons
-- `_sections.scss` - About (grid layout), Skills (card grid), Experience (timeline), Education (card grid)
-- `_contact.scss` - Social network cards in contact section
-- `_contact-form.scss` - Form fields, validation states, Turnstile widget, submit button
-- `_footer.scss` - Simple footer with copyright
-- `_buttons.scss` - Fixed position buttons (Download CV, Scroll to Top)
-- `_animations.scss` - Keyframe animations (fadeIn, slideUp, float, etc.)
-- `_responsive.scss` - Media queries for mobile, tablet, desktop, landscape, print
+- **Never name clients** (companies, brands, internal programs or frameworks) in experience text or any public content, including `README.md`. Describe them generically ("an insurance-sector client in Mexico", "a retail chain"). Employer names in job headers are fine.
+- Experience entries are rendered as git commits (`.gitlog > .commit`); the current role has the `HEAD → main` pill.
 
-## JavaScript Module Details
+## Configuration
 
-### main.js (Entry Point)
-Imports and initializes all modules in correct order:
-1. Language (must be first - other modules depend on it)
-2. Navigation (navbar, mobile menu, scroll effects)
-3. Animations (GSAP initialization)
-4. Contact Form (form validation and submission)
-
-Exposes global functions for onclick handlers:
-- `window.toggleLanguage()`
-- `window.scrollToTop()`
-- `window.toggleMobileMenu()`
-
-### modules/animations.js
-**Dependencies:** GSAP 3.12.5, ScrollTrigger plugin
-
-**Functions:**
-- `initHeroAnimations()` - Hero entrance timeline, floating image
-- `initScrollAnimations()` - Scroll-triggered animations for all sections
-- `init()` - Main initialization function
-
-### modules/language.js
-**State:** `currentLang` - Current language ('es' or 'en')
-
-**Functions:**
-- `toggleLanguage()` - Switches between ES/EN, updates all data-* attributes
-- `getCurrentLang()` - Returns current language
-- `setLanguage(lang)` - Sets specific language
-- `init()` - Initialization
-
-### modules/navigation.js
-**Functions:**
-- `toggleMobileMenu()` - Toggles mobile menu visibility
-- `closeMobileMenu()` - Closes mobile menu
-- `scrollToTop()` - Smooth scroll to top
-- `init()` - Initializes navbar scroll effect, mobile menu, smooth scrolling
-
-### modules/contact-form.js
-**Dependencies:** EmailJS, Cloudflare Turnstile, language.js, utils.js
-
-**Configuration:**
-```javascript
-const EMAILJS_CONFIG = {
-    publicKey: 'YOUR_EMAILJS_PUBLIC_KEY',
-    serviceId: 'YOUR_SERVICE_ID',
-    templateId: 'YOUR_TEMPLATE_ID'
-};
-const TURNSTILE_SITE_KEY = 'YOUR_TURNSTILE_SITE_KEY';
-```
-
-**Functions:**
-- `validateField(fieldName, value)` - Validates single field with bilingual errors
-- `sanitizeInput(input)` - XSS prevention (imported from utils.js)
-- `initEmailJS()` - Initializes EmailJS SDK
-- `initTurnstile()` - Initializes Cloudflare Turnstile widget
-- `initFormValidation()` - Real-time validation on blur/focus
-- `initFormSubmission()` - Form submit handler with EmailJS
-- `init()` - Main initialization
-
-### modules/utils.js
-**Utility Functions:**
-- `sanitizeInput(input)` - Prevents XSS by escaping HTML
-- `debounce(func, wait)` - Limits function execution rate
-- `throttle(func, limit)` - Limits function execution frequency
-
-## Configuration Files
-
-### EmailJS & Turnstile
-Update these values in `js/modules/contact-form.js`:
-- **EmailJS:** Get keys from https://emailjs.com
-- **Turnstile:** Get site key from https://dash.cloudflare.com/
+EmailJS and Turnstile keys live in `js/modules/contact-form.js` (`EMAILJS_CONFIG`, `TURNSTILE_SITE_KEY`). Both are public by design.
 
 ## GitHub Pages Deployment
 
-This repository is configured for GitHub Pages deployment:
 - **URL:** https://macor003.github.io
-- **Branch:** master
-- **Build:** Not required (static files)
+- **Branch:** master (static files, no build on GitHub)
 
-**Deployment Process:**
-1. Make changes locally
-2. Compile SCSS if needed
-3. Test locally with HTTP server
-4. Commit and push to master branch
-5. GitHub Pages automatically deploys
-
-**Important:** Always commit compiled CSS files (`css/creative.css` and `css/creative.min.css`) along with SCSS changes.
+Work on a feature branch, open a PR to `master`; GitHub Pages deploys on merge.
 
 ## Testing Checklist
 
-Before deploying:
-- [ ] Test on local HTTP server (not file://)
-- [ ] Verify navbar scroll effect works
-- [ ] Test mobile menu toggle
-- [ ] Test language toggle (ES/EN)
-- [ ] Verify GSAP animations trigger on scroll
-- [ ] Test contact form validation
-- [ ] Verify Turnstile widget loads
-- [ ] Test on mobile (responsive layout)
-- [ ] Check all sections render correctly
-- [ ] Verify fixed buttons (CV download, scroll-to-top)
-
-## Performance
-
-**File Sizes (After Refactoring):**
-- HTML: 46KB (was 94KB) - 51% reduction
-- CSS (minified): 18KB (compiled from 12 SCSS modules)
-- Total page size: ~64KB (excluding external libraries)
-
-**Benefits:**
-- Browser caching enabled (external CSS/JS)
-- Modular code is easier to maintain
-- ES6 modules load on-demand
-- Minified CSS reduces bandwidth
-
-## Troubleshooting
-
-**SCSS compilation fails:**
-- Use `npx sass` instead of `gulp sass`
-- Deprecated warnings about `@import` are safe to ignore
-
-**JavaScript modules not loading:**
-- Must use HTTP server (not file://)
-- Check browser console for CORS errors
-
-**Turnstile error "cannot run in file:// url":**
-- Start local HTTP server: `python3 -m http.server 8000`
-
-**Animations not working:**
-- Verify GSAP scripts load before `main.js`
-- Check browser console for errors
-- Ensure ScrollTrigger plugin is loaded
+- [ ] Serve over HTTP (not file://) with cache disabled
+- [ ] Explorer rail, tabs and status bar follow the visible section
+- [ ] Mobile drawer opens/closes (hamburger, backdrop, Esc)
+- [ ] Language toggle (ES/EN) and theme toggle (dark/light)
+- [ ] Terminal replay and reveal-on-scroll animations
+- [ ] Contact form validation, Turnstile widget, email arrives with name/subject/time
+- [ ] CV button generates the PDF in the active language
+- [ ] No horizontal scroll at 390px width
 
 ## Version History
 
-**v2.0.0 (December 2024)** - Modular Refactoring
-- Separated inline CSS into 12 SCSS modules
-- Separated inline JS into 6 ES6 modules
-- Reduced HTML from 2,499 to 777 lines
-- Added comprehensive documentation
-- Improved code maintainability
+**v3.0.0 (October 2026)** — IDE-style redesign
+- New design inspired by thinkrail.ai, dark/light themes, AI-focused content
+- Client-side CV PDF generation; static CV PDF removed
+- GSAP and v2 styles/modules removed (still available in git history)
 
-**v1.0.0** - Initial single-file implementation
-- Contact form with EmailJS
-- Cloudflare Turnstile integration
-- GSAP animations
-- Bilingual support
+**v2.0.0 (December 2024)** — Modular refactoring (SCSS modules + ES6 modules)
+
+**v1.0.0** — Initial single-file implementation

@@ -309,13 +309,15 @@ function initFormSubmission() {
                 }
             }
 
-            // Prepare template parameters
+            // Prepare template parameters (keys match the EmailJS template:
+            // {{name}}, {{email}}, {{title}}, {{time}}, {{message}})
             const templateParams = {
-                from_name: validatedData.user_name,
-                from_email: validatedData.user_email,
+                name: validatedData.user_name,
+                email: validatedData.user_email,
+                title: `Mensaje de ${validatedData.user_name} desde el portafolio`,
+                time: new Date().toLocaleString('es-CO', { timeZone: 'America/Bogota' }),
                 message: validatedData.message,
-                turnstile_token: turnstileToken,
-                to_email: 'mcor63@gmail.com'
+                turnstile_token: turnstileToken
             };
 
             // Send email via EmailJS

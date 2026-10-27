@@ -1,254 +1,158 @@
-/**
- * RESPONSIVE DESIGN
- *
- * Media queries for different screen sizes
- * Mobile-first responsive adjustments
- *
- * Dependencies: _variables.scss, _mixins.scss
- */
+// ========================================
+// RESPONSIVE
+// Breakpoints: 480px (mobile), 768px (tablet), 1024px (desktop)
+// ========================================
 
-// ========================================
-// Wide Screens (Large Laptops and Desktops)
-// ========================================
-@include wide {
-  .container {
-    max-width: $breakpoint-wide;
-  }
+// Tablet & below: rail becomes a slide-in drawer
+@media (max-width: $bp-desktop) {
+    .cols {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .rail-left {
+        position: fixed;
+        top: $titlebar-h;
+        left: 0;
+        bottom: $statusbar-h;
+        height: auto;
+        width: min(280px, 82vw);
+        transform: translateX(-100%);
+        transition: transform .25s var(--ease);
+        box-shadow: var(--shadow);
+    }
+
+    .rail-backdrop {
+        position: fixed;
+        inset: $titlebar-h 0 $statusbar-h;
+        z-index: $z-backdrop;
+        background: rgba(0, 0, 0, .45);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity .25s;
+    }
+
+    body.rail-open {
+        .rail-left {
+            transform: none;
+        }
+
+        .rail-backdrop {
+            display: block;
+            opacity: 1;
+            pointer-events: auto;
+        }
+    }
+
+    .rail-backdrop {
+        display: block;
+    }
+
+    .nav-toggle {
+        display: inline-flex;
+    }
+
+    .hero-grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .terminal {
+        max-width: 560px;
+    }
 }
 
-// ========================================
-// Desktop (1024px - 1440px)
-// ========================================
-@include desktop {
-  .hero h1 {
-    font-size: 3rem;
-  }
+@media (max-width: $bp-tablet) {
+    .scope-crumbs,
+    .chrome-label {
+        display: none;
+    }
 
-  .section-title h2 {
-    font-size: 2.25rem;
-  }
+    .beats {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .about-grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .preview-card {
+        max-width: 260px;
+    }
+
+    .contact-grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .status-hide-sm {
+        display: none;
+    }
 }
 
-// ========================================
-// Tablet (768px and below)
-// ========================================
-@include tablet {
-  // Typography adjustments
-  section {
-    padding: 3rem 0;
-  }
-
-  .section-title {
-    margin-bottom: 2rem;
-
-    h2 {
-      font-size: 2rem;
+@media (max-width: $bp-mobile) {
+    body {
+        font-size: 14px;
     }
-  }
 
-  // About section
-  .about-content {
-    grid-template-columns: 1fr;
-    gap: 2rem;
-  }
-
-  .contact-info {
-    grid-template-columns: 1fr;
-  }
-
-  // Timeline adjustments for mobile
-  .timeline::before {
-    left: 30px;
-  }
-
-  .timeline-item {
-    &:nth-child(odd),
-    &:nth-child(even) {
-      padding-left: 4rem;
-      padding-right: 0;
+    .titlebar {
+        padding: 0 10px;
     }
-  }
 
-  .timeline-icon {
-    left: 30px !important;
-    transform: translateX(0) translateY(0) !important;
-  }
+    .titlebar-right {
+        gap: .3rem;
+    }
 
-  // Contact grid
-  .contact-grid {
-    grid-template-columns: 1fr;
-    gap: 2rem;
-  }
+    .chrome-btn {
+        padding: 0 .5rem;
+    }
 
-  // Skills grid
-  .skills-grid {
-    grid-template-columns: 1fr;
-  }
+    .wordmark {
+        font-size: .85rem;
+    }
 
-  // Education grid
-  .education-grid {
-    grid-template-columns: 1fr;
-  }
+    .titlebar-left .window-dots {
+        display: none;
+    }
+
+    .composer-fields {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .kv div {
+        grid-template-columns: 100px 1fr;
+    }
+
+    .feature-grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .gitlog {
+        padding-left: 26px;
+    }
+
+    .commit::before {
+        left: -26px;
+    }
+
+    .composer-row .chip {
+        display: none;
+    }
 }
 
-// ========================================
-// Mobile (480px and below)
-// ========================================
-@include mobile {
-  // Hero section
-  .hero {
-    padding: 2rem 1rem;
-
-    h1 {
-      font-size: 1.75rem;
-    }
-
-    .subtitle {
-      font-size: 1rem;
-    }
-
-    .description {
-      font-size: 0.9rem;
-    }
-  }
-
-  .hero-image {
-    width: 120px;
-    height: 120px;
-  }
-
-  // Buttons
-  .btn {
-    padding: 0.7rem 1.2rem;
-    font-size: 0.9rem;
-  }
-
-  .cta-buttons {
-    flex-direction: column;
-    width: 100%;
-
-    .btn {
-      width: 100%;
-      justify-content: center;
-    }
-  }
-
-  // Sections
-  section {
-    padding: 2rem 1rem;
-  }
-
-  .section-title {
-    margin-bottom: 1.5rem;
-
-    h2 {
-      font-size: 1.75rem;
-    }
-
-    p {
-      font-size: 0.95rem;
-    }
-  }
-
-  // Cards
-  .skill-category,
-  .education-card,
-  .timeline-content {
-    padding: 1.5rem;
-  }
-
-  // Contact form
-  .contact-form-wrapper,
-  .contact-social-wrapper {
-    padding: 1.5rem;
-  }
-
-  .form-group {
-    margin-bottom: 1.25rem;
-  }
-
-  // Fixed buttons adjustments
-  .download-cv {
-    padding: 0.75rem 1rem;
-
-    span {
-      display: none;
-    }
-
-    i {
-      font-size: 1.25rem;
-    }
-  }
-
-  .scroll-top {
-    width: 45px;
-    height: 45px;
-    font-size: 1.25rem;
-  }
-}
-
-// ========================================
-// Small Tablets (between 481px - 768px)
-// ========================================
-@media (min-width: $breakpoint-mobile + 1) and (max-width: $breakpoint-tablet) {
-  .hero h1 {
-    font-size: 2.5rem;
-  }
-
-  .skills-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-// ========================================
-// Landscape Mobile
-// ========================================
-@media (max-height: 600px) and (orientation: landscape) {
-  .hero {
-    min-height: auto;
-    padding: 4rem 0 2rem;
-  }
-
-  .hero-image {
-    width: 100px;
-    height: 100px;
-    margin-bottom: 1rem;
-  }
-
-  .hero h1 {
-    font-size: 2rem;
-    margin-bottom: 0.5rem;
-  }
-
-  .hero .subtitle {
-    font-size: 1rem;
-    margin-bottom: 1rem;
-  }
-
-  .hero .description {
-    font-size: 0.9rem;
-    margin-bottom: 1rem;
-  }
-}
-
-// ========================================
-// Print Styles
-// ========================================
 @media print {
-  .navbar,
-  .download-cv,
-  .scroll-top,
-  .mobile-menu,
-  .cta-buttons {
-    display: none !important;
-  }
+    .titlebar,
+    .rail-left,
+    .tabstrip,
+    .statusbar,
+    .terminal,
+    .chat-demo {
+        display: none;
+    }
 
-  body {
-    color: #000;
-    background: #fff;
-  }
+    .cols {
+        display: block;
+    }
 
-  section {
-    page-break-inside: avoid;
-  }
+    [data-reveal] {
+        opacity: 1;
+        transform: none;
+    }
 }

@@ -1,0 +1,92 @@
+// ========================================
+// DESIGN TOKENS
+// Theme colors live in CSS custom properties so the theme can switch at
+// runtime; layout constants stay as SCSS variables.
+// ========================================
+
+// Layout
+$titlebar-h: 48px;
+$tabstrip-h: 38px;
+$statusbar-h: 26px;
+$rail-w: 248px;
+$content-max: 1080px;
+
+// Breakpoints
+$bp-mobile: 480px;
+$bp-tablet: 768px;
+$bp-desktop: 1024px;
+$bp-wide: 1440px;
+
+// Radii
+$radius-sm: 6px;
+$radius-md: 10px;
+$radius-lg: 14px;
+
+// Z-index scale
+$z-rail: 55;
+$z-tabstrip: 50;
+$z-titlebar: 60;
+$z-statusbar: 60;
+$z-backdrop: 35;
+
+:root {
+    --font-display: "Orbitron", "Geist", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    --font-sans: "Geist", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    --font-mono: "JetBrains Mono", "Fira Code", "SF Mono", "Cascadia Code", monospace;
+
+    --space-sm: .5rem;
+    --space-md: 1rem;
+    --space-lg: 1.5rem;
+    --space-2xl: 3rem;
+    --space-3xl: 4rem;
+
+    --ease: cubic-bezier(.2, .7, .2, 1);
+}
+
+// Dark (default)
+:root,
+:root[data-theme="dark"] {
+    color-scheme: dark;
+    --bg: #09090b;
+    --chrome: #171719;
+    --elevated: #1d1e21;
+    --input: #141518;
+    --hover: #26272b;
+    --border: #2b2d30;
+    --border2: #43454a;
+    --text: #e8eaed;
+    --muted: #a8adb5;
+    --hint: #71757c;
+    --accent: #8dff4f;
+    --accent-hover: #59d915;
+    --accent-soft: rgba(141, 255, 79, .1);
+    --on-accent: #0a0a0a;
+    --blue: #6ac8ff;
+    --gold: #ffd54b;
+    --red: #ff4b75;
+    --shadow: 0 24px 80px rgba(0, 0, 0, .55);
+    --grid-line: rgba(255, 255, 255, .035);
+}
+
+:root[data-theme="light"] {
+    color-scheme: light;
+    --bg: #ffffff;
+    --chrome: #f2f3f5;
+    --elevated: #ffffff;
+    --input: #f7f8fa;
+    --hover: #e9eaee;
+    --border: #dcdfe4;
+    --border2: #c7ccd6;
+    --text: #15171a;
+    --muted: #5a5f6a;
+    --hint: #667085;
+    --accent: #2e7d16;
+    --accent-hover: #25640f;
+    --accent-soft: rgba(46, 125, 22, .09);
+    --on-accent: #ffffff;
+    --blue: #2265cf;
+    --gold: #946300;
+    --red: #d02533;
+    --shadow: 0 24px 80px rgba(15, 20, 40, .18);
+    --grid-line: rgba(15, 20, 40, .045);
+}

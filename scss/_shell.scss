@@ -1,0 +1,337 @@
+// ========================================
+// IDE SHELL
+// Titlebar, left rail (explorer), tabstrip, status bar
+// ========================================
+
+// ---------- Titlebar ----------
+.titlebar {
+    position: sticky;
+    top: 0;
+    z-index: $z-titlebar;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    height: $titlebar-h;
+    padding: 0 14px;
+    background: var(--chrome);
+    border-bottom: 1px solid var(--border);
+}
+
+.titlebar-left,
+.titlebar-right {
+    display: flex;
+    align-items: center;
+    gap: .75rem;
+    min-width: 0;
+}
+
+.titlebar-right {
+    gap: .4rem;
+}
+
+.wordmark {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: .95rem;
+    letter-spacing: .04em;
+    white-space: nowrap;
+
+    span {
+        color: var(--accent);
+        margin: 0 .1em;
+    }
+}
+
+.scope-crumbs {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    padding-left: .75rem;
+    border-left: 1px solid var(--border);
+    font-family: var(--font-mono);
+    font-size: .78rem;
+    color: var(--hint);
+    white-space: nowrap;
+}
+
+.scope-project {
+    color: var(--muted);
+}
+
+.scope-branch i {
+    color: var(--accent);
+    font-size: .7rem;
+}
+
+.chrome-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: .45rem;
+    height: 30px;
+    padding: 0 .65rem;
+    border: 1px solid var(--border);
+    border-radius: $radius-sm;
+    font-family: var(--font-mono);
+    font-size: .78rem;
+    color: var(--muted);
+    background: transparent;
+    transition: background .15s, color .15s;
+
+    &:hover {
+        color: var(--text);
+        background: var(--hover);
+    }
+}
+
+.nav-toggle {
+    display: none;
+}
+
+// Theme toggle icon swap
+.theme-icon-light {
+    display: none;
+}
+
+:root[data-theme="light"] {
+    .theme-icon-dark { display: none; }
+    .theme-icon-light { display: inline; }
+}
+
+// ---------- Columns ----------
+.cols {
+    display: grid;
+    grid-template-columns: $rail-w minmax(0, 1fr);
+    min-height: calc(100vh - #{$titlebar-h} - #{$statusbar-h});
+}
+
+// ---------- Left rail ----------
+.rail-left {
+    position: sticky;
+    top: $titlebar-h;
+    z-index: $z-rail;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1rem;
+    height: calc(100vh - #{$titlebar-h} - #{$statusbar-h});
+    padding: 14px 10px;
+    background: var(--chrome);
+    border-right: 1px solid var(--border);
+    overflow-y: auto;
+}
+
+.rail-heading {
+    padding: 0 8px 8px;
+    font-family: var(--font-mono);
+    font-size: .7rem;
+    font-weight: 600;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--hint);
+}
+
+.tree {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    margin-bottom: auto;
+}
+
+.tree-row {
+    display: flex;
+    align-items: center;
+    gap: .55rem;
+    height: 30px;
+    padding: 0 10px;
+    border-radius: $radius-sm;
+    font-family: var(--font-mono);
+    font-size: .82rem;
+    color: var(--muted);
+    white-space: nowrap;
+    transition: background .12s, color .12s;
+
+    i {
+        width: 14px;
+        font-size: .78rem;
+        text-align: center;
+        color: var(--hint);
+    }
+
+    &.folder {
+        color: var(--text);
+
+        i:first-child {
+            font-size: .6rem;
+        }
+    }
+
+    &.file {
+        padding-left: 30px;
+    }
+
+    &:hover:not(.folder) {
+        background: var(--hover);
+        color: var(--text);
+    }
+
+    &.active {
+        background: var(--accent-soft);
+        color: var(--accent);
+        box-shadow: inset 2px 0 0 var(--accent);
+
+        i {
+            color: var(--accent);
+        }
+    }
+}
+
+.tree-tag {
+    margin-left: auto;
+    padding: 0 .4rem;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    font-size: .62rem;
+    font-weight: 500;
+    color: var(--hint);
+}
+
+.rail-note {
+    position: relative;
+    padding: 12px;
+    border: 1px solid var(--border);
+    border-radius: $radius-md;
+    background: var(--elevated);
+    font-size: .8rem;
+    color: var(--muted);
+
+    p {
+        margin-bottom: .7rem;
+        padding-right: 12px;
+    }
+
+    &.hidden {
+        display: none;
+    }
+}
+
+.rail-note-dismiss {
+    position: absolute;
+    top: 4px;
+    right: 8px;
+    font-size: 1.1rem;
+    color: var(--hint);
+
+    &:hover {
+        color: var(--text);
+    }
+}
+
+.rail-backdrop {
+    display: none;
+}
+
+// ---------- Center / tabstrip ----------
+.center {
+    min-width: 0;
+}
+
+.tabstrip {
+    position: sticky;
+    top: $titlebar-h;
+    z-index: $z-tabstrip;
+    display: flex;
+    height: $tabstrip-h;
+    background: var(--chrome);
+    border-bottom: 1px solid var(--border);
+    overflow-x: auto;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}
+
+.tab {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: .45rem;
+    padding: 0 16px;
+    border-right: 1px solid var(--border);
+    font-family: var(--font-mono);
+    font-size: .78rem;
+    color: var(--hint);
+    white-space: nowrap;
+    transition: color .12s, background .12s;
+
+    &:hover {
+        color: var(--text);
+    }
+
+    &.active {
+        color: var(--text);
+        background: var(--bg);
+
+        // Accent rail on top of the active tab, covering the strip border below
+        &::before {
+            content: "";
+            position: absolute;
+            inset: 0 0 auto;
+            height: 2px;
+            background: var(--accent);
+        }
+
+        &::after {
+            content: "";
+            position: absolute;
+            inset: auto 0 -1px;
+            height: 1px;
+            background: var(--bg);
+        }
+    }
+}
+
+// ---------- Status bar ----------
+.statusbar {
+    position: fixed;
+    inset: auto 0 0;
+    z-index: $z-statusbar;
+    display: flex;
+    align-items: center;
+    height: $statusbar-h;
+    padding: 0 6px;
+    background: var(--chrome);
+    border-top: 1px solid var(--border);
+    font-family: var(--font-mono);
+    font-size: .72rem;
+    color: var(--hint);
+}
+
+.status-item {
+    display: inline-flex;
+    align-items: center;
+    gap: .4rem;
+    height: 100%;
+    padding: 0 10px;
+    white-space: nowrap;
+
+    .pulse {
+        width: 6px;
+        height: 6px;
+    }
+}
+
+.status-accent {
+    background: var(--accent);
+    color: var(--on-accent);
+    font-weight: 600;
+}
+
+.status-file {
+    color: var(--muted);
+}
+
+.status-spacer {
+    flex: 1;
+}

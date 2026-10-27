@@ -1,0 +1,271 @@
+// ========================================
+// BASE
+// Reset, typography and shared primitives (buttons, pills, chips)
+// ========================================
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: $titlebar-h + $tabstrip-h + 16px;
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    font-family: var(--font-sans);
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--text);
+    background: var(--bg);
+    padding-bottom: $statusbar-h;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+button {
+    font: inherit;
+    color: inherit;
+    background: none;
+    border: 0;
+    cursor: pointer;
+}
+
+ul,
+ol {
+    list-style: none;
+}
+
+::selection {
+    background: var(--accent);
+    color: var(--on-accent);
+}
+
+:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+    border-radius: 4px;
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+}
+
+.skip-link {
+    position: absolute;
+    left: 12px;
+    top: -60px;
+    z-index: 100;
+    padding: 8px 14px;
+    background: var(--accent);
+    color: var(--on-accent);
+    border-radius: $radius-sm;
+    font-weight: 600;
+
+    &:focus {
+        top: 12px;
+    }
+}
+
+// ---------- Buttons ----------
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: .55rem;
+    height: 40px;
+    padding: 0 1.1rem;
+    border: 1px solid var(--border2);
+    border-radius: $radius-sm;
+    font-weight: 500;
+    font-size: .92rem;
+    color: var(--text);
+    background: var(--elevated);
+    transition: background .15s, border-color .15s, transform .15s var(--ease);
+
+    &:hover {
+        background: var(--hover);
+        transform: translateY(-1px);
+    }
+}
+
+.btn-primary {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--on-accent);
+    font-weight: 600;
+
+    &:hover {
+        background: var(--accent-hover);
+        border-color: var(--accent-hover);
+    }
+}
+
+.btn-ghost {
+    background: transparent;
+}
+
+.btn-sm {
+    height: 30px;
+    padding: 0 .7rem;
+    font-size: .8rem;
+}
+
+// CV link while the PDF is being generated
+[data-cv-generate].is-generating {
+    opacity: .6;
+    cursor: progress;
+    pointer-events: none;
+}
+
+// ---------- Pills & chips ----------
+.pill {
+    display: inline-flex;
+    align-items: center;
+    gap: .4rem;
+    padding: .2rem .65rem;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    font-family: var(--font-mono);
+    font-size: .72rem;
+    color: var(--muted);
+    background: var(--chrome);
+    white-space: nowrap;
+}
+
+.pill-accent {
+    color: var(--accent);
+    border-color: color-mix(in srgb, var(--accent) 40%, transparent);
+    background: var(--accent-soft);
+}
+
+.pill-ai {
+    color: var(--blue);
+    border-color: color-mix(in srgb, var(--blue) 40%, transparent);
+    background: color-mix(in srgb, var(--blue) 10%, transparent);
+    font-weight: 600;
+}
+
+.chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .4rem;
+}
+
+.chip {
+    display: inline-flex;
+    align-items: center;
+    gap: .35rem;
+    padding: .25rem .6rem;
+    border: 1px solid var(--border);
+    border-radius: $radius-sm;
+    font-family: var(--font-mono);
+    font-size: .76rem;
+    color: var(--text);
+    background: var(--input);
+}
+
+.chip-accent {
+    color: var(--accent);
+    border-color: color-mix(in srgb, var(--accent) 40%, transparent);
+    background: var(--accent-soft);
+}
+
+.chip-dim {
+    color: var(--hint);
+    background: transparent;
+}
+
+.pulse {
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 0 0 var(--accent);
+    animation: pulse 2.2s infinite;
+}
+
+.window-dots {
+    display: inline-flex;
+    gap: 6px;
+
+    i {
+        width: 11px;
+        height: 11px;
+        border-radius: 50%;
+        background: var(--border2);
+    }
+
+    i:nth-child(1) { background: #ff5f57; }
+    i:nth-child(2) { background: #febc2e; }
+    i:nth-child(3) { background: #28c840; }
+}
+
+// ---------- Reveal on scroll ----------
+// Content is visible by default; it is only hidden for the animation once
+// effects.js has loaded and set .reveal-ready (so it never stays invisible
+// if the JS modules fail to load, e.g. when opened via file://).
+.reveal-ready [data-reveal] {
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity .6s var(--ease), transform .6s var(--ease);
+
+    &.in-view {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent) 60%, transparent); }
+    70% { box-shadow: 0 0 0 7px transparent; }
+    100% { box-shadow: 0 0 0 0 transparent; }
+}
+
+@keyframes blink {
+    50% { opacity: 0; }
+}
+
+@keyframes type {
+    from { clip-path: inset(0 100% 0 0); }
+    to { clip-path: inset(0 0 0 0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+    }
+
+    [data-reveal] {
+        opacity: 1;
+        transform: none;
+    }
+}
