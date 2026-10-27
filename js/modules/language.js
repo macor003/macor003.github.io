@@ -79,17 +79,6 @@ export function getCurrentLang() {
 }
 
 /**
- * Sets the current language explicitly and remembers the choice.
- * @param {string} lang - Language code ('es' or 'en')
- */
-export function setLanguage(lang) {
-    if ((lang === 'es' || lang === 'en') && lang !== currentLang) {
-        applyLanguage(lang);
-        persistLanguage(lang);
-    }
-}
-
-/**
  * Initializes the language module: an explicit earlier choice (localStorage)
  * wins; otherwise the browser's language is auto-detected.
  */

@@ -19,7 +19,6 @@ This is a personal portfolio website for Mario Ortega (Software Engineer & Solut
 ```
 /
 ├── index.html              # The site (IDE-style one-pager)
-├── index-backup.html       # Pre-refactor single-file version (historical, not linked)
 ├── favicon.svg             # ">_" prompt icon (+ img/favicon-32.png, img/apple-touch-icon.png)
 │
 ├── /scss/                  # SCSS sources
@@ -43,13 +42,10 @@ This is a personal portfolio website for Mario Ortega (Software Engineer & Solut
 │       ├── effects.js      # Terminal replay + reveal on scroll (IntersectionObserver)
 │       ├── contact-form.js # Validation, EmailJS, Cloudflare Turnstile
 │       ├── cv.js           # Client-side CV PDF generator (pdfmake)
-│       └── utils.js        # sanitizeInput, debounce, throttle
+│       └── utils.js        # sanitizeInput
 │
-├── /img/                   # Profile photos (MarioOrtega.jpg, MarioOrtega2.jpeg), icons
-└── /iconos/                # Legacy favicon.ico
+└── /img/                   # Profile photos (MarioOrtega.jpg, MarioOrtega2.jpeg) and favicon PNGs
 ```
-
-`gulpfile.js`, `package.json` and `/vendor` are leftovers from the original Start Bootstrap template and are not used by the site.
 
 ## Build System
 
@@ -130,6 +126,7 @@ Work on a feature branch, open a PR to `master`; GitHub Pages deploys on merge.
 - New design inspired by thinkrail.ai, dark/light themes, AI-focused content
 - Client-side CV PDF generation; static CV PDF removed
 - GSAP and v2 styles/modules removed (still available in git history)
+- Unused leftovers removed: Start Bootstrap `vendor/`, gulp/npm config, `index-backup.html`, old images and unused JS helpers
 
 **v2.0.0 (December 2024)** — Modular refactoring (SCSS modules + ES6 modules)
 
